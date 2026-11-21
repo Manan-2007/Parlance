@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "status": "proposed targets; not achieved",
+  "scope": "Bounded Indian Sign Language camera pilot, initially 30-50 supported lexical signs",
+  "metrics": {
+    "acceptedWordPrecisionMin": 0.95,
+    "supportedWordRecallMin": 0.9,
+    "sentenceWordErrorRateMax": 0.15,
+    "falseInsertionsPerNonSigningMinuteMax": 1,
+    "endToEndP95MillisecondsAfterSignEndMax": 500
+  },
+  "evaluation": {
+    "verifiedHeldoutSignersMin": 5,
+    "knownSignClipsMin": 500,
+    "unknownSignClipsMin": 100,
+    "nonSigningMinutesMin": 30,
+    "speedGroups": ["slow", "natural", "fast"],
+    "conditions": ["daylight", "normal indoor lighting", "varied backgrounds"],
+    "signerAndSourceOverlapAllowed": false,
+    "reportedPerClassAndPerSigner": true,
+    "unknownAndAbstainedInputsRetainedInMetrics": true,
+    "rawRecognitionScoredBeforeLanguageRewriting": true
+  },
+  "operatingRange": "Face, torso and required hands visible; hands sufficiently sharp to distinguish the supported signs",
+  "notes": [
+    "These are acceptance goals, not current product accuracy or speed claims.",
+    "Video IDs alone do not prove signer separation.",
+    "Zero errors in a tiny-set memorization diagnostic are not camera recognition accuracy.",
+    "A high precision score obtained by rejecting almost everything does not pass the recall gate.",
+    "Fingerspelling and unrestricted continuous language need separate evaluations."
+  ]
+}

@@ -1,0 +1,14 @@
+numpy==2.4.1
+torch==2.11.0
+torchvision==0.26.0
+opencv-python==4.13.0.92
+mediapipe==1.1.1
+pose-format==0.10.4
+huggingface-hub==1.24.0
+pandas==2.3.3
+scipy==1.17.1
+omegaconf==2.3.0
+antlr4-python3-runtime==4.9.3
+transformers==5.14.1
+sentencepiece==0.2.1
+beautifulsoup4==4.14.3

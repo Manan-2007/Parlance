@@ -1,0 +1,25 @@
+{
+  "dataset": "https://huggingface.co/datasets/ISL500/ISL-DATA",
+  "datasetRevision": "bf1fc5a65ce5ccccdd25eba01f55558db2ccbf32",
+  "resumeMode": "Legacy epoch-15 weights, fresh optimizer for epochs 16-20",
+  "automaticallyDeployed": false,
+  "knownClips": 120,
+  "correctKnown": 26,
+  "accuracy": 0.21666666666666667,
+  "checkpointEpoch": 16,
+  "signers": [
+    "User013",
+    "User014",
+    "User015"
+  ],
+  "rejectionThreshold": 0.2731817662715912,
+  "acceptedCount": 74,
+  "acceptedPrecision": 0.24324324324324326,
+  "unknownRejected": 8,
+  "unknownClips": 15,
+  "limitations": [
+    "Isolated 40-word recognition, not continuous sentence translation.",
+    "Publisher signer IDs are separated; labels and signer identity have not been independently reviewed.",
+    "Full-clip metrics do not establish webcam latency or new-camera accuracy."
+  ]
+}

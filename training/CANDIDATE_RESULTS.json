@@ -1,0 +1,301 @@
+{
+  "status": "No candidate accepted for deployment",
+  "knownChallengeClips": 15,
+  "unknownChallengeClips": 6,
+  "source": "https://huggingface.co/datasets/Exploration-Lab/CISLR",
+  "revision": "feda67dd9368fec5f188fd4bd1917ea5c2803c7c",
+  "signerIndependenceVerified": false,
+  "candidates": [
+    {
+      "candidate": "openhands_sl_gcn",
+      "knownClips": 15,
+      "knownClasses": 15,
+      "unknownClips": 6,
+      "correctKnown": 0,
+      "knownAccuracy": 0.0,
+      "acceptedPrecision": null,
+      "acceptedCount": 0,
+      "unknownRejection": 1.0,
+      "medianClipInferenceMs": 20.140708016697317,
+      "timingScope": "Classifier/recognizer only; tracking excluded"
+    },
+    {
+      "candidate": "isolated_tcn",
+      "knownClips": 15,
+      "knownClasses": 15,
+      "unknownClips": 6,
+      "correctKnown": 0,
+      "knownAccuracy": 0.0,
+      "acceptedPrecision": 0.0,
+      "acceptedCount": 3,
+      "unknownRejection": 0.8333333333333334,
+      "medianClipInferenceMs": 11.817749997135252,
+      "timingScope": "Classifier/recognizer only; tracking excluded"
+    },
+    {
+      "candidate": "current_forest_pilot_gate",
+      "knownClips": 15,
+      "knownClasses": 15,
+      "unknownClips": 6,
+      "correctKnown": 1,
+      "knownAccuracy": 0.06666666666666667,
+      "acceptedPrecision": 0.5,
+      "acceptedCount": 2,
+      "unknownRejection": 1.0,
+      "medianClipInferenceMs": 3.6060410202480853,
+      "timingScope": "Classifier/recognizer only; tracking excluded"
+    },
+    {
+      "candidate": "i3d_raw_full_dictionary",
+      "knownClips": 15,
+      "knownClasses": 15,
+      "unknownClips": 6,
+      "correctKnown": 2,
+      "knownAccuracy": 0.13333333333333333,
+      "acceptedPrecision": 0.5,
+      "acceptedCount": 4,
+      "unknownRejection": 1.0,
+      "medianClipInferenceMs": 0.7920830103103071,
+      "timingScope": "Prototype search only; video encoder excluded"
+    },
+    {
+      "candidate": "i3d_raw_pilot_inventory",
+      "knownClips": 15,
+      "knownClasses": 15,
+      "unknownClips": 6,
+      "correctKnown": 4,
+      "knownAccuracy": 0.26666666666666666,
+      "acceptedPrecision": 0.19047619047619047,
+      "acceptedCount": 21,
+      "unknownRejection": 0.0,
+      "medianClipInferenceMs": 0.01429201802238822,
+      "timingScope": "Prototype search only; video encoder excluded"
+    },
+    {
+      "candidate": "i3d_centered_full_dictionary",
+      "knownClips": 15,
+      "knownClasses": 15,
+      "unknownClips": 6,
+      "correctKnown": 2,
+      "knownAccuracy": 0.13333333333333333,
+      "acceptedPrecision": 0.5,
+      "acceptedCount": 4,
+      "unknownRejection": 1.0,
+      "medianClipInferenceMs": 0.7847910164855421,
+      "timingScope": "Prototype search only; video encoder excluded"
+    },
+    {
+      "candidate": "i3d_centered_pilot_inventory",
+      "knownClips": 15,
+      "knownClasses": 15,
+      "unknownClips": 6,
+      "correctKnown": 4,
+      "knownAccuracy": 0.26666666666666666,
+      "acceptedPrecision": 0.19047619047619047,
+      "acceptedCount": 21,
+      "unknownRejection": 0.0,
+      "medianClipInferenceMs": 0.013082986697554588,
+      "timingScope": "Prototype search only; video encoder excluded"
+    },
+    {
+      "candidate": "i3d_centered_pilot_calibrated",
+      "knownClips": 15,
+      "knownClasses": 15,
+      "unknownClips": 6,
+      "correctKnown": 2,
+      "knownAccuracy": 0.13333333333333333,
+      "acceptedPrecision": 0.18181818181818182,
+      "acceptedCount": 11,
+      "unknownRejection": 0.5,
+      "medianClipInferenceMs": 0.013082986697554588,
+      "timingScope": "Prototype search only; video encoder excluded"
+    },
+    {
+      "candidate": "development_selected_pose_rgb_fusion",
+      "knownClips": 15,
+      "knownClasses": 15,
+      "unknownClips": 6,
+      "correctKnown": 3,
+      "knownAccuracy": 0.2,
+      "acceptedPrecision": 0.17647058823529413,
+      "acceptedCount": 17,
+      "unknownRejection": 0.16666666666666666,
+      "medianClipInferenceMs": 29.6207919891458,
+      "timingScope": "Prototype search only; tracking and RGB encoding excluded"
+    },
+    {
+      "candidate": "azure_8_frames",
+      "knownClips": 15,
+      "unknownClips": 6,
+      "correctKnown": 4,
+      "knownAccuracy": 0.26666666666666666,
+      "acceptedPrecision": 0.2222222222222222,
+      "acceptedCount": 18,
+      "unknownRejection": 0,
+      "failures": 0,
+      "medianRequestMilliseconds": 6415,
+      "totalPromptTokens": 24297,
+      "totalCompletionTokens": 8402,
+      "timingScope": "Remote request only; source clip collection excluded"
+    }
+  ],
+  "continuousValidation": {
+    "tcn-continuous": {
+      "epoch": 67,
+      "validation": {
+        "wordErrorRate": 0.7345132743362832,
+        "sequenceAccuracy": 0.010416666666666666,
+        "referenceWords": 339,
+        "sequences": 96,
+        "substitutions": 117,
+        "deletions": 126,
+        "insertions": 6
+      }
+    },
+    "tcn-motion-continuous": {
+      "epoch": 94,
+      "validation": {
+        "wordErrorRate": 0.7079646017699115,
+        "sequenceAccuracy": 0.010416666666666666,
+        "referenceWords": 339,
+        "sequences": 96,
+        "substitutions": 124,
+        "deletions": 101,
+        "insertions": 15
+      }
+    },
+    "tcn-continuous-corrected": {
+      "epoch": 81,
+      "validation": {
+        "wordErrorRate": 0.6843657817109144,
+        "sequenceAccuracy": 0.041666666666666664,
+        "referenceWords": 339,
+        "sequences": 96,
+        "substitutions": 119,
+        "deletions": 101,
+        "insertions": 12
+      }
+    },
+    "tcn-motion-continuous-corrected": {
+      "epoch": 61,
+      "validation": {
+        "wordErrorRate": 0.7197640117994101,
+        "sequenceAccuracy": 0.041666666666666664,
+        "referenceWords": 339,
+        "sequences": 96,
+        "substitutions": 115,
+        "deletions": 123,
+        "insertions": 6
+      }
+    }
+  },
+  "islimDiagnostic": {
+    "metrics": {
+      "real": {
+        "wordErrorRate": 1.271186440677966,
+        "sequenceAccuracy": 0.0,
+        "referenceWords": 59,
+        "sequences": 12,
+        "substitutions": 39,
+        "deletions": 15,
+        "insertions": 21
+      },
+      "zero": {
+        "wordErrorRate": 1.5932203389830508,
+        "sequenceAccuracy": 0.0,
+        "referenceWords": 59,
+        "sequences": 12,
+        "substitutions": 55,
+        "deletions": 1,
+        "insertions": 38
+      },
+      "reversed": {
+        "wordErrorRate": 1.11864406779661,
+        "sequenceAccuracy": 0.0,
+        "referenceWords": 59,
+        "sequences": 12,
+        "substitutions": 39,
+        "deletions": 17,
+        "insertions": 10
+      }
+    },
+    "strictCheckpointLoad": true,
+    "encoderSourceSha256": "3b0a7ad79c3a21e7e39ba55b00df27f00a2e8b33f8b313355a3237cb9713cd29",
+    "limitations": [
+      "12 external CSLTR validation sentence groups, not a representative acceptance test.",
+      "English reference WER is not gloss WER or a complete translation quality metric.",
+      "Uses MediaPipe Tasks Holistic 1.1.1 rather than publisher legacy Solutions Holistic.",
+      "Supplied sparse JPG frames have no verified source timing; tracker uses synthetic 100 ms steps.",
+      "Matching public mobile export uses unmasked 128-frame padding; retained here.",
+      "Training overlap with source signers has not been independently established."
+    ]
+  },
+  "webcamControls": {
+    "evaluation": "Offline replay of user-provided non-signing controls",
+    "durationSeconds": 99.92100000000002,
+    "emittedWords": 0,
+    "emittedWordsPerMinute": 0.0,
+    "knownSignAccuracyEstablished": false,
+    "taskAudit": [
+      {
+        "task": "empty_scene",
+        "status": "empty_in_sampled_middle_frames",
+        "sampledTimesSeconds": [
+          5,
+          10,
+          15
+        ],
+        "observation": "No person is visible in the sampled middle frames. Leaving-frame transitions are retained in the complete clip; a person remains visible near 2.4 and 4.8 seconds."
+      }
+    ],
+    "releaseGateRegression": {
+      "baselineAutomaticWords": 2,
+      "fixedAutomaticWords": 0,
+      "sameBundleVerified": true,
+      "scope": "Development regression, not an independent accuracy test",
+      "tradeoff": "Moving signs with no observed hold require manual confirmation"
+    },
+    "tasks": [
+      {
+        "task": "rest",
+        "durationSeconds": 19.978,
+        "emittedWords": 0,
+        "framesWithHands": 295,
+        "trackedFrames": 359,
+        "suggestionUpdates": 3
+      },
+      {
+        "task": "typing",
+        "durationSeconds": 19.991000000000003,
+        "emittedWords": 0,
+        "framesWithHands": 218,
+        "trackedFrames": 360,
+        "suggestionUpdates": 6
+      },
+      {
+        "task": "ordinary_movement",
+        "durationSeconds": 19.96,
+        "emittedWords": 0,
+        "framesWithHands": 284,
+        "trackedFrames": 359,
+        "suggestionUpdates": 11
+      },
+      {
+        "task": "change_position",
+        "durationSeconds": 19.992000000000004,
+        "emittedWords": 0,
+        "framesWithHands": 333,
+        "trackedFrames": 360,
+        "suggestionUpdates": 42
+      },
+      {
+        "task": "empty_scene",
+        "durationSeconds": 20.000000000000004,
+        "emittedWords": 0,
+        "framesWithHands": 45,
+        "trackedFrames": 360,
+        "suggestionUpdates": 2
+      }
+    ]
+  }
+}

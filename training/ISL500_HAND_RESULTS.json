@@ -1,0 +1,44 @@
+{
+  "knownClips": 120,
+  "correctKnown": 81,
+  "accuracy": 0.675,
+  "epoch": 26,
+  "rejectionThreshold": 0.30285245180130005,
+  "acceptedCount": 111,
+  "acceptedPrecision": 0.6936936936936937,
+  "unknownRejected": 7,
+  "unknownClips": 15,
+  "scope": "Hand-motion-only isolated 40-word model; no sentence, webcam, or avatar accuracy claim",
+  "dataset": "https://huggingface.co/datasets/ISL500/ISL-DATA",
+  "revision": "bf1fc5a65ce5ccccdd25eba01f55558db2ccbf32",
+  "model": "HandMotionModel: six causal temporal blocks over 135 hand-shape/location features",
+  "trainingClips": 397,
+  "validationKnownClips": 80,
+  "validationAccuracy": 0.9125,
+  "trainingExclusions": [
+    {
+      "id": "084ad3d589ffee7b45eb",
+      "label": "Cool",
+      "reason": "Publisher hand file missing"
+    },
+    {
+      "id": "2a742a16781b9f2b411e",
+      "label": "I",
+      "reason": "Fewer than five hand-present frames"
+    },
+    {
+      "id": "68e04a4c79bb70217771",
+      "label": "Baby",
+      "reason": "Fewer than five hand-present frames"
+    }
+  ],
+  "heldoutTrackingFailures": [
+    {
+      "label": "I",
+      "kind": "known",
+      "split": "test"
+    }
+  ],
+  "checkpointSha256": "5bef384b3e77247fce317369131a9c776b6bda3c3f59cd5c8301a18dc51f5e72",
+  "automaticallyDeployed": false
+}

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Parlance · Camera evaluation recordings</title>
+  <style>
+    :root{font:16px/1.6 system-ui,sans-serif;color:#172544;background:#f3f6ff;color-scheme:light}
+    *{box-sizing:border-box}body{margin:0}main{max-width:1040px;margin:auto;padding:28px 20px 50px}
+    a{color:#243dba}header{display:flex;justify-content:space-between;gap:16px;align-items:center;margin-bottom:24px}
+    h1{font-size:clamp(25px,4vw,36px);line-height:1.2;letter-spacing:-.03em;margin:12px 0}h2{font-size:20px;margin:0 0 12px}
+    p{margin:8px 0 16px}.muted,small{color:#53627d}.tag{font-weight:650;color:#243dba}.grid{display:grid;grid-template-columns:1.4fr 1fr;gap:20px}
+    section{border:1px solid #d8e0f2;border-radius:16px;background:white;padding:22px}video{width:100%;aspect-ratio:16/9;object-fit:contain;background:#11213c;border-radius:10px;display:block}
+    button{font:inherit;font-weight:650;border:1px solid #b9c7e4;border-radius:9px;padding:10px 15px;background:white;color:#172544;cursor:pointer}
+    button.primary{background:#243dba;border-color:#243dba;color:white}button:disabled{opacity:.45;cursor:not-allowed}button:focus-visible,input:focus-visible{outline:3px solid #e5b74d;outline-offset:3px}
+    .buttons{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}label{display:block;font-weight:600;margin-bottom:5px}input{font:inherit;width:100%;border:1px solid #b9c7e4;border-radius:8px;padding:9px 12px;margin-bottom:16px}
+    ol{padding-left:22px}li{margin-bottom:12px}li[data-active="true"]{color:#243dba;font-weight:650}progress{width:100%;height:12px;margin-top:15px;accent-color:#243dba}
+    #status{min-height:28px;font-weight:600}#message{min-height:24px;color:#8a3324}footer{margin-top:22px}.notice{padding:12px 14px;border-left:3px solid #d6aa45;background:#fff9e9;font-size:14px}
+    @media(max-width:760px){.grid{grid-template-columns:1fr}main{padding:20px 14px}section{padding:18px}header{align-items:flex-start}}
+  </style>
+</head>
+<body><main>
+  <header><strong>Parlance · Evaluation recorder</strong><a href="/app/sign-to-text">Back to the app</a></header>
+  <span class="tag">Local recording · No microphone</span>
+  <h1>Help test unwanted word insertions.</h1>
+  <p class="muted">Record five short examples of ordinary activity. You do not need to know sign language for these controls.</p>
+  <div class="grid">
+    <section>
+      <video id="preview" autoplay playsinline muted aria-label="Local camera preview"></video>
+      <p id="status" role="status">Camera is off.</p>
+      <p id="prompt">Keep your face, torso and hands in view, in normal indoor light.</p>
+      <progress id="progress" value="0" max="20" aria-label="Recording progress"></progress>
+      <div class="buttons">
+        <button id="enable" class="primary">Enable camera</button>
+        <button id="record" disabled>Record this test</button>
+        <button id="stop" disabled>Stop recording</button>
+        <button id="camera-off" disabled>Turn camera off</button>
+        <button id="retake" disabled>Retake previous test</button>
+      </div>
+      <p id="message" role="alert"></p>
+      <small>Your camera preview and recordings stay in this browser. Nothing is uploaded. Closing this page clears unsaved recordings.</small>
+    </section>
+    <section>
+      <label for="participant">Anonymous tester code</label>
+      <input id="participant" value="tester-01" maxlength="32" autocomplete="off" spellcheck="false" pattern="[A-Za-z0-9_-]+" aria-describedby="code-help">
+      <small id="code-help">Use a code rather than your real name.</small>
+      <h2 style="margin-top:20px">Five tests · 20 seconds each</h2>
+      <ol id="tasks"></ol>
+      <p class="notice">These recordings test false positives. They do not validate ISL word recognition. Known-sign recordings will need a fluent ISL reviewer.</p>
+      <button id="export" class="primary" disabled>Download recordings ZIP</button>
+      <p id="saved" class="muted">No recordings saved yet.</p>
+    </section>
+  </div>
+  <footer class="muted">Export when ready. Keep the ZIP locally until you choose to share it for evaluation.</footer>
+</main><script type="module" src="/evaluation/recorder.js"></script></body></html>
