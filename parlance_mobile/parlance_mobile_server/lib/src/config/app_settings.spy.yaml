@@ -1,0 +1,12 @@
+### Addresses the app needs. Set on the server, so a phone never needs
+### rebuilding when one of them moves.
+class: AppSettings
+fields:
+  ### Web page that plays text in ISL with the 3D signer.
+  signerUrl: String?
+  ### Public web address of this app, used in QR codes so anyone can join from a browser.
+  appUrl: String?
+  ### Where to download the Android app (shown to Android visitors of the web app).
+  androidUrl: String?
+  ### Build number of the newest Android app at androidUrl; older apps offer to update.
+  androidBuild: int?
