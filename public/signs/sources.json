@@ -1,0 +1,2228 @@
+{
+ "_source": "ISLRTC official Indian Sign Language dictionary (Government of India), youtube.com/@islrtc. Landmarks extracted by VOX ml/build_motion.py; videos are linked, never copied.",
+ "channel": "https://www.youtube.com/@islrtc",
+ "signs": {
+  "accident": [
+   {
+    "id": "Ykv_2L4-7RY",
+    "title": "accident"
+   }
+  ],
+  "afraid": [
+   {
+    "id": "1wTikbR4vsE",
+    "title": "afraid, scared"
+   }
+  ],
+  "afternoon": [
+   {
+    "id": "rvjY9vlX_H4",
+    "title": "afternoon"
+   }
+  ],
+  "again": [
+   {
+    "id": "HNF-z7j8p0A",
+    "title": "again, repeat (sign 2)"
+   },
+   {
+    "id": "aO1B2sAfigI",
+    "title": "again, repeat (sign 1)"
+   }
+  ],
+  "all": [
+   {
+    "id": "DbDsfmhI-U8",
+    "title": "all (sign 2)"
+   },
+   {
+    "id": "NNAmDtu46B0",
+    "title": "all (sign 1)"
+   }
+  ],
+  "always": [
+   {
+    "id": "iWpgiYUT23c",
+    "title": "always, every time"
+   }
+  ],
+  "ambulance": [
+   {
+    "id": "W9u0E8xsI8w",
+    "title": "Ambulance"
+   },
+   {
+    "id": "eSiRWk0b_og",
+    "title": "ambulance"
+   }
+  ],
+  "angry": [
+   {
+    "id": "x5VIvDZhXNg",
+    "title": "Angry"
+   }
+  ],
+  "answer": [
+   {
+    "id": "BMzjPIvzVfU",
+    "title": "answer"
+   }
+  ],
+  "ask": [
+   {
+    "id": "Owp1cwVnCok",
+    "title": "ask, question"
+   },
+   {
+    "id": "sh5goqn8bGI",
+    "title": "question"
+   }
+  ],
+  "baby": [
+   {
+    "id": "ee81RfWTEq0",
+    "title": "Baby"
+   },
+   {
+    "id": "uPpD0etfJrk",
+    "title": "Infant"
+   },
+   {
+    "id": "wOSBUixQN20",
+    "title": "Stethoscope, Baby"
+   }
+  ],
+  "bad": [
+   {
+    "id": "9uSE_BJx1Po",
+    "title": "bad (sign 2)"
+   },
+   {
+    "id": "guSd2Yti04Q",
+    "title": "poor"
+   }
+  ],
+  "bag": [
+   {
+    "id": "GGK97cywvBc",
+    "title": "bag, backpack"
+   },
+   {
+    "id": "aTp3Y4ABxB4",
+    "title": "bag, sling bag"
+   },
+   {
+    "id": "d0pqR2XygBI",
+    "title": "bag"
+   },
+   {
+    "id": "yqRuuOhG1Cs",
+    "title": "bag"
+   }
+  ],
+  "bank": [
+   {
+    "id": "oCLyBoQpqYk",
+    "title": "Bank sign 1"
+   }
+  ],
+  "beautiful": [
+   {
+    "id": "QJDOHjM9eb8",
+    "title": "beautiful (sign 1)"
+   },
+   {
+    "id": "pxP6gH5pazw",
+    "title": "beautiful (sign 2)"
+   }
+  ],
+  "big": [
+   {
+    "id": "BFYTOi2N1w8",
+    "title": "big"
+   },
+   {
+    "id": "IUxURsL66jY",
+    "title": "huge"
+   },
+   {
+    "id": "RTvZD8AZs64",
+    "title": "large"
+   }
+  ],
+  "blood": [
+   {
+    "id": "_z-Ry3er2_k",
+    "title": "blood"
+   }
+  ],
+  "book": [
+   {
+    "id": "iCZL3lk119A",
+    "title": "book"
+   }
+  ],
+  "boy": [
+   {
+    "id": "FBngX7K4yaI",
+    "title": "Boy"
+   }
+  ],
+  "bread": [
+   {
+    "id": "EtXCmzB2HJ0",
+    "title": "chimta, tongs for chapati, roti"
+   },
+   {
+    "id": "MNCeezFR_YI",
+    "title": "bread"
+   },
+   {
+    "id": "Miw0xZr0diU",
+    "title": "chapati, roti"
+   },
+   {
+    "id": "j1sBTQ7hXs8",
+    "title": "roll eg  chapati, roti"
+   }
+  ],
+  "brother": [
+   {
+    "id": "NsQZ8by-g_k",
+    "title": "sibling"
+   },
+   {
+    "id": "whLOS_LCl9U",
+    "title": "younger brother"
+   },
+   {
+    "id": "zEhEGpPHGLE",
+    "title": "older brother, elder brother"
+   }
+  ],
+  "bus": [
+   {
+    "id": "2mv69CLtEnk",
+    "title": "catch a train, bus, etc"
+   },
+   {
+    "id": "HufgJPpb1kQ",
+    "title": "bus (sign 1)"
+   }
+  ],
+  "busy": [
+   {
+    "id": "C-rIgD-yIvg",
+    "title": "busy"
+   }
+  ],
+  "call": [
+   {
+    "id": "1IVmX0dfoUY",
+    "title": "phone"
+   },
+   {
+    "id": "AZYOFnu5v9w",
+    "title": "call sign 1"
+   },
+   {
+    "id": "HrApISDOGbI",
+    "title": "call sign 2"
+   },
+   {
+    "id": "um4s1H6JPJg",
+    "title": "call"
+   }
+  ],
+  "can": [
+   {
+    "id": "A7GtKqvxPNA",
+    "title": "can (sign 1)"
+   },
+   {
+    "id": "M5ML0oF4VzU",
+    "title": "can (sign 2)"
+   },
+   {
+    "id": "P2abspkSU_s",
+    "title": "able (meaning)"
+   },
+   {
+    "id": "_a81r3Cftzk",
+    "title": "able, can"
+   }
+  ],
+  "car": [
+   {
+    "id": "SUGgjeP54CQ",
+    "title": "car"
+   }
+  ],
+  "careful": [
+   {
+    "id": "vC9UFI1U0Wk",
+    "title": "caution"
+   },
+   {
+    "id": "yi--S0oh64s",
+    "title": "careful"
+   }
+  ],
+  "cheap": [
+   {
+    "id": "3KNJUn1OHUE",
+    "title": "cheap, inexpensive"
+   }
+  ],
+  "child": [
+   {
+    "id": "ONLHA3GmBAI",
+    "title": "kid"
+   }
+  ],
+  "city": [
+   {
+    "id": "URA2L-D-MAQ",
+    "title": "city sign 1"
+   },
+   {
+    "id": "vYM_64Gc77o",
+    "title": "town (sign 1)"
+   },
+   {
+    "id": "xR3xDmZZCCI",
+    "title": "city sign 2"
+   }
+  ],
+  "clean": [
+   {
+    "id": "WiOoeG7LL6I",
+    "title": "clean, tidy"
+   }
+  ],
+  "close": [
+   {
+    "id": "FSAlQGn8voQ",
+    "title": "shut"
+   },
+   {
+    "id": "WEnejEf0veY",
+    "title": "close"
+   }
+  ],
+  "clothes": [
+   {
+    "id": "6j7delTumo8",
+    "title": "apparel, garment"
+   }
+  ],
+  "cold": [
+   {
+    "id": "7qgJBHXKk_w",
+    "title": "Cool"
+   },
+   {
+    "id": "EdGBkBi0xQ4",
+    "title": "cold"
+   },
+   {
+    "id": "okkkPNVcTfQ",
+    "title": "cold for food"
+   }
+  ],
+  "college": [
+   {
+    "id": "CNnZQINfB8E",
+    "title": "college"
+   },
+   {
+    "id": "VYSankCl2f8",
+    "title": "university"
+   },
+   {
+    "id": "jZgU5rsfZ4c",
+    "title": "University"
+   }
+  ],
+  "come": [
+   {
+    "id": "HSEV-Y2g3A8",
+    "title": "come (sign 2)"
+   },
+   {
+    "id": "nQFOYe6er-k",
+    "title": "arrive"
+   },
+   {
+    "id": "zobbHZq0U4w",
+    "title": "come (sign 1)"
+   }
+  ],
+  "cook": [
+   {
+    "id": "Csudbq04CV0",
+    "title": "cook"
+   },
+   {
+    "id": "pdLj3hXV0q8",
+    "title": "cook"
+   }
+  ],
+  "cough": [
+   {
+    "id": "w163zAc0RYM",
+    "title": "Cough"
+   }
+  ],
+  "danger": [
+   {
+    "id": "YFrtVUeFoe4",
+    "title": "Danger, hazard, peril"
+   }
+  ],
+  "day": [
+   {
+    "id": "672SUsSwn10",
+    "title": "day (sign 2)"
+   },
+   {
+    "id": "v_HmgeH-ABo",
+    "title": "day (sign 1)"
+   }
+  ],
+  "deaf": [
+   {
+    "id": "F8ZmweysvHM",
+    "title": "Deaf"
+   },
+   {
+    "id": "WISR3HEeKgU",
+    "title": "hard of hearing"
+   }
+  ],
+  "different": [
+   {
+    "id": "cBtN1DlLXAs",
+    "title": "different"
+   }
+  ],
+  "difficult": [
+   {
+    "id": "39tZrKjvdQM",
+    "title": "hard, difficult"
+   }
+  ],
+  "doctor": [
+   {
+    "id": "Igfn-ktdtoY",
+    "title": "doctor"
+   }
+  ],
+  "dontknow": [
+   {
+    "id": "M-sKe4o73uE",
+    "title": "I don't know"
+   }
+  ],
+  "drink": [
+   {
+    "id": "0HcbAAaV73Y",
+    "title": "drink"
+   },
+   {
+    "id": "r7c6xQld230",
+    "title": "beverage, drink"
+   }
+  ],
+  "drive": [
+   {
+    "id": "ELCvZrWheyk",
+    "title": "initiative, drive (sign 2)"
+   },
+   {
+    "id": "k3gjXKD3_XU",
+    "title": "initiative, drive (sign 3)"
+   },
+   {
+    "id": "oqq2I0ePK3Y",
+    "title": "initiative, drive (sign 1)"
+   },
+   {
+    "id": "sLLQkt04ZiQ",
+    "title": "Drive"
+   }
+  ],
+  "early": [
+   {
+    "id": "G7hne4-iClg",
+    "title": "early"
+   }
+  ],
+  "easy": [
+   {
+    "id": "QEKQr_KeKe4",
+    "title": "easy"
+   }
+  ],
+  "eat": [
+   {
+    "id": "Cgs1MibMXJ0",
+    "title": "eat"
+   },
+   {
+    "id": "IVY4EYIVHMI",
+    "title": "food"
+   },
+   {
+    "id": "dTI8mMq81eM",
+    "title": "food"
+   }
+  ],
+  "egg": [
+   {
+    "id": "o_ebrgyrnuk",
+    "title": "egg"
+   },
+   {
+    "id": "vgFuCFPJEFM",
+    "title": "egg"
+   }
+  ],
+  "eight": [
+   {
+    "id": "l_QL6DBEeFk",
+    "title": "8 eight"
+   }
+  ],
+  "emergency": [
+   {
+    "id": "hnwJMWsU8tg",
+    "title": "emergency"
+   }
+  ],
+  "empty": [
+   {
+    "id": "dNZ0oK9jvZs",
+    "title": "none, nothing, empty"
+   }
+  ],
+  "evening": [
+   {
+    "id": "vB72KncjZis",
+    "title": "evening"
+   }
+  ],
+  "expensive": [
+   {
+    "id": "FxHe6CEMDFI",
+    "title": "costly"
+   },
+   {
+    "id": "TXA5pIG0jEM",
+    "title": "Expensive"
+   },
+   {
+    "id": "pdFZU1S_SIs",
+    "title": "expensive"
+   },
+   {
+    "id": "xu3e-IU_xRM",
+    "title": "expensive"
+   }
+  ],
+  "family": [
+   {
+    "id": "NNG5Id-ozfw",
+    "title": "Family"
+   }
+  ],
+  "fast": [
+   {
+    "id": "9MZyb9n2hmw",
+    "title": "quickly, hurry (sign 1)"
+   },
+   {
+    "id": "IGsDuTIs2ZU",
+    "title": "quickly (sign 2)"
+   },
+   {
+    "id": "MYy6xl7axI0",
+    "title": "fast sign 1"
+   },
+   {
+    "id": "oSXFhrjLVAI",
+    "title": "hurry up, quickly"
+   }
+  ],
+  "father": [
+   {
+    "id": "iFW5Yv8aqcw",
+    "title": "Father"
+   }
+  ],
+  "fever": [
+   {
+    "id": "0EhiEQdteO4",
+    "title": "temperature"
+   },
+   {
+    "id": "TJeHXGVDCms",
+    "title": "temperature"
+   },
+   {
+    "id": "TjSYqjfk-lc",
+    "title": "temperature (meaning) (sign 1)"
+   },
+   {
+    "id": "xQIXN-eQZ7I",
+    "title": "Fever"
+   }
+  ],
+  "fifty": [
+   {
+    "id": "O7x1aM8-GxY",
+    "title": "fifty, half century sign 2"
+   },
+   {
+    "id": "UrQNmmjb8tM",
+    "title": "fifty, half century sign 1"
+   },
+   {
+    "id": "mnhUWkJ2E0I",
+    "title": "50 Fifty"
+   }
+  ],
+  "find": [
+   {
+    "id": "ZLDP1B55IU0",
+    "title": "find"
+   }
+  ],
+  "finish": [
+   {
+    "id": "kYwtY_FCM1c",
+    "title": "complete, finish"
+   }
+  ],
+  "fire": [
+   {
+    "id": "Bw5ArWRzpAY",
+    "title": "fire"
+   }
+  ],
+  "five": [
+   {
+    "id": "BYnUpQfk3Ts",
+    "title": "5 five"
+   }
+  ],
+  "food": [
+   {
+    "id": "IVY4EYIVHMI",
+    "title": "food"
+   },
+   {
+    "id": "dTI8mMq81eM",
+    "title": "food"
+   }
+  ],
+  "forget": [
+   {
+    "id": "DpoUiyIlk2k",
+    "title": "Forget"
+   },
+   {
+    "id": "JsfKO_PcYRA",
+    "title": "Forget"
+   }
+  ],
+  "four": [
+   {
+    "id": "ouQmvo795rE",
+    "title": "4 four"
+   }
+  ],
+  "free": [
+   {
+    "id": "UMS2IJZt6To",
+    "title": "Free"
+   },
+   {
+    "id": "cJ4TYyET4u0",
+    "title": "free"
+   },
+   {
+    "id": "y-rA7UuFbVM",
+    "title": "Available"
+   }
+  ],
+  "friend": [
+   {
+    "id": "z2B7VrBSA5c",
+    "title": "friend"
+   }
+  ],
+  "fruit": [
+   {
+    "id": "oeH2BtfiHVI",
+    "title": "fruits"
+   }
+  ],
+  "full": [
+   {
+    "id": "6KSKyvfyJGs",
+    "title": "full"
+   },
+   {
+    "id": "7DwXOsZG5p8",
+    "title": "Full"
+   }
+  ],
+  "girl": [
+   {
+    "id": "wedIVeQMY1k",
+    "title": "girl"
+   }
+  ],
+  "give": [
+   {
+    "id": "t5PpODp9ey0",
+    "title": "give"
+   }
+  ],
+  "go": [
+   {
+    "id": "CMmQ1rh-5hQ",
+    "title": "go"
+   },
+   {
+    "id": "RqddJENqoOY",
+    "title": "go"
+   }
+  ],
+  "good": [
+   {
+    "id": "8XLg8rLK4zE",
+    "title": "good sign 1"
+   },
+   {
+    "id": "GZq28EIBmQs",
+    "title": "good (sign 2)"
+   },
+   {
+    "id": "QyL43-YjgK8",
+    "title": "nice (sign 2)"
+   },
+   {
+    "id": "aQEJlg8RhXQ",
+    "title": "good (sign 1)"
+   }
+  ],
+  "goodafternoon": [
+   {
+    "id": "8hPNnF65IMg",
+    "title": "Good afternoon"
+   }
+  ],
+  "goodbye": [
+   {
+    "id": "O6YJgD20e2g",
+    "title": "bye, goodbye"
+   }
+  ],
+  "goodevening": [
+   {
+    "id": "vB72KncjZis",
+    "title": "evening"
+   }
+  ],
+  "goodmorning": [
+   {
+    "id": "L37McuHckSI",
+    "title": "Good morning"
+   }
+  ],
+  "goodnight": [
+   {
+    "id": "zxwuZPkYjrQ",
+    "title": "Good night"
+   }
+  ],
+  "happy": [
+   {
+    "id": "JWG6pHZcTqw",
+    "title": "glad"
+   },
+   {
+    "id": "ucFQ8RTTV4A",
+    "title": "delighted, glad, joyful, pleased"
+   }
+  ],
+  "have": [
+   {
+    "id": "RorIn-P_3DI",
+    "title": "have"
+   },
+   {
+    "id": "hDsmZPfUGzc",
+    "title": "have"
+   }
+  ],
+  "he": [
+   {
+    "id": "DrNfHyG38aw",
+    "title": "he"
+   },
+   {
+    "id": "XtMJcffJ2NM",
+    "title": "his"
+   },
+   {
+    "id": "Xwbty21vYAA",
+    "title": "He"
+   },
+   {
+    "id": "lLd__AgPs98",
+    "title": "he"
+   }
+  ],
+  "headache": [
+   {
+    "id": "AaHFB_q7AO0",
+    "title": "headache"
+   },
+   {
+    "id": "u3ob1cSy0fk",
+    "title": "Headache"
+   }
+  ],
+  "hearingaid": [
+   {
+    "id": "xUg3J3yIUtQ",
+    "title": "hearing aid"
+   }
+  ],
+  "hello": [
+   {
+    "id": "yBQA3coUjH0",
+    "title": "hello"
+   }
+  ],
+  "help": [
+   {
+    "id": "0iE1wBnQ7JY",
+    "title": "help"
+   }
+  ],
+  "here": [
+   {
+    "id": "qpUbTS4pCWU",
+    "title": "here"
+   }
+  ],
+  "home": [
+   {
+    "id": "U--0FZU2bDg",
+    "title": "house, home"
+   }
+  ],
+  "hospital": [
+   {
+    "id": "QPwNEJn87pI",
+    "title": "hospital"
+   }
+  ],
+  "hot": [
+   {
+    "id": "MF1FXsA8yXw",
+    "title": "hot, scorching"
+   },
+   {
+    "id": "OcSgDKInrg8",
+    "title": "hot"
+   },
+   {
+    "id": "ke8JRiFHx3g",
+    "title": "hot"
+   }
+  ],
+  "hour": [
+   {
+    "id": "fNAwhyttX0Y",
+    "title": "hour"
+   }
+  ],
+  "how": [
+   {
+    "id": "AXe4E38O_ck",
+    "title": "how meaning"
+   }
+  ],
+  "howmany": [
+   {
+    "id": "kjbYH9I5O4U",
+    "title": "how many"
+   }
+  ],
+  "howmuch": [
+   {
+    "id": "3fh4S64bvM4",
+    "title": "how much meaning"
+   }
+  ],
+  "hundred": [
+   {
+    "id": "7FcFS0hXehs",
+    "title": "100 hundred"
+   }
+  ],
+  "hungry": [
+   {
+    "id": "Hx_qIWAYD-g",
+    "title": "hungry sign 1"
+   },
+   {
+    "id": "wYeLqdSCZR8",
+    "title": "hungry sign 2"
+   }
+  ],
+  "husband": [
+   {
+    "id": "e-oFpEWqbFI",
+    "title": "husband"
+   }
+  ],
+  "i": [
+   {
+    "id": "1f6OchgCQrE",
+    "title": "I, me"
+   }
+  ],
+  "important": [
+   {
+    "id": "5b8taaQPCXE",
+    "title": "important"
+   }
+  ],
+  "india": [
+   {
+    "id": "7kEbmn2BWIA",
+    "title": "India sign 4"
+   },
+   {
+    "id": "FdxGN0ru6F8",
+    "title": "India sign 3"
+   },
+   {
+    "id": "VAhELbOjQFc",
+    "title": "India sign 1"
+   },
+   {
+    "id": "cltsBNwU-FM",
+    "title": "India"
+   }
+  ],
+  "injection": [
+   {
+    "id": "kVdAvzdWoO8",
+    "title": "injection"
+   }
+  ],
+  "interpreter": [
+   {
+    "id": "IctKxBrrjJI",
+    "title": "interpret, interpreter"
+   },
+   {
+    "id": "XMtMf2GRxxk",
+    "title": "translator"
+   }
+  ],
+  "key": [
+   {
+    "id": "FathKZe6_LI",
+    "title": "key"
+   },
+   {
+    "id": "LeroNx_sYRU",
+    "title": "key"
+   },
+   {
+    "id": "sTVqgNJ4b-U",
+    "title": "cardinal, key, fundamental"
+   }
+  ],
+  "kitchen": [
+   {
+    "id": "EzA7vpG_mnw",
+    "title": "Kitchen"
+   },
+   {
+    "id": "QYaPv88J2iE",
+    "title": "kitchen"
+   }
+  ],
+  "know": [
+   {
+    "id": "GTsvj01_GEk",
+    "title": "know"
+   },
+   {
+    "id": "jTBahbE4_OY",
+    "title": "know"
+   }
+  ],
+  "late": [
+   {
+    "id": "5DjHf74Wzyk",
+    "title": "late (sign 1)"
+   }
+  ],
+  "learn": [
+   {
+    "id": "MAZVS8doD6E",
+    "title": "learn (sign 1)"
+   },
+   {
+    "id": "WzjR1buH7o8",
+    "title": "learn (sign 2)"
+   }
+  ],
+  "less": [
+   {
+    "id": "F9JOa0fXPI4",
+    "title": "less, few"
+   }
+  ],
+  "like": [
+   {
+    "id": "T976ElYJ-qY",
+    "title": "enjoy"
+   },
+   {
+    "id": "T9eBnmIRtqg",
+    "title": "like"
+   },
+   {
+    "id": "Y0ObDf8ZmJ0",
+    "title": "celebrate, enjoy"
+   }
+  ],
+  "listen": [
+   {
+    "id": "0uvuluJqqAM",
+    "title": "hear, listen (sign 1)"
+   }
+  ],
+  "live": [
+   {
+    "id": "I3haAOluERo",
+    "title": "WAIT, HALT, STAY"
+   },
+   {
+    "id": "ea8VG_U1OM4",
+    "title": "live"
+   },
+   {
+    "id": "mEKieyopxsc",
+    "title": "stay"
+   },
+   {
+    "id": "rVt3yJrZDaM",
+    "title": "live"
+   }
+  ],
+  "lose": [
+   {
+    "id": "0xVWH6F3Fz0",
+    "title": "lose"
+   }
+  ],
+  "love": [
+   {
+    "id": "BppcZzS6-Jg",
+    "title": "love"
+   },
+   {
+    "id": "MVRAKfH3YsA",
+    "title": "love, take care of, affection"
+   }
+  ],
+  "man": [
+   {
+    "id": "KTnQ_qP1iP4",
+    "title": "man"
+   },
+   {
+    "id": "VRhdtFEOlXs",
+    "title": "man"
+   },
+   {
+    "id": "YIns3vxfhnk",
+    "title": "male, masculine"
+   }
+  ],
+  "many": [
+   {
+    "id": "HwgChfSHtlI",
+    "title": "a lot"
+   },
+   {
+    "id": "pHgHQOTWz-U",
+    "title": "many, numerous"
+   }
+  ],
+  "market": [
+   {
+    "id": "YW3Kif98Oow",
+    "title": "market"
+   }
+  ],
+  "maybe": [
+   {
+    "id": "3vXJ605MFbU",
+    "title": "maybe"
+   }
+  ],
+  "medicine": [
+   {
+    "id": "FkCaUqcqwpA",
+    "title": "drug sign 3"
+   },
+   {
+    "id": "LYRpKbuXtw8",
+    "title": "drug sign 5"
+   },
+   {
+    "id": "bTfZoLcLD1s",
+    "title": "drug sign 4"
+   },
+   {
+    "id": "f48qzpAaVXA",
+    "title": "Medication"
+   }
+  ],
+  "meet": [
+   {
+    "id": "922S3GXI7eI",
+    "title": "meet"
+   },
+   {
+    "id": "G7v5KIJAMYY",
+    "title": "meet"
+   }
+  ],
+  "milk": [
+   {
+    "id": "guKx7gevhGo",
+    "title": "milk"
+   }
+  ],
+  "money": [
+   {
+    "id": "yzO4HfBGZO4",
+    "title": "Money"
+   }
+  ],
+  "month": [
+   {
+    "id": "Mbd9TS2cITU",
+    "title": "month (sign 1)"
+   },
+   {
+    "id": "aO7Pmus6yEE",
+    "title": "month (sign 2)"
+   }
+  ],
+  "more": [
+   {
+    "id": "lWnmHMNS06E",
+    "title": "add, more"
+   }
+  ],
+  "morning": [
+   {
+    "id": "mASaQcXn8rA",
+    "title": "morning"
+   }
+  ],
+  "mother": [
+   {
+    "id": "Kxj8mG2kNCc",
+    "title": "mother"
+   }
+  ],
+  "name": [
+   {
+    "id": "3I1fwIgGXv8",
+    "title": "name (sign 4)"
+   },
+   {
+    "id": "GIoPLi8lba4",
+    "title": "name (sign 5)"
+   },
+   {
+    "id": "SjfLsGRnuGo",
+    "title": "name (sign 2)"
+   },
+   {
+    "id": "ZlECIvK4NRU",
+    "title": "name (sign 1)"
+   }
+  ],
+  "never": [
+   {
+    "id": "MYVwYIX47wQ",
+    "title": "never"
+   }
+  ],
+  "new": [
+   {
+    "id": "_QzAxW9t99Y",
+    "title": "new"
+   },
+   {
+    "id": "l4jwOKcXm4I",
+    "title": "new"
+   }
+  ],
+  "night": [
+   {
+    "id": "iLnDUh6SJSo",
+    "title": "tonight"
+   },
+   {
+    "id": "rayOhAZhd2k",
+    "title": "night"
+   }
+  ],
+  "nine": [
+   {
+    "id": "-NQKa7Pmhx4",
+    "title": "9 nine"
+   }
+  ],
+  "no": [
+   {
+    "id": "BEEOC2ZXhsg",
+    "title": "no, not"
+   },
+   {
+    "id": "CXEDTo1PXCg",
+    "title": "no (sign 1)"
+   },
+   {
+    "id": "RQ0hRtZLmKs",
+    "title": "no sign 1"
+   },
+   {
+    "id": "VS_ZuiQIJx0",
+    "title": "no (sign 2)"
+   }
+  ],
+  "now": [
+   {
+    "id": "I4ZsuU5C6aw",
+    "title": "now, right now"
+   }
+  ],
+  "nurse": [
+   {
+    "id": "933fIHNLS9s",
+    "title": "nurse (sign 2)"
+   },
+   {
+    "id": "IBYqJ-C2FsA",
+    "title": "nurse (sign 1)"
+   }
+  ],
+  "office": [
+   {
+    "id": "3kNaobravCU",
+    "title": "office"
+   },
+   {
+    "id": "8gAE5cho4ck",
+    "title": "Office"
+   },
+   {
+    "id": "rCvWNwj0b_A",
+    "title": "office"
+   }
+  ],
+  "ok": [
+   {
+    "id": "EZpZvb2wicY",
+    "title": "okay (sign 2)"
+   },
+   {
+    "id": "mdghSfzgn_w",
+    "title": "okay (sign 1)"
+   }
+  ],
+  "old": [
+   {
+    "id": "ynZd-HeXGnc",
+    "title": "old, obsolete, outdated, ancient (thing, time)"
+   },
+   {
+    "id": "z-gika19BqU",
+    "title": "old, aged, elderly (person)"
+   }
+  ],
+  "one": [
+   {
+    "id": "lH6pT7nQb9A",
+    "title": "1 one"
+   }
+  ],
+  "open": [
+   {
+    "id": "C65MI7t4gjU",
+    "title": "open sign 1"
+   },
+   {
+    "id": "iayx3bt-0Rg",
+    "title": "open (sign 2)"
+   },
+   {
+    "id": "uGjEbNgtauE",
+    "title": "open (sign 1)"
+   }
+  ],
+  "operation": [
+   {
+    "id": "6nXKgVEBN28",
+    "title": "Operation"
+   },
+   {
+    "id": "R07yPaWBR8g",
+    "title": "operation"
+   }
+  ],
+  "pain": [
+   {
+    "id": "B71wV1k7n4M",
+    "title": "Ache, Pain"
+   },
+   {
+    "id": "BaXoF_r5D4w",
+    "title": "pain (sign 1)"
+   },
+   {
+    "id": "UvsWlQg31Ts",
+    "title": "pain (sign 2)"
+   },
+   {
+    "id": "nuvipygpYJ4",
+    "title": "pain sign 1"
+   }
+  ],
+  "pay": [
+   {
+    "id": "FfuRz0AuxMs",
+    "title": "pay"
+   },
+   {
+    "id": "jypsSrTTBTM",
+    "title": "pay"
+   },
+   {
+    "id": "v4dCOqQsnuI",
+    "title": "payment"
+   }
+  ],
+  "people": [
+   {
+    "id": "5blOEOqlkZ0",
+    "title": "person"
+   },
+   {
+    "id": "7k1fwc6_nKg",
+    "title": "Trigger (event , person, situation)"
+   },
+   {
+    "id": "_qWORH98SLc",
+    "title": "person"
+   },
+   {
+    "id": "n7sdyYH_Vss",
+    "title": "people"
+   }
+  ],
+  "phone": [
+   {
+    "id": "1IVmX0dfoUY",
+    "title": "phone"
+   },
+   {
+    "id": "YhHAI3h-Pno",
+    "title": "phone"
+   },
+   {
+    "id": "bLDCywKMmxs",
+    "title": "landline, telephone, phoneline"
+   }
+  ],
+  "play": [
+   {
+    "id": "5jDsH5VpFBo",
+    "title": "play"
+   },
+   {
+    "id": "gldUPLf591Y",
+    "title": "play"
+   }
+  ],
+  "please": [
+   {
+    "id": "iGDJKo1-w5k",
+    "title": "please (sign 3)"
+   },
+   {
+    "id": "vAW9QDnXLrE",
+    "title": "please (sign 4)"
+   }
+  ],
+  "pleased": [
+   {
+    "id": "F6sn_h1Xea0",
+    "title": "Nice to meet you"
+   },
+   {
+    "id": "JWG6pHZcTqw",
+    "title": "glad"
+   },
+   {
+    "id": "ucFQ8RTTV4A",
+    "title": "delighted, glad, joyful, pleased"
+   }
+  ],
+  "police": [
+   {
+    "id": "NmPpZgrECW0",
+    "title": "police"
+   },
+   {
+    "id": "g9D6A6J5GSo",
+    "title": "police"
+   }
+  ],
+  "price": [
+   {
+    "id": "q97fAwh2-aM",
+    "title": "rate, price, cost"
+   },
+   {
+    "id": "s5cimY-et2g",
+    "title": "price"
+   }
+  ],
+  "read": [
+   {
+    "id": "OWya5pey33I",
+    "title": "read"
+   },
+   {
+    "id": "wB_IFLoc1yE",
+    "title": "read"
+   }
+  ],
+  "ready": [
+   {
+    "id": "1dsbO78Qh5I",
+    "title": "ready"
+   }
+  ],
+  "remember": [
+   {
+    "id": "Q25uAMfX5Fc",
+    "title": "remember"
+   }
+  ],
+  "restaurant": [
+   {
+    "id": "ioqbhTiIwL0",
+    "title": "restaurant"
+   }
+  ],
+  "rice": [
+   {
+    "id": "ds5lPKnltQc",
+    "title": "rice"
+   }
+  ],
+  "road": [
+   {
+    "id": "ebmhe4dOwOw",
+    "title": "road"
+   },
+   {
+    "id": "wa6VGunvMoo",
+    "title": "road"
+   }
+  ],
+  "room": [
+   {
+    "id": "i11LzPy5OPQ",
+    "title": "room"
+   }
+  ],
+  "sad": [
+   {
+    "id": "2nCZJAqs3e4",
+    "title": "unhappy"
+   },
+   {
+    "id": "9sK2PFaxoHw",
+    "title": "upset, disturbed"
+   },
+   {
+    "id": "vzzmwuU-sMg",
+    "title": "sad"
+   },
+   {
+    "id": "yuo_oeBoTKk",
+    "title": "Upset"
+   }
+  ],
+  "salt": [
+   {
+    "id": "7EWF3Rsjn6Y",
+    "title": "salt"
+   }
+  ],
+  "same": [
+   {
+    "id": "6T7sRjrH2hU",
+    "title": "same (sign 2)"
+   },
+   {
+    "id": "JJamPbb5o_A",
+    "title": "same (sign 1)"
+   },
+   {
+    "id": "K4bb2bBt1uY",
+    "title": "same (sign 3)"
+   },
+   {
+    "id": "bL8PcxnwN74",
+    "title": "same (sign 4)"
+   }
+  ],
+  "school": [
+   {
+    "id": "OvDIlDiFmnU",
+    "title": "school"
+   },
+   {
+    "id": "_UQrz5J8Ook",
+    "title": "school"
+   }
+  ],
+  "see": [
+   {
+    "id": "7ZzerQxIzp4",
+    "title": "see"
+   },
+   {
+    "id": "WlhFpHM7lYY",
+    "title": "look, gaze, see"
+   },
+   {
+    "id": "vnOgaQ_eFNs",
+    "title": "see"
+   }
+  ],
+  "sell": [
+   {
+    "id": "w8RSWGCRPDg",
+    "title": "sell"
+   }
+  ],
+  "send": [
+   {
+    "id": "OnfyfHiCOjk",
+    "title": "message, send"
+   },
+   {
+    "id": "d9MAodEjHsc",
+    "title": "send"
+   }
+  ],
+  "seven": [
+   {
+    "id": "MZZ52lsCfSw",
+    "title": "7 seven"
+   }
+  ],
+  "she": [
+   {
+    "id": "1xIWUqBGkhA",
+    "title": "her, hers"
+   },
+   {
+    "id": "GGc4VrmWcBg",
+    "title": "she"
+   },
+   {
+    "id": "_rEVVtT1I44",
+    "title": "she"
+   }
+  ],
+  "shop": [
+   {
+    "id": "iwNBFzTrAjk",
+    "title": "shop"
+   }
+  ],
+  "show": [
+   {
+    "id": "YoqthDSpmXU",
+    "title": "show"
+   }
+  ],
+  "sick": [
+   {
+    "id": "NUKt0kkYSg4",
+    "title": "sick (sign 2)"
+   },
+   {
+    "id": "z_WykkCqulk",
+    "title": "sick (sign 1)"
+   }
+  ],
+  "signlanguage": [
+   {
+    "id": "SInKhy-06qA",
+    "title": "sign language"
+   },
+   {
+    "id": "q_tAK83vUbM",
+    "title": "sign language"
+   }
+  ],
+  "sister": [
+   {
+    "id": "BauK2i6mmK4",
+    "title": "younger sister"
+   },
+   {
+    "id": "YCnpEJTrtb4",
+    "title": "older sister, elder sister"
+   }
+  ],
+  "sit": [
+   {
+    "id": "35i0qoRJLEg",
+    "title": "sit sign 1"
+   },
+   {
+    "id": "CEHCaHC8hK0",
+    "title": "sit (sign 1)"
+   },
+   {
+    "id": "FQYd1BVpZ54",
+    "title": "sit (sign 2)"
+   }
+  ],
+  "six": [
+   {
+    "id": "T6vd9Criu48",
+    "title": "6 six"
+   }
+  ],
+  "sleep": [
+   {
+    "id": "nIBj-sIAi3s",
+    "title": "sleep"
+   }
+  ],
+  "slow": [
+   {
+    "id": "_sL5FydI-Is",
+    "title": "slow"
+   }
+  ],
+  "small": [
+   {
+    "id": "RPzCiRXVcr8",
+    "title": "little, meager"
+   },
+   {
+    "id": "k0pUR0HlaNw",
+    "title": "small"
+   }
+  ],
+  "some": [
+   {
+    "id": "DdLcNUoMf1c",
+    "title": "some"
+   },
+   {
+    "id": "F9JOa0fXPI4",
+    "title": "less, few"
+   },
+   {
+    "id": "_NQG94L6Ook",
+    "title": "some"
+   }
+  ],
+  "sometimes": [
+   {
+    "id": "-kNkN1zSAfc",
+    "title": "sometimes (sign 1)"
+   },
+   {
+    "id": "cPtb9OMfZ0w",
+    "title": "sometimes (sign 2)"
+   }
+  ],
+  "son": [
+   {
+    "id": "LiMHHFhjutc",
+    "title": "son"
+   },
+   {
+    "id": "s_OImSAKQGA",
+    "title": "son"
+   }
+  ],
+  "sorry": [
+   {
+    "id": "0sE5EMDNsDo",
+    "title": "sorry (sign 2)"
+   },
+   {
+    "id": "KXnSguJGdN8",
+    "title": "sorry (sign 3)"
+   },
+   {
+    "id": "SMEVutE0yBw",
+    "title": "excuse me"
+   },
+   {
+    "id": "TiPPYhh323E",
+    "title": "sorry (sign 1)"
+   }
+  ],
+  "speak": [
+   {
+    "id": "Yipdqci-cG4",
+    "title": "speak, speech (sign 2)"
+   },
+   {
+    "id": "gNuAOCWJkZc",
+    "title": "speak, speech (sign 1)"
+   },
+   {
+    "id": "vYPkgKmRa6k",
+    "title": "talk, chat"
+   }
+  ],
+  "stand": [
+   {
+    "id": "7vcIlpGP_D0",
+    "title": "stand"
+   }
+  ],
+  "start": [
+   {
+    "id": "QmWhfW8wyMs",
+    "title": "start, begin (sign 2)"
+   },
+   {
+    "id": "f0EqkYZvyIQ",
+    "title": "start, begin (sign 1)"
+   }
+  ],
+  "station": [
+   {
+    "id": "kV72VpKt6Is",
+    "title": "Station"
+   }
+  ],
+  "stomach": [
+   {
+    "id": "XhiIueAytF4",
+    "title": "stomach"
+   }
+  ],
+  "stop": [
+   {
+    "id": "1prjoYf2I0Y",
+    "title": "abort, discontinue, halt"
+   },
+   {
+    "id": "FHwjyQeLNuY",
+    "title": "stop (sign 1)"
+   },
+   {
+    "id": "Vl5FZxkx3IQ",
+    "title": "cease, discontinue, halt, stop"
+   },
+   {
+    "id": "mwUQPlBBZgE",
+    "title": "stop (sign 2)"
+   }
+  ],
+  "student": [
+   {
+    "id": "DtCeBbFbQ_A",
+    "title": "pupil"
+   },
+   {
+    "id": "EfEk1WUTZbw",
+    "title": "student"
+   },
+   {
+    "id": "Y66DFt19PyE",
+    "title": "student"
+   }
+  ],
+  "study": [
+   {
+    "id": "oAhY6BKcbG0",
+    "title": "study"
+   }
+  ],
+  "sugar": [
+   {
+    "id": "knDXwoLESEc",
+    "title": "sugar"
+   }
+  ],
+  "tablet": [
+   {
+    "id": "kJc7lHoG_kk",
+    "title": "Tablet"
+   }
+  ],
+  "take": [
+   {
+    "id": "Cw13fIyVSNA",
+    "title": "take"
+   },
+   {
+    "id": "WTZ8fCnM90g",
+    "title": "take"
+   }
+  ],
+  "tea": [
+   {
+    "id": "YQSQml2ePQM",
+    "title": "tea"
+   },
+   {
+    "id": "l7GQ-fR-DsA",
+    "title": "tea"
+   }
+  ],
+  "teach": [
+   {
+    "id": "Brqv7-rpdTQ",
+    "title": "teach"
+   },
+   {
+    "id": "ClqG0IIVDBA",
+    "title": "teach"
+   },
+   {
+    "id": "FYU1yAIBMKk",
+    "title": "instruct, teach"
+   }
+  ],
+  "teacher": [
+   {
+    "id": "HhgJ2Je_cSs",
+    "title": "teacher"
+   },
+   {
+    "id": "Qy_q0sAucuw",
+    "title": "teacher"
+   }
+  ],
+  "ten": [
+   {
+    "id": "eSFyfkFVTIU",
+    "title": "10 ten"
+   }
+  ],
+  "thankyou": [
+   {
+    "id": "-4MbWP5T-cU",
+    "title": "thank you (sign 2)"
+   },
+   {
+    "id": "Yz4vZ5ALDfw",
+    "title": "thank you (sign 1)"
+   },
+   {
+    "id": "wK8amEJAK1Y",
+    "title": "Thank you"
+   }
+  ],
+  "that": [
+   {
+    "id": "AEfFAtmkt6o",
+    "title": "that"
+   }
+  ],
+  "there": [
+   {
+    "id": "ZIKWlQUff9c",
+    "title": "there"
+   }
+  ],
+  "they": [
+   {
+    "id": "7qLPwuH3tVw",
+    "title": "they"
+   }
+  ],
+  "think": [
+   {
+    "id": "r99WfHTRr2A",
+    "title": "think, contemplate, ponder"
+   }
+  ],
+  "thirsty": [
+   {
+    "id": "wNm_sRMVOME",
+    "title": "thirsty"
+   }
+  ],
+  "thirty": [
+   {
+    "id": "LOJcAGPKq50",
+    "title": "30 thirty"
+   }
+  ],
+  "this": [
+   {
+    "id": "pNIc3-tZCr8",
+    "title": "it, this"
+   }
+  ],
+  "thousand": [
+   {
+    "id": "RGDTXsCvZBQ",
+    "title": "1,000 thousand"
+   }
+  ],
+  "three": [
+   {
+    "id": "Sh3P9rHIKOM",
+    "title": "3 three"
+   }
+  ],
+  "ticket": [
+   {
+    "id": "rmgyo8yyqfo",
+    "title": "ticket"
+   }
+  ],
+  "time": [
+   {
+    "id": "g8--b-O60kM",
+    "title": "old (things, time)"
+   },
+   {
+    "id": "nuVE-pwIDNM",
+    "title": "time"
+   },
+   {
+    "id": "vE_hLelUl-4",
+    "title": "time"
+   },
+   {
+    "id": "ynZd-HeXGnc",
+    "title": "old, obsolete, outdated, ancient (thing, time)"
+   }
+  ],
+  "tired": [
+   {
+    "id": "N2JSD2qn19s",
+    "title": "exhausted"
+   },
+   {
+    "id": "r9DiSHym81k",
+    "title": "tired, exhausted, fatigued"
+   }
+  ],
+  "today": [
+   {
+    "id": "Iji2l3tYxHc",
+    "title": "today"
+   }
+  ],
+  "toilet": [
+   {
+    "id": "5rku2NSGq94",
+    "title": "bathroom"
+   }
+  ],
+  "train": [
+   {
+    "id": "X6ZfXYmVdZY",
+    "title": "train (sign 1)"
+   },
+   {
+    "id": "iM1xMAR0_WQ",
+    "title": "train sign 1"
+   },
+   {
+    "id": "wDy5hBdrwoc",
+    "title": "train (sign 2)"
+   }
+  ],
+  "twenty": [
+   {
+    "id": "2iWRUv6eMls",
+    "title": "20 twenty"
+   }
+  ],
+  "two": [
+   {
+    "id": "MhHOduyqKv4",
+    "title": "2 two"
+   }
+  ],
+  "understand": [
+   {
+    "id": "TmsgikIaXu4",
+    "title": "understand, comprehend, grasp (sign 2)"
+   },
+   {
+    "id": "ZzpQw5V7gD0",
+    "title": "understand, comprehend"
+   },
+   {
+    "id": "a5kEZgbaT7w",
+    "title": "I understand"
+   }
+  ],
+  "vegetable": [
+   {
+    "id": "8WAJ_vejYOo",
+    "title": "vegetables"
+   },
+   {
+    "id": "cJ4I6c7G3Z8",
+    "title": "vegetables"
+   }
+  ],
+  "village": [
+   {
+    "id": "U-dEobzY4o4",
+    "title": "village (sign 2)"
+   },
+   {
+    "id": "sTrWqNmE5HA",
+    "title": "village (sign 1)"
+   }
+  ],
+  "wait": [
+   {
+    "id": "I3haAOluERo",
+    "title": "WAIT, HALT, STAY"
+   },
+   {
+    "id": "M24VjuHEfgo",
+    "title": "Wait"
+   }
+  ],
+  "wakeup": [
+   {
+    "id": "2GS4eJRYIi8",
+    "title": "get up, wake up"
+   },
+   {
+    "id": "9xgeOH9Jl9U",
+    "title": "wake"
+   }
+  ],
+  "walk": [
+   {
+    "id": "Q1FtAjA_raE",
+    "title": "walk"
+   }
+  ],
+  "want": [
+   {
+    "id": "Zux-Hazhhqo",
+    "title": "want, desire, wish for"
+   }
+  ],
+  "wash": [
+   {
+    "id": "eZ1NWsWssI0",
+    "title": "wash (meaning)"
+   }
+  ],
+  "water": [
+   {
+    "id": "SlORjr0kUM4",
+    "title": "water"
+   },
+   {
+    "id": "iFW-jmBq7wc",
+    "title": "water"
+   }
+  ],
+  "we": [
+   {
+    "id": "h58uVxY-2uE",
+    "title": "we"
+   },
+   {
+    "id": "hNkBC1bIFz8",
+    "title": "we"
+   }
+  ],
+  "wear": [
+   {
+    "id": "3snObAxKXOQ",
+    "title": "dress"
+   },
+   {
+    "id": "qoU45G2WmsE",
+    "title": "wear"
+   }
+  ],
+  "week": [
+   {
+    "id": "EFuaKRVN4Yw",
+    "title": "week, one week (sign 1)"
+   },
+   {
+    "id": "sNYOD_Qd7Mw",
+    "title": "week, one week (sign 2)"
+   }
+  ],
+  "welcome": [
+   {
+    "id": "P8c9TRiU7HI",
+    "title": "invite, welcome"
+   }
+  ],
+  "what": [
+   {
+    "id": "4accXsYqRnA",
+    "title": "what"
+   },
+   {
+    "id": "Zk_8W3_6jo4",
+    "title": "what"
+   }
+  ],
+  "when": [
+   {
+    "id": "mPZ37Qlg4B8",
+    "title": "when (for days)"
+   }
+  ],
+  "where": [
+   {
+    "id": "8wgrPnyzpMw",
+    "title": "where"
+   }
+  ],
+  "which": [
+   {
+    "id": "H0G_jCcuCWU",
+    "title": "which"
+   }
+  ],
+  "who": [
+   {
+    "id": "O8jMsqDMiRE",
+    "title": "who, whom"
+   }
+  ],
+  "why": [
+   {
+    "id": "7bqtiz4KRnE",
+    "title": "why (sign 2)"
+   },
+   {
+    "id": "_DzQr-7t3Wo",
+    "title": "why (meaning)"
+   },
+   {
+    "id": "m4fQZijBvjo",
+    "title": "why (sign 1)"
+   }
+  ],
+  "woman": [
+   {
+    "id": "5sfiu9fyEt8",
+    "title": "lady"
+   },
+   {
+    "id": "zJmlqjm_b5g",
+    "title": "woman, female"
+   }
+  ],
+  "work": [
+   {
+    "id": "FlZ8Xekr-JA",
+    "title": "work sign 3"
+   },
+   {
+    "id": "HxXeCum9-NI",
+    "title": "job sign 1"
+   },
+   {
+    "id": "huwLYnZ6dMA",
+    "title": "work sign 1"
+   },
+   {
+    "id": "t9pvXOgaJe8",
+    "title": "work sign 1"
+   }
+  ],
+  "write": [
+   {
+    "id": "UFePdoNR_KM",
+    "title": "write"
+   }
+  ],
+  "year": [
+   {
+    "id": "oMptigXjs8w",
+    "title": "year"
+   }
+  ],
+  "yes": [
+   {
+    "id": "LAT-u9Ww5ZU",
+    "title": "yes (sign 1)"
+   },
+   {
+    "id": "RP3l4P1JbFQ",
+    "title": "right"
+   },
+   {
+    "id": "VC_lTWT1HXU",
+    "title": "Right"
+   }
+  ],
+  "yesterday": [
+   {
+    "id": "3fKtgE9aQso",
+    "title": "yesterday"
+   }
+  ],
+  "you": [
+   {
+    "id": "B1zs0uEb9aI",
+    "title": "you"
+   },
+   {
+    "id": "QE4UkDB3MyE",
+    "title": "you"
+   }
+  ]
+ }
+}
