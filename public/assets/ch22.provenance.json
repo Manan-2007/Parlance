@@ -1,0 +1,15 @@
+{
+ "sourceFilename": "Ch22_nonPBR.fbx",
+ "sourceSha256": "2cd0e971678707e0545826dff18ef7382321e5a180a967d8eadc32d88618c95a",
+ "boneCount": 65,
+ "heightMeters": 1.8,
+ "faceKeys": [],
+ "assetSha256": "fa844e8dfeef565f074366acc86b71c2aac30266e06dc8679d4a1496c648c829",
+ "assetBytes": 1989216,
+ "conversion": "Blender 5.2 FBX import, glTF skin export; textures deduplicated/downsampled to 1024; non-metallic materials",
+ "animation": "Existing procedural word, letter and number tables retargeted to Mixamo numbered-prefix bones",
+ "linguisticReview": "Not established by an avatar replacement",
+ "uncompressedSha256": "34216c24872b078b8fe13a2c9c223acfa36e150f99b0f97be45a84478bc4fc62",
+ "uncompressedBytes": 4811052,
+ "compression": "gltf-transform 4.2.1: webp --quality 92 (textures kept at 1024), then meshopt --level medium (EXT_meshopt_compression, KHR_mesh_quantization); no simplification"
+}
