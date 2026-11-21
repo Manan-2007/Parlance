@@ -1,0 +1,25 @@
+### What the recogniser says after each frame (same fields as the web app's
+### recogniser messages).
+class: SignResult
+fields:
+  ### "ready", "listening", "reset".
+  status: String?
+  ### A finished, accepted word.
+  word: String?
+  confirmed: bool?
+  confidence: double?
+  ### The current best guess and why it was not accepted.
+  candidate: String?
+  reason: String?
+  stableFor: int?
+  ### Words to offer the signer when unsure.
+  suggestions: List<SignSuggestion>?
+  revision: int?
+  ### Whether the guess is for a finished sign.
+  isFinal: bool?
+  buffered: int?
+  needed: int?
+  error: String?
+  frameId: int?
+  ### Words the recogniser accepts without a tap (sent with "ready").
+  automatic: List<String>?

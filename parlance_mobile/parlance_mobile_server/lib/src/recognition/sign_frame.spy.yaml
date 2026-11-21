@@ -1,0 +1,14 @@
+### One message from the sign camera to the recogniser: a frame of hand
+### landmarks, or a control (reset, or confirming a suggested word).
+class: SignFrame
+fields:
+  ### 141 numbers: two hands x 21 landmarks x (x, y, z), then 15 zeros.
+  landmarks: List<double>?
+  ### Milliseconds on the phone's clock; must increase.
+  timestamp: double?
+  frameId: int?
+  ### Forget the sign in progress.
+  reset: bool?
+  ### A suggested word the signer tapped, with the revision it came from.
+  confirm: String?
+  revision: int?

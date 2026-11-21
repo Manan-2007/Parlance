@@ -1,0 +1,4 @@
+class: SignSuggestion
+fields:
+  word: String
+  confidence: double
