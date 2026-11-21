@@ -1,0 +1,31 @@
+anonymousIdp:
+  - login:
+emailIdp:
+  - startOtpLogin:
+  - verifyOtpLoginCode:
+  - finishOtpLogin:
+  - finishOtpRegistration:
+  - login:
+  - startRegistration:
+  - verifyRegistrationCode:
+  - finishRegistration:
+  - startPasswordReset:
+  - verifyPasswordResetCode:
+  - finishPasswordReset:
+  - hasAccount:
+jwtRefresh:
+  - refreshAccessToken:
+settings:
+  - get:
+greeting:
+  - hello:
+sign:
+  - read:
+room:
+  - create:
+  - join:
+  - say:
+  - live:
+  - listen:
+  - leave:
+  - close:
