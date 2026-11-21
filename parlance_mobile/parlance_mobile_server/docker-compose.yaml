@@ -1,0 +1,44 @@
+services:
+  # Development services
+  postgres:
+    image: ghcr.io/serverpod/postgres:16
+    ports:
+      - "8090:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: parlance_mobile
+      POSTGRES_PASSWORD: "TSYAHUZUzUp0TYDzfo_aCCqV6cO5P8pZ"
+    volumes:
+      - parlance_mobile_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:6.2.6
+    ports:
+      - "8091:6379"
+    command: redis-server --requirepass "MAN-BR-q6GxTMGaMRYozElVzkwSWzIxK"
+    environment:
+      - REDIS_REPLICATION_MODE=master
+
+  # Test services
+  postgres_test:
+    image: ghcr.io/serverpod/postgres:16
+    ports:
+      - "9090:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: parlance_mobile_test
+      POSTGRES_PASSWORD: "_h8N8Zq3h1-jFA311kBbgGD8lySRUF-x"
+    volumes:
+      - parlance_mobile_test_data:/var/lib/postgresql/data
+
+  redis_test:
+    image: redis:6.2.6
+    ports:
+      - "9091:6379"
+    command: redis-server --requirepass "hDuGCYsHhyIH46yGK0tvWpxewINbOgjB"
+    environment:
+      - REDIS_REPLICATION_MODE=master
+
+volumes:
+  parlance_mobile_data:
+  parlance_mobile_test_data:

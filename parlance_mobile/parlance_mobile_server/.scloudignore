@@ -1,0 +1,6 @@
+# Built files Git ignores but Serverpod Cloud must serve:
+# the Flutter web app, the 3D signer and the Android download.
+!web/app/
+!web/signer/
+!web/get/
+**/.scloud/
