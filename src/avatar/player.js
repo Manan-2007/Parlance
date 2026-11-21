@@ -1,6 +1,5 @@
 import * as THREE from 'three'
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js'
-import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js'
 import { clone } from 'three/addons/utils/SkeletonUtils.js'
 import { canonicalBone, restValue } from './signQueue.js'
 import { compileMotion, sampleMotionPose } from './poseMotion.js'
@@ -9,37 +8,11 @@ import { AVATAR_MODEL_URL } from './model.js'
 
 let modelPromise
 function loadModel() {
-  // ch22.glb is meshopt-compressed with WebP textures (about 2 MB instead of 4.8).
-  modelPromise ??= new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).loadAsync(AVATAR_MODEL_URL).catch((error) => {
+  modelPromise ??= new GLTFLoader().loadAsync(AVATAR_MODEL_URL).catch((error) => {
     modelPromise = undefined
     throw error
   })
   return modelPromise
-}
-
-/**
- * The exported materials are glossy, which makes cloth and skin look like
- * plastic. Soften the highlights so the signer reads as a real person.
- */
-function matte(mesh) {
-  for (const material of [mesh.material].flat()) {
-    if (!material || material.userData.matte) continue
-    const name = `${mesh.name} ${material.name}`.toLowerCase()
-    const skin = /body/.test(name)
-    const eyes = /eye/.test(name)
-    if (eyes) continue
-    // The exported "glossiness" texture is read as roughness, so it makes
-    // everything shine. Use one even value per material instead.
-    if ('roughnessMap' in material) material.roughnessMap = null
-    if ('metalnessMap' in material) material.metalnessMap = null
-    if ('roughness' in material) material.roughness = skin ? 0.58 : /hair/.test(name) ? 0.7 : 0.92
-    if ('metalness' in material) material.metalness = 0
-    if ('specularIntensityMap' in material) material.specularIntensityMap = null
-    if ('specularColorMap' in material) material.specularColorMap = null
-    if ('specularIntensity' in material) material.specularIntensity = skin ? 0.35 : 0.15
-    material.userData.matte = true
-    material.needsUpdate = true
-  }
 }
 
 export function createAvatar(mount, { interactive = true, onState = () => {}, onStatus = () => {} } = {}) {
@@ -92,14 +65,46 @@ export function createAvatar(mount, { interactive = true, onState = () => {}, on
 
   function frameCamera() {
     const hands = presentation === 'hands'
-    const vertical = THREE.MathUtils.degToRad(hands ? 19 : 21)
-    const horizontal = THREE.MathUtils.degToRad(28)
-    // A closer upper-body view on wide screens, with enough horizontal room
-    // for both hands when the stage becomes narrow on a phone.
+    if (hands) {
+      const vertical = THREE.MathUtils.degToRad(19)
+      const horizontal = THREE.MathUtils.degToRad(28)
+      camera.fov = THREE.MathUtils.radToDeg(2 * Math.atan(Math.max(
+        Math.tan(vertical / 2), Math.tan(horizontal / 2) / Math.max(camera.aspect, 0.1),
+      )))
+      camera.position.set(0, 0.52, 2.8)
+      camera.lookAt(0, 0.52, 0)
+      camera.updateProjectionMatrix()
+      return
+    }
+
+    const aspect = Math.max(camera.aspect, 0.1)
+    const vertical = THREE.MathUtils.degToRad(21)
+
+    // Aspect-aware framing derived from the container's aspect ratio via ResizeObserver:
+    // On wide desktop containers (aspect ~ 1.25), retain authored framing:
+    // vertical = 21 deg, horizontal = 28 deg, dist = 2.9, camY = 0.68.
+    // On wider/shorter mobile containers (aspect > 1.25), gently bring camera closer
+    // so the avatar fills the arch sensibly without appearing as a tiny figure.
+    // On tall/narrow containers (aspect < 1.0), constrain horizontal angle to prevent
+    // vertical FOV blow-up and exposed thighs.
+    let dist = 2.9
+    let camY = 0.68
+
+    if (aspect > 1.25) {
+      const t = Math.min((aspect - 1.25) / 0.65, 1.0)
+      dist = 2.9 - t * 0.60
+      camY = 0.68 - t * 0.05
+    } else if (aspect < 1.0) {
+      camY = 0.68 + (1.0 - aspect) * 0.05
+    }
+
+    const horizontal = THREE.MathUtils.degToRad(aspect >= 1.0 ? 28 : (20 + 8 * aspect))
     camera.fov = THREE.MathUtils.radToDeg(2 * Math.atan(Math.max(
-      Math.tan(vertical / 2), Math.tan(horizontal / 2) / Math.max(camera.aspect, 0.1),
+      Math.tan(vertical / 2), Math.tan(horizontal / 2) / aspect,
     )))
-    camera.position.set(0, hands ? 0.38 : 0.52, hands ? 2.8 : 2.9)
+
+    camera.position.set(0, camY, dist)
+    camera.lookAt(0, camY, 0)
     camera.updateProjectionMatrix()
   }
 
@@ -282,7 +287,6 @@ export function createAvatar(mount, { interactive = true, onState = () => {}, on
       scene.add(avatar)
       avatar.updateMatrixWorld(true)
       avatar.traverse((object) => {
-        if (object.isMesh) matte(object)
         if (object.isSkinnedMesh) object.frustumCulled = false
         if (!object.isBone) return
         const name = canonicalBone(object.userData.name ?? object.name)

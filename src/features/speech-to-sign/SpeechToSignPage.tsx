@@ -166,36 +166,36 @@ export function SpeechToSignPage() {
   }
 
   return (
-    <div className="flex flex-col gap-3 p-2 sm:gap-4 sm:p-3 lg:h-[calc(100dvh-4rem)] lg:p-4">
-    <div className="flex items-center">{viewSwitch}</div>
-    <div className="grid min-h-0 flex-1 gap-3 sm:gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(22rem,27rem)]">
-      <h1 className="sr-only">Speech to sign</h1>
-      <div className="h-[min(64svh,38rem)] min-h-[26rem] min-w-0 overflow-hidden rounded-[2rem] lg:h-auto">
-        <SignerStage
-          queue={queue}
-          loading={signs.status === "loading"}
-          state={playerState}
-          onState={setPlayerState}
-          player={player}
-          onPlayer={setPlayer}
-        />
+    <div className="flex flex-col gap-2 p-2 sm:gap-3 sm:p-3 max-lg:min-h-[calc(100dvh-4rem-4.5rem-env(safe-area-inset-bottom))] lg:h-[calc(100dvh-4rem)] lg:gap-4 lg:p-4">
+      <div className="flex shrink-0 items-center">{viewSwitch}</div>
+      <div className="flex flex-col min-h-0 flex-1 gap-2 sm:gap-3 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(22rem,27rem)] lg:gap-4">
+        <h1 className="sr-only">Speech to sign</h1>
+        <div className="h-[clamp(14rem,42dvh,24rem)] shrink-0 min-h-0 min-w-0 overflow-hidden rounded-[2rem] lg:h-auto lg:shrink">
+          <SignerStage
+            queue={queue}
+            loading={signs.status === "loading"}
+            state={playerState}
+            onState={setPlayerState}
+            player={player}
+            onPlayer={setPlayer}
+          />
+        </div>
+        <div className="flex min-h-[14rem] flex-1 flex-col overflow-hidden rounded-[2rem] ring-1 ring-line">
+          <ConversationPanel
+            exchanges={exchanges}
+            activeId={activeId}
+            onReplay={replay}
+            onClear={clear}
+            text={text}
+            onText={setText}
+            onSubmit={(source, override) => void translate(source, override)}
+            busy={signs.status === "loading"}
+            speech={speech}
+            language={language}
+            onLanguage={(value) => setSetting("speechLanguage", value)}
+          />
+        </div>
       </div>
-      <div className="min-h-0 rounded-[2rem] ring-1 ring-line lg:overflow-hidden">
-        <ConversationPanel
-          exchanges={exchanges}
-          activeId={activeId}
-          onReplay={replay}
-          onClear={clear}
-          text={text}
-          onText={setText}
-          onSubmit={(source, override) => void translate(source, override)}
-          busy={signs.status === "loading"}
-          speech={speech}
-          language={language}
-          onLanguage={(value) => setSetting("speechLanguage", value)}
-        />
-      </div>
-    </div>
     </div>
   );
 }

@@ -81,6 +81,23 @@ interface SettingsStore extends Settings {
   reset: () => void;
 }
 
+// Stale state cleanup: remove deprecated avatarGender from previous versions
+if (typeof localStorage !== "undefined") {
+  try {
+    localStorage.removeItem("parlance.avatarGender");
+    const raw = localStorage.getItem("parlance.settings.v1");
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (parsed?.state && "avatarGender" in parsed.state) {
+        delete parsed.state.avatarGender;
+        localStorage.setItem("parlance.settings.v1", JSON.stringify(parsed));
+      }
+    }
+  } catch {
+    // ignore storage access errors
+  }
+}
+
 export const useSettings = create<SettingsStore>()(
   persist(
     (set) => ({

@@ -1,3 +1,3 @@
-export const AVATAR_ID = 'ch22'
-export const AVATAR_LABEL = 'Ch22'
-export const AVATAR_MODEL_URL = `${import.meta.env?.BASE_URL ?? "/"}assets/ch22.glb`
+export const AVATAR_ID = 'remy'
+export const AVATAR_LABEL = 'Remy'
+export const AVATAR_MODEL_URL = '/assets/remy.glb'

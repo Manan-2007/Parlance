@@ -404,6 +404,25 @@
   @media (width >= 48rem) { padding-bottom: 0; }
 }
 
+@utility scrollbar-parlance {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-tangerine-400) var(--color-paper);
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-track {
+    background: var(--color-paper);
+    border-radius: 9999px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: var(--color-tangerine-400);
+    border-radius: 9999px;
+  }
+  &::-webkit-scrollbar-thumb:hover {
+    background: var(--color-navy);
+  }
+}
+
 @utility grid-paper {
   background-image:
     linear-gradient(to right, rgb(60 90 153 / 0.05) 1px, transparent 1px),

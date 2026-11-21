@@ -83,7 +83,7 @@ export function ConversationPanel({
 
   return (
     <section aria-label="Conversation" className="flex h-full min-h-0 flex-col rounded-[2rem] bg-surface">
-      <div className="flex items-center justify-between gap-3 border-b border-line px-4 py-3 sm:px-5">
+      <div className="flex shrink-0 items-center justify-between gap-3 border-b border-line px-4 py-3 sm:px-5">
         <div className="flex min-w-0 items-center gap-2.5">
           <span className="inline-flex size-10 shrink-0 items-center justify-center rounded-full bg-tangerine-400 text-navy" aria-hidden>
             <AudioLines className="size-[1.125rem]" />
@@ -106,7 +106,7 @@ export function ConversationPanel({
         </button>
       </div>
 
-      <div ref={logRef} className="min-h-0 flex-1 overflow-y-auto" aria-live="polite" aria-relevant="additions">
+      <div ref={logRef} className="scrollbar-parlance min-h-0 flex-1 overflow-y-auto" aria-live="polite" aria-relevant="additions">
         {exchanges.length === 0 ? (
           <div className="px-4 py-5 sm:px-5">
             <div className="flex items-end gap-3">
@@ -239,7 +239,7 @@ export function ConversationPanel({
           e.preventDefault();
           onSubmit("typed");
         }}
-        className="rounded-b-[2rem] border-t border-line bg-surface p-3 sm:p-4 max-lg:sticky max-lg:z-20 max-lg:shadow-[0_-8px_24px_-16px_rgb(1_22_56/0.25)] max-md:bottom-[calc(4rem+env(safe-area-inset-bottom))] md:max-lg:bottom-0"
+        className="shrink-0 rounded-b-[2rem] border-t border-line bg-surface p-2.5 sm:p-4"
       >
         {(listening || processing) && (
           <p className="mb-2 flex w-fit items-center gap-2 rounded-full bg-danger-bg px-3 py-1 text-[0.8125rem] font-semibold" role="status">
@@ -326,7 +326,9 @@ export function ConversationPanel({
               <option value="hi-IN">Hindi (India)</option>
             </select>
           </span>
-          <span>{speech.supported ? "Enter to sign · Shift + Enter for a new line" : "Voice input isn't available in this browser"}</span>
+          <span className="hidden sm:inline">
+            {speech.supported ? "Enter to sign · Shift + Enter for a new line" : "Voice input isn't available in this browser"}
+          </span>
         </div>
       </form>
     </section>

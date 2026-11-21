@@ -69,7 +69,17 @@ export function SignerStage({ queue, loading, state, onState, player, onPlayer }
   const current = has ? queue[index] : null;
   const overall = has ? (index + (state.finished ? 1 : state.progress)) / queue.length : 0;
 
-  const status = loading
+  const statusShort = loading
+    ? "Preparing"
+    : !has
+      ? "Ready"
+      : state.playing
+        ? `Signing ${index + 1}/${queue.length}`
+        : state.finished
+          ? "Finished"
+          : "Paused";
+
+  const statusLong = loading
     ? "Preparing signs"
     : !has
       ? "Waiting for a message"
@@ -78,6 +88,8 @@ export function SignerStage({ queue, loading, state, onState, player, onPlayer }
         : state.finished
           ? "Finished"
           : "Paused";
+
+  const status = statusLong;
 
   const statusIcon = loading ? (
     <SigningLoader label={status} size="sm" decorative inverse className="size-5" />
@@ -98,21 +110,22 @@ export function SignerStage({ queue, loading, state, onState, player, onPlayer }
     <div
       ref={stageRef}
       className={cn(
-        "relative isolate flex h-full min-h-[26rem] flex-col overflow-hidden bg-paper-2",
+        "relative isolate flex h-full min-h-0 lg:min-h-[26rem] flex-col overflow-hidden rounded-[2rem] bg-paper-2",
         fullscreen.active && "min-h-screen",
       )}
     >
-      <div aria-hidden className="absolute -top-20 -left-20 -z-10 size-52 rounded-full bg-tangerine-400" />
-      <div aria-hidden className="absolute -right-16 bottom-28 -z-10 size-40 rounded-full bg-sun-400" />
+      <div aria-hidden className="pointer-events-none absolute -top-20 -left-20 -z-10 size-52 rounded-full bg-tangerine-400" />
+      <div aria-hidden className="pointer-events-none absolute -right-16 bottom-28 -z-10 size-40 rounded-full bg-sun-400" />
 
       {/* top bar: status + toolbar */}
-      <div className="relative z-10 flex items-start justify-between gap-3 p-3 sm:p-4">
+      <div className="relative z-10 flex items-start justify-between gap-2 p-2.5 sm:p-4">
         <p
           className="flex min-w-0 items-center gap-2 rounded-full bg-navy py-2 pr-4 pl-3 text-[0.8125rem] font-bold whitespace-nowrap text-white"
           role="status"
         >
           <span className="inline-flex size-5 shrink-0 items-center justify-center">{statusIcon}</span>
-          <span className="truncate">{status}</span>
+          <span className="sm:hidden">{statusShort}</span>
+          <span className="hidden sm:inline truncate">{statusLong}</span>
         </p>
         <div className="flex shrink-0 items-center gap-0.5 rounded-full bg-surface p-1 ring-2 ring-navy" role="toolbar" aria-label="Signer view">
           <ToolButton label="Whole signer, including the face" pressed={view === "figure"} onClick={() => set("avatarView", "figure" as AvatarView)}>
@@ -161,29 +174,30 @@ export function SignerStage({ queue, loading, state, onState, player, onPlayer }
             label={current ? `3D signer ${current.kind === "fingerspelling" ? "spelling" : "performing"} ${current.label.toUpperCase()}. Drag sideways to turn the signer.` : "3D signer, idle. Drag sideways to turn the signer."}
           />
         </div>
-        {loading && (
-          <div className="pointer-events-none absolute inset-x-0 bottom-4 flex justify-center px-4">
-            <SigningLoader
-              label="Preparing signs"
-              size="sm"
-              layout="inline"
-              live={false}
-              className="animate-pop rounded-full bg-surface px-4 py-2 ring-2 ring-navy"
-            />
-          </div>
-        )}
-        {!has && !loading && (
-          <div className="pointer-events-none absolute inset-x-0 bottom-4 flex justify-center px-4">
-            <p className="max-w-sm animate-pop rounded-[1.25rem] rounded-b-md bg-sun-400 px-4 py-2.5 text-center text-[0.9375rem] leading-6 font-bold text-navy">
-              Type or say a message, and the signer will perform it in ISL.
-            </p>
-          </div>
-        )}
       </div>
+
+      {loading && (
+        <div className="relative z-10 shrink-0 px-3 pt-1.5 pb-2 flex justify-center sm:px-4 sm:pt-3 sm:pb-3">
+          <SigningLoader
+            label="Preparing signs"
+            size="sm"
+            layout="inline"
+            live={false}
+            className="animate-pop rounded-full bg-surface px-4 py-2 ring-2 ring-navy"
+          />
+        </div>
+      )}
+      {!has && !loading && (
+        <div className="relative z-10 shrink-0 px-3 pt-1.5 pb-2 flex justify-center sm:px-4 sm:pt-3 sm:pb-3">
+          <p className="max-w-md animate-pop rounded-full bg-sun-400 px-4 py-2 text-center text-xs sm:text-[0.9375rem] sm:px-5 sm:py-2.5 leading-snug font-bold text-navy shadow-sm">
+            Type or say a message, and the signer will perform it in ISL.
+          </p>
+        </div>
+      )}
 
       {/* caption + gloss rail */}
       {has && (
-        <div className="relative z-10 min-w-0 px-3 pb-2 text-center">
+        <div className="relative z-10 shrink-0 min-w-0 px-3 pb-2 text-center">
           {showCaptions && current && (
             <>
               <p key={`${index}-${current.label}`} className="animate-pop text-[2.5rem] leading-none font-extrabold tracking-[-0.03em] text-navy uppercase sm:text-[3.25rem]">
@@ -238,7 +252,7 @@ export function SignerStage({ queue, loading, state, onState, player, onPlayer }
       )}
 
       {/* transport */}
-      <div className="relative z-10 px-3 pb-3 sm:px-4 sm:pb-4">
+      <div className="relative z-10 shrink-0 px-2.5 pb-2.5 sm:px-4 sm:pb-4">
         <div className="focus-inverse mx-auto flex max-w-2xl items-center gap-2 rounded-full bg-navy p-1.5 text-white sm:gap-3 sm:p-2">
           <button
             type="button"

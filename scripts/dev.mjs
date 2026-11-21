@@ -4,7 +4,8 @@ import { fileURLToPath } from 'node:url'
 
 const root = fileURLToPath(new URL('../', import.meta.url))
 const localPython = process.platform === 'win32' ? '.venv/Scripts/python.exe' : '.venv/bin/python'
-const python = process.env.PARLANCE_PYTHON || (existsSync(new URL(`../${localPython}`, import.meta.url)) ? localPython : 'python3')
+const defaultPython = process.platform === 'win32' ? 'python' : 'python3'
+const python = process.env.PARLANCE_PYTHON || (existsSync(new URL(`../${localPython}`, import.meta.url)) ? localPython : defaultPython)
 const port = process.env.PARLANCE_API_PORT || '8000'
 const children = []
 let stopping = false
