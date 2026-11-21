@@ -1,0 +1,48 @@
+{
+  "name": "parlance",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "predev": "node scripts/copy-assets.mjs",
+    "dev": "node --env-file-if-exists=.env scripts/dev.mjs",
+    "dev:web": "node --env-file-if-exists=.env node_modules/vite/bin/vite.js",
+    "dev:api": "python3 -m uvicorn backend.main:app --host 127.0.0.1 --port 8000",
+    "prebuild": "node scripts/copy-assets.mjs",
+    "build": "tsc -b && vite build",
+    "typecheck": "tsc -b",
+    "start": "node --env-file-if-exists=.env node_modules/vite/bin/vite.js preview",
+    "test": "node --test",
+    "test:api": "python3 -m unittest discover -s backend/tests -v"
+  },
+  "dependencies": {
+    "@fontsource-variable/bricolage-grotesque": "^5.3.0",
+    "@fontsource-variable/geist": "^5.3.0",
+    "@fontsource-variable/manrope": "^5.3.0",
+    "@fontsource/dm-mono": "^5.3.0",
+    "@mediapipe/tasks-audio": "^1.0.0",
+    "@mediapipe/tasks-vision": "^1.0.0",
+    "lucide-react": "^1.75.0",
+    "motion": "^12.43.0",
+    "qrcode-generator": "^2.0.4",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-router-dom": "^7.18.2",
+    "three": "^0.185.1",
+    "zustand": "^5.1.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.3.5",
+    "@types/node": "^24.19.2",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@types/three": "^0.185.1",
+    "@vitejs/plugin-react": "^6.0.4",
+    "tailwindcss": "^4.3.5",
+    "typescript": "^6.0.3",
+    "vite": "^8.1.5"
+  },
+  "engines": {
+    "node": ">=22.18.0"
+  }
+}
