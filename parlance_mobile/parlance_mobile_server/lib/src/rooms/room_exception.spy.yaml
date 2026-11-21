@@ -1,0 +1,4 @@
+### A problem the person can act on, with a message to show them.
+exception: RoomException
+fields:
+  message: String

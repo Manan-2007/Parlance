@@ -1,0 +1,15 @@
+### One phone in a room.
+class: RoomMember
+table: room_member
+fields:
+  roomId: int
+  ### The signed-in account. Never sent to other phones.
+  userId: String?, scope=serverOnly
+  role: MemberRole
+  ### What the other side sees, e.g. "Asha" or "Front desk".
+  name: String
+  joinedAt: DateTime, default=now
+indexes:
+  room_member_unique:
+    fields: roomId, userId
+    unique: true

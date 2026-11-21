@@ -1,0 +1,12 @@
+enum: RoomEventKind
+values:
+  ### Someone joined. `member` is set.
+  - joined
+  ### Someone left. `member` is set.
+  - left
+  ### A finished message. `utterance` is set.
+  - said
+  ### Words still being signed or spoken, not saved. `member` and `live` are set.
+  - live
+  ### The room was closed or expired.
+  - closed

@@ -1,0 +1,15 @@
+### Something said in a room: a signed word, speech, typed text or a card.
+class: Utterance
+table: utterance
+fields:
+  roomId: int
+  memberId: int
+  role: MemberRole
+  kind: UtteranceKind
+  text: String
+  ### Hindi, when the message has one (cards and replies).
+  hindi: String?
+  createdAt: DateTime, default=now
+indexes:
+  utterance_room_idx:
+    fields: roomId

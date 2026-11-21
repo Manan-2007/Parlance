@@ -1,0 +1,13 @@
+### How a message was made.
+enum: UtteranceKind
+values:
+  ### A word read from signing by the camera.
+  - sign
+  ### Speech heard by the microphone.
+  - speech
+  ### Typed text.
+  - typed
+  ### A ready-made card (emergency, clinic, counter...).
+  - card
+  ### A one-tap reply.
+  - reply

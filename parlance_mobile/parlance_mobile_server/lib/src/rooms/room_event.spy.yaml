@@ -1,0 +1,8 @@
+### What every phone in a room receives, live.
+class: RoomEvent
+fields:
+  kind: RoomEventKind
+  member: RoomMember?
+  utterance: Utterance?
+  ### Words in progress ("hel...", or a sign the camera is still reading).
+  live: String?

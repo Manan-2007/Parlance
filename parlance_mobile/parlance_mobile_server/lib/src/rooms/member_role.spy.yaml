@@ -1,0 +1,7 @@
+### Which side of the conversation a phone is on.
+enum: MemberRole
+values:
+  ### A Deaf or hard-of-hearing person who signs to the camera and reads captions.
+  - signer
+  ### A hearing person who speaks or types and reads the signed words.
+  - speaker

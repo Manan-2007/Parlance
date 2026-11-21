@@ -1,0 +1,8 @@
+### Returned when a phone starts or joins a room.
+class: RoomInfo
+fields:
+  room: Room
+  me: RoomMember
+  members: List<RoomMember>
+  ### Messages so far, oldest first.
+  history: List<Utterance>

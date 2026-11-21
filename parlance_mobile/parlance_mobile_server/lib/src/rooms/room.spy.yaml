@@ -1,0 +1,12 @@
+### A live conversation between phones in the same place, joined with a short code.
+### Rooms expire after a few hours and their messages are deleted with them.
+class: Room
+table: room
+fields:
+  ### Six digits, shown as a QR code and read out to whoever joins.
+  code: String, unique
+  ### The account that started the room.
+  hostId: String?, scope=serverOnly
+  createdAt: DateTime, default=now
+  expiresAt: DateTime
+  closed: bool, default=false
