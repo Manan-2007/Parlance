@@ -92,7 +92,7 @@ export async function readSignFrames(frames, hints, signal = AbortSignal.timeout
   const text = await (config.name === 'gemini' ? askGemini : askAzure)(config, frames, hints, signal)
   const parsed = parseSignVideoOutput(text, match)
   if (!parsed) throw Object.assign(new Error('invalid output'), { status: 502 })
-  return { ...parsed, provider: config.name, ms: Math.round(performance.now() - started) }
+  return { ...parsed, provider: 'video', ms: Math.round(performance.now() - started) }
 }
 
 function json(response, status, body, headers = {}) {
@@ -136,7 +136,7 @@ export function signVideoApi(request, response, next) {
   if (pathname !== '/api/sign-video') return next()
   if (request.method === 'GET') {
     const config = provider()
-    return json(response, 200, { available: Boolean(config), provider: config?.name ?? null })
+    return json(response, 200, { available: Boolean(config), provider: config ? 'video' : null })
   }
   if (request.method === 'POST') {
     void read(request, response).catch(() => {

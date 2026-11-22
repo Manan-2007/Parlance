@@ -264,7 +264,7 @@ export function SettingsPage() {
               disabled={!speech.supported}
               onChange={(v) => s.set("voiceOutput", v)}
             />
-            <Field label="Voice" description={speech.azureEnabled ? "Azure neural voices use a soft delivery. Spoken text is sent to Azure to generate audio." : "Voices available on this device."}>
+            <Field label="Voice" description={speech.azureEnabled ? "Natural voices use a soft delivery. Spoken text is sent to Parlance's server to generate audio." : "Voices available on this device."}>
               {({ id, describedBy }) => (
                 <Select
                   id={id}
@@ -274,7 +274,7 @@ export function SettingsPage() {
                   onChange={(e) => s.set("voiceURI", e.target.value || null)}
                   className="w-full"
                 >
-                  <option value="">{speech.azureEnabled ? "Soft voice · Neerja (Azure default)" : "Automatic (English, India where available)"}</option>
+                  <option value="">{speech.azureEnabled ? "Soft voice · Neerja (default)" : "Automatic (English, India where available)"}</option>
                   {speech.voices.map((voice) => (
                     <option key={voice.voiceURI} value={voice.voiceURI}>
                       {voice.name} ({voice.lang})

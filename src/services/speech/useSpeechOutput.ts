@@ -67,7 +67,7 @@ export function useSpeechOutput(): SpeechOutput {
   const usingAzure = azureEnabled && (!voiceURI || voiceURI.startsWith("azure:"));
   const supported = usingAzure || browserSupported;
   const voices = useMemo(() => [
-    ...config.enabled ? config.voices.map(voice => ({ voiceURI: `azure:${voice.id}`, name: `${voice.name} (Azure)`, lang: voice.lang })) : [],
+    ...config.enabled ? config.voices.map(voice => ({ voiceURI: `azure:${voice.id}`, name: `${voice.name} (natural)`, lang: voice.lang })) : [],
     ...deviceVoices,
   ], [config, deviceVoices]);
 

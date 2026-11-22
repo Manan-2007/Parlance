@@ -19,7 +19,7 @@ const BELIEF_ICONS = [Languages, FlaskConical, ShieldCheck];
 const BELIEFS = [
   ["ISL first", "English and Hindi messages are converted to a sequence of ISL gloss tokens."],
   ["Measured, not assumed", "The camera service reports acceptance and confidence. The avatar signs still need linguistic review."],
-  ["Private by default", "History stays in your browser. Optional online translation sends the submitted message to Gemini."],
+  ["Private by default", "History stays in your browser. Optional online translation sends the submitted message to Parlance's server."],
 ];
 
 function initials(name: string): string {

@@ -8,7 +8,7 @@ import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { createId } from "@/lib/id";
 import { useCameraTracking } from "@/services/camera/useCameraTracking";
 import { useRecognitionService, type AcceptedSign, type FinishedSign } from "@/services/recognition/useRecognitionService";
-import { PROVIDER_NAMES, readSignFromVideo, useSignClips, useVideoAvailability } from "@/services/recognition/videoSign";
+import { readSignFromVideo, useSignClips, useVideoAvailability } from "@/services/recognition/videoSign";
 import { glossLabel, useRecognitionMetrics, useSignLibrary } from "@/services/signs/library";
 import { sentenceKey, useSignSentence } from "@/services/signs/useSignSentence";
 import { useSpeechOutput } from "@/services/speech/useSpeechOutput";
@@ -142,7 +142,7 @@ export function SignToTextPage() {
           addWordRef.current({ word: reading.word, confidence: reading.confidence, at: Date.now(), via: reading.provider });
           clearLiveRef.current?.();            // the hand model's suggestions for this sign are moot
         } else {
-          const note = `${PROVIDER_NAMES[reading.provider] ?? "Video AI"} could not read that sign. Try it again, a little slower.`;
+          const note = "Parlance could not read that sign. Try it again, a little slower.";
           setVideoNote(note);
           announce(note);
           window.clearTimeout(videoNoteTimer.current);
@@ -258,9 +258,9 @@ export function SignToTextPage() {
               onChange={(on) => set("videoAI", on)}
               description={
                 videoInfo?.available
-                  ? `Sends a short clip of each finished sign to ${PROVIDER_NAMES[videoInfo.provider ?? ""] ?? "a vision model"}, which picks the word. Takes a few seconds per sign. Nothing is stored.`
+                  ? "Sends a short clip of each finished sign to Parlance's video reader, which picks the word. Takes a few seconds per sign. Nothing is stored."
                   : videoInfo
-                    ? "Unavailable: add GEMINI_API_KEY, or the AZURE_OPENAI_* settings, to the .env file and restart the server."
+                    ? "Unavailable on this server right now."
                     : "Checking…"
               }
             />

@@ -393,7 +393,7 @@ export function HelpPage() {
                   "The camera runs only while you have turned it on. Frames are processed on this device and never recorded or uploaded.",
                   `For recognition, only hand landmark coordinates are sent to ${serviceUrl}.`,
                   "Voice input is transcribed by your browser's speech service. In Chrome this uses Google's servers.",
-                  "Azure voice output sends the text you choose to speak to Azure. Device voices can be selected in Settings.",
+                  "Natural voice output sends the text you choose to speak to Parlance's server. Device voices can be selected in Settings.",
                   "History is text only and stays in this browser. You choose how long it is kept, and can delete it at any time.",
                 ].map((item) => (
                   <li key={item} className="flex gap-2.5">
