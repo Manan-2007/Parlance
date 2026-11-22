@@ -160,6 +160,17 @@ class HomeScreen extends ConsumerWidget {
                     bordered: false,
                     onTap: () => context.go('/cards'),
                   ),
+                  const SectionTitle('At a talk or a show'),
+                  ActionTile(
+                    icon: Icons.record_voice_over_rounded,
+                    title: 'Interpret a speaker',
+                    body:
+                        'No signer on stage? The phone listens and the 3D signer signs it live, on its own.',
+                    background: Brand.voice,
+                    foreground: Brand.navy,
+                    bordered: false,
+                    onTap: () => context.push('/interpret'),
+                  ),
                   const SectionTitle(
                     'Community',
                     description:

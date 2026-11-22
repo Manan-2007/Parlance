@@ -187,6 +187,11 @@ export const router = createBrowserRouter([
         lazy: async () => ({ Component: (await import("@/features/embed/EmbedSignPage")).EmbedSignPage }),
       },
       {
+        // The live signer, fed by the phone app's "Interpret a speaker".
+        path: "/embed/live",
+        lazy: async () => ({ Component: (await import("@/features/embed/EmbedLivePage")).EmbedLivePage }),
+      },
+      {
         // One Learn sign or phrase, opened by the Parlance phone app's lessons.
         path: "/embed/learn",
         lazy: async () => ({ Component: (await import("@/features/embed/EmbedLearnPage")).EmbedLearnPage }),

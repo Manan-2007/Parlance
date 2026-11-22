@@ -6,6 +6,7 @@ import '../features/community/community_screens.dart';
 import '../features/community/live_screen.dart';
 import '../features/contribute/contribute_screens.dart';
 import '../features/home/home_screen.dart';
+import '../features/interpret/interpret_screen.dart';
 import '../features/learn/learn_screens.dart';
 import '../features/room/conversation_screen.dart';
 import '../features/room/start_screen.dart';
@@ -161,6 +162,11 @@ final router = GoRouter(
           ),
         ),
       ],
+    ),
+    GoRoute(
+      path: '/interpret',
+      parentNavigatorKey: _root,
+      builder: (context, state) => const InterpretScreen(),
     ),
     GoRoute(
       path: '/talk',
