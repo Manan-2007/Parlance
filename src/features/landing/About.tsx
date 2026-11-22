@@ -10,8 +10,6 @@ const TEAM = [
   { slot: "M1", name: "Manan Kochhar" },
   { slot: "M2", name: "Bhavika Bakshi" },
   { slot: "M3", name: "Maulik Sharma" },
-  { slot: "M4", name: "Khushi" },
-  { slot: "M5", name: "Jaisgurnoor" },
 ];
 
 const BELIEF_ICONS = [Languages, FlaskConical, ShieldCheck];
