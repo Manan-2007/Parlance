@@ -10,12 +10,16 @@ export type TextSize = "default" | "large" | "larger";
 export type AvatarView = "figure" | "hands";
 export type SpeechLanguage = "en-IN" | "en-US" | "en-GB" | "hi-IN";
 export type PlaybackSpeed = 0.5 | 0.75 | 1;
+/** Online: AI translation (better ISL word order, needs internet). Offline: instant built-in rules. */
+export type TranslationMode = "online" | "offline";
 
 export interface Settings {
   /* Language */
   speechLanguage: SpeechLanguage;
   /** Translate to ISL as soon as a spoken phrase is finished. */
   autoTranslate: boolean;
+  /** How text becomes signs: AI when online, or the built-in rules. */
+  translationMode: TranslationMode;
 
   /* Signer */
   avatarView: AvatarView;
@@ -55,6 +59,7 @@ export const DEFAULT_SERVICE_URL =
 export const DEFAULT_SETTINGS: Settings = {
   speechLanguage: "en-IN",
   autoTranslate: true,
+  translationMode: "online",
   avatarView: "figure",
   playbackSpeed: 1,
   mirror: false,

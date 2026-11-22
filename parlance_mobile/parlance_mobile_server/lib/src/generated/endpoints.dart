@@ -38,6 +38,7 @@ import '../contribute/contribute_endpoint.dart' as _ilnokq2e;
 import '../greetings/greeting_endpoint.dart' as _il624ik7;
 import '../recognition/sign_endpoint.dart' as _imbbl2vy;
 import '../rooms/room_endpoint.dart' as _idkvzxf4;
+import '../translate/translate_endpoint.dart' as _i5w4l7pc;
 
 class Endpoints extends _is.EndpointDispatch {
   @override
@@ -104,6 +105,12 @@ class Endpoints extends _is.EndpointDispatch {
         ..initialize(
           server,
           'room',
+          null,
+        ),
+      'translate': _i5w4l7pc.TranslateEndpoint()
+        ..initialize(
+          server,
+          'translate',
           null,
         ),
     };
@@ -1433,6 +1440,31 @@ class Endpoints extends _is.EndpointDispatch {
                 session,
                 params['roomId'],
               ),
+        ),
+      },
+    );
+    connectors['translate'] = _is.EndpointConnector(
+      name: 'translate',
+      endpoint: endpoints['translate']!,
+      methodConnectors: {
+        'toGloss': _is.MethodConnector(
+          name: 'toGloss',
+          params: {
+            'text': _is.ParameterDescription(
+              name: 'text',
+              type: _is.getType<String>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _is.Session session,
+                Map<String, dynamic> params,
+              ) async => (endpoints['translate'] as _i5w4l7pc.TranslateEndpoint)
+                  .toGloss(
+                    session,
+                    params['text'],
+                  ),
         ),
       },
     );

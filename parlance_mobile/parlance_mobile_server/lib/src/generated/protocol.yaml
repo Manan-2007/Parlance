@@ -63,3 +63,5 @@ room:
   - listen:
   - leave:
   - close:
+translate:
+  - toGloss:

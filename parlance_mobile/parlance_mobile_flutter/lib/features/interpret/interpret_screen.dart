@@ -10,6 +10,7 @@ import '../../providers/profile_provider.dart';
 import '../../providers/room_provider.dart';
 import '../../providers/speech_provider.dart';
 import '../community/community_parts.dart' show Pill;
+import '../../providers/translation_mode.dart';
 import '../signer/live_signer.dart';
 
 /// "Interpret a speaker": at a conference, a talk or a show with no signer on
@@ -162,6 +163,19 @@ class _InterpretScreenState extends ConsumerState<InterpretScreen> {
             ],
           ),
           const SizedBox(height: 8),
+          const Row(
+            children: [
+              TranslationModeSwitch(fixed: true, dark: true),
+            ],
+          ),
+          const Padding(
+            padding: EdgeInsets.only(top: 2),
+            child: Text(
+              'Live signing is always instant, so it uses the built-in rules.',
+              style: TextStyle(color: Colors.white70, fontSize: 12),
+            ),
+          ),
+          const SizedBox(height: 4),
           Expanded(
             child: SingleChildScrollView(
               reverse: true,

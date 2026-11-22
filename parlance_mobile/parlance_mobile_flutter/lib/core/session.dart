@@ -53,8 +53,17 @@ class ServiceAddresses {
       android != null && appBuild > 0 && (androidBuild ?? 0) > appBuild;
 
   /// The 3D signer playing [text] (English or Hindi), translated to ISL.
-  Uri? signText(String text) =>
-      signer?.replace(queryParameters: {'text': text});
+  ///
+  /// [tokens] are signs the AI translation already chose (online mode); the
+  /// page plays them as they are. Without them it translates [text] itself,
+  /// with its built-in rules.
+  Uri? signText(String text, {List<String> tokens = const []}) =>
+      signer?.replace(
+        queryParameters: {
+          'text': text,
+          if (tokens.isNotEmpty) 'tokens': tokens.join(','),
+        },
+      );
 
   /// The 3D signer playing these ISLRTC signs in order (a Learn phrase);
   /// [english] is translated instead if the avatar lacks one of them.
@@ -87,7 +96,9 @@ class ServiceAddresses {
     final bundledSigner = bundled?.resolve('embed/sign');
     AppSettings? settings;
     try {
-      settings = await client.settings.get().timeout(const Duration(seconds: 8));
+      settings = await client.settings.get().timeout(
+        const Duration(seconds: 8),
+      );
     } catch (error) {
       if (bundledSigner == null) rethrow;
       debugPrint('Parlance is offline; using the signer in the app. ($error)');

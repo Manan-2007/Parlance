@@ -14,6 +14,7 @@ import { Captions, Hand, Tv } from "lucide-react";
 import { Segmented } from "@/components/ui/Segmented";
 import { CaptionsBoard } from "./CaptionsBoard";
 import { InterpreterView } from "./InterpreterView";
+import { TranslationModeSwitch } from "@/components/ui/TranslationModeSwitch";
 import { ConversationPanel, type Exchange } from "./ConversationPanel";
 import { SignerStage } from "./SignerStage";
 
@@ -151,6 +152,7 @@ export function SpeechToSignPage() {
         <h1 className="sr-only">Live sign interpreter</h1>
         <div className="flex flex-wrap items-center justify-between gap-2">
           {viewSwitch}
+          <TranslationModeSwitch disabled note="Live always uses instant signs" />
           <p className="hidden text-sm text-ink-3 sm:block">A signer in the corner of any video or TV, like a broadcast interpreter.</p>
         </div>
         <div className="mx-auto w-full max-w-6xl">
@@ -184,7 +186,7 @@ export function SpeechToSignPage() {
 
   return (
     <div className="flex flex-col gap-3 p-2 sm:gap-4 sm:p-3 lg:h-[calc(100dvh-4rem)] lg:p-4">
-    <div className="flex items-center">{viewSwitch}</div>
+    <div className="flex flex-wrap items-center gap-3">{viewSwitch}<TranslationModeSwitch /></div>
     <div className="grid min-h-0 flex-1 gap-3 sm:gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(22rem,27rem)]">
       <h1 className="sr-only">Speech to sign</h1>
       <div className="h-[min(64svh,38rem)] min-h-[26rem] min-w-0 overflow-hidden rounded-[2rem] lg:h-auto">

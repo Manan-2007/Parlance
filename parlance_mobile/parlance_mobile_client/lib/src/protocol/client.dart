@@ -986,6 +986,31 @@ class EndpointRoom extends _isc.EndpointRef {
   );
 }
 
+/// Online translation for the phone app: English or Hindi text -> ISL tokens
+/// for the 3D signer, by an AI model with the same ISL grammar prompt as the
+/// website (assets/translation, exported by tool/export_translation_prompt.mjs).
+///
+/// The model's address and key stay on the server (passwords
+/// `azureOpenAiEndpoint`, `azureOpenAiKey`, `azureOpenAiDeployment`; never in
+/// the app). Needs a signed-in account (anonymous is fine), limits each account
+/// to [perMinute] requests a minute, and only returns tokens the signer can
+/// play. Returns an empty list when unavailable, so the app falls back to its
+/// built-in offline rules.
+/// {@category Endpoint}
+class EndpointTranslate extends _isc.EndpointRef {
+  EndpointTranslate(_isc.EndpointCaller caller) : super(caller);
+
+  @override
+  String get name => 'translate';
+
+  _ida.Future<List<String>> toGloss(String text) =>
+      caller.callServerEndpoint<List<String>>(
+        'translate',
+        'toGloss',
+        {'text': text},
+      );
+}
+
 class Modules {
   Modules(Client client) {
     serverpod_auth_idp = _iaic.Caller(client);
@@ -1033,6 +1058,7 @@ class Client extends _isc.ServerpodClientShared {
     greeting = EndpointGreeting(this);
     sign = EndpointSign(this);
     room = EndpointRoom(this);
+    translate = EndpointTranslate(this);
     modules = Modules(this);
   }
 
@@ -1054,6 +1080,8 @@ class Client extends _isc.ServerpodClientShared {
 
   late final EndpointRoom room;
 
+  late final EndpointTranslate translate;
+
   late final Modules modules;
 
   @override
@@ -1067,6 +1095,7 @@ class Client extends _isc.ServerpodClientShared {
     'greeting': greeting,
     'sign': sign,
     'room': room,
+    'translate': translate,
   };
 
   @override

@@ -7,6 +7,7 @@ import { lazy, Suspense } from "react";
 import { useSearchParams } from "react-router-dom";
 import { useDocumentTitle } from "@/hooks/useDocumentTitle";
 import { avatarTokenFor } from "@/learn/lessonPlan";
+import { sanitizeTokens } from "@/translation/islVocabulary.js";
 
 const SignReply = lazy(() => import("@/features/cards/SignReply"));
 
@@ -18,7 +19,10 @@ export function EmbedSignPage() {
   // the avatar has every one; otherwise the text is translated as usual.
   const glosses = (params.get("glosses") ?? "").split(",").map((g) => g.trim().toLowerCase()).filter(Boolean).slice(0, 12);
   const mapped = glosses.map((g) => avatarTokenFor(g));
-  const tokens = glosses.length && mapped.every(Boolean) ? (mapped as string[]) : undefined;
+  // ?tokens=HELLO,YOU,HOW plays avatar tokens already translated by the app's
+  // online (AI) translation; anything unknown is dropped.
+  const given = sanitizeTokens((params.get("tokens") ?? "").split(",").slice(0, 40));
+  const tokens = given.length ? given : glosses.length && mapped.every(Boolean) ? (mapped as string[]) : undefined;
   return (
     <main className="flex h-dvh flex-col bg-canvas p-2">
       {text || tokens ? (

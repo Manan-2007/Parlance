@@ -161,6 +161,14 @@ to build the signer and the website tests).
   `community-thread-<id>` and `community-live-<code>`. `community_seed.dart`
   adds sample posts (members flagged `sample`, shown as "Sample") to an empty
   database on first use.
+- `src/translate/`: `TranslateEndpoint.toGloss` = the phone's **online** translation
+  (AI, same ISL grammar prompt as the website; prompt + vocabulary in
+  `assets/translation/`, exported by `tool/export_translation_prompt.mjs`).
+  Key and address are cloud passwords `azureOpenAiEndpoint`, `azureOpenAiKey`,
+  `azureOpenAiDeployment` (`azureOpenAiVersion` optional), never in the app. The
+  app's **Online | Offline** switch (`providers/translation_mode.dart`) picks
+  it or the built-in rules; online falls back to offline by itself.
+  Returns only tokens the signer can play; 20 requests a minute per account.
 - `src/config/`: `AppSettings` + `SettingsEndpoint` (no login) returning
   `signerUrl`, `appUrl`, `androidUrl`, `androidBuild` from passwords.
 - `src/recognition/`: **the sign recogniser, ported from the website's Python

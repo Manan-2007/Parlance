@@ -5,6 +5,7 @@ import '../../app/theme.dart';
 import '../../providers/profile_provider.dart';
 import '../../providers/room_provider.dart';
 import '../../providers/speech_provider.dart';
+import '../../providers/translation_mode.dart';
 import '../../widgets/parts.dart';
 import '../signer/signer_view.dart';
 
@@ -75,7 +76,11 @@ class _TranslateScreenState extends ConsumerState<TranslateScreen> {
     final speech = ref.watch(speechProvider);
     final profile = ref.watch(profileProvider);
     final hindi = profile.speechLocale == 'hi_IN';
-    final url = _signing == null ? null : services.value?.signText(_signing!);
+    final source = _signing == null
+        ? null
+        : ref.watch(signSourceProvider(_signing!));
+    final url = source?.value?.url;
+    final mode = ref.watch(translationModeProvider);
 
     return Scaffold(
       appBar: AppBar(title: const Text('Speech → Sign')),
@@ -91,7 +96,9 @@ class _TranslateScreenState extends ConsumerState<TranslateScreen> {
                     'Say or type something in English or Hindi. The signer shows it in ISL.',
                     style: text.bodyLarge?.copyWith(color: Brand.ink2),
                   ),
-                  const SizedBox(height: 14),
+                  const SizedBox(height: 10),
+                  const TranslationModeSwitch(),
+                  const SizedBox(height: 10),
                   TextField(
                     controller: _text,
                     minLines: 1,
@@ -172,9 +179,21 @@ class _TranslateScreenState extends ConsumerState<TranslateScreen> {
                     ],
                   ),
                   const SizedBox(height: 18),
-                  if (url != null)
-                    SignerView(url: url, height: 470)
-                  else if (_signing != null && services.isLoading)
+                  if (url != null) ...[
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      child: Text(
+                        source?.value?.viaAi ?? false
+                            ? 'Translated online (AI).'
+                            : mode == TranslationMode.online
+                            ? 'Online unavailable: used the built-in rules.'
+                            : 'Built-in rules, no internet needed.',
+                        style: Theme.of(context).textTheme.bodySmall,
+                      ),
+                    ),
+                    SignerView(url: url, height: 470),
+                  ] else if (_signing != null &&
+                      (services.isLoading || (source?.isLoading ?? false)))
                     const SizedBox(
                       height: 200,
                       child: Center(child: CircularProgressIndicator()),
