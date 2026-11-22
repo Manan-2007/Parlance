@@ -23,7 +23,7 @@ function provider() {
   if (gemini) return { name: 'gemini', key: gemini }
   const endpoint = process.env.AZURE_OPENAI_ENDPOINT?.trim().replace(/\/$/, '')
   const key = process.env.AZURE_OPENAI_API_KEY?.trim()
-  const deployment = process.env.AZURE_OPENAI_CHAT_DEPLOYMENT?.trim()
+  const deployment = (process.env.AZURE_OPENAI_CHAT_DEPLOYMENT || process.env.AZURE_OPENAI_DEPLOYMENT)?.trim()
   if (endpoint?.startsWith('https://') && key && deployment) return { name: 'azure', key, endpoint, deployment }
   return null
 }
@@ -74,7 +74,9 @@ async function askAzure(config, frames, hints, signal) {
         ] },
       ],
       max_completion_tokens: 1024,
-      reasoning_effort: 'low',
+      // Only reasoning models (o-series, gpt-5) accept this; gpt-4o rejects it.
+      ...(process.env.AZURE_OPENAI_REASONING_EFFORT ? { reasoning_effort: process.env.AZURE_OPENAI_REASONING_EFFORT } : {}),
+      ...(process.env.AZURE_OPENAI_REASONING_EFFORT ? {} : { temperature: 0, response_format: { type: 'json_object' } }),
     }),
   })
   if (!response.ok) throw Object.assign(new Error('provider'), { status: response.status })

@@ -7,7 +7,7 @@ export function unsupportedWords(text) {
     return text.split(/\s+/).filter((word) => UNSUPPORTED_CHARACTER.test(word));
 }
 const API_ENDPOINT = '/api/translate-isl';
-const API_TIMEOUT_MS = 3000;
+const API_TIMEOUT_MS = 5000;
 /** Raised when a translation is deliberately superseded by a newer request. */
 export class TranslationAbortedError extends Error {
     constructor() {

@@ -260,7 +260,7 @@ export function SignToTextPage() {
                 videoInfo?.available
                   ? `Sends a short clip of each finished sign to ${PROVIDER_NAMES[videoInfo.provider ?? ""] ?? "a vision model"}, which picks the word. Takes a few seconds per sign. Nothing is stored.`
                   : videoInfo
-                    ? "Unavailable: add GEMINI_API_KEY to the .env file and restart the server."
+                    ? "Unavailable: add GEMINI_API_KEY, or the AZURE_OPENAI_* settings, to the .env file and restart the server."
                     : "Checking…"
               }
             />

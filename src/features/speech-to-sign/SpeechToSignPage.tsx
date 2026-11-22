@@ -10,9 +10,10 @@ import { useSignQueue } from "@/services/signs/useSignQueue";
 import { useSpeechInput } from "@/services/speech/useSpeechInput";
 import { useHistory, type InputSource } from "@/stores/history";
 import { useSettings } from "@/stores/settings";
-import { Captions, Hand } from "lucide-react";
+import { Captions, Hand, Tv } from "lucide-react";
 import { Segmented } from "@/components/ui/Segmented";
 import { CaptionsBoard } from "./CaptionsBoard";
+import { InterpreterView } from "./InterpreterView";
 import { ConversationPanel, type Exchange } from "./ConversationPanel";
 import { SignerStage } from "./SignerStage";
 
@@ -33,12 +34,12 @@ export function SpeechToSignPage() {
   const wide = useMediaQuery("(min-width: 64rem)");
   const reduced = useReducedMotion();
   // Two views of the same direction: the signer, or live captions of speech nearby.
-  const view = params.get("view") === "captions" ? "captions" : "signer";
-  const setView = (next: "signer" | "captions") =>
+  const view = params.get("view") === "captions" ? "captions" : params.get("view") === "interpreter" ? "interpreter" : "signer";
+  const setView = (next: "signer" | "captions" | "interpreter") =>
     setParams((previous) => {
       const out = new URLSearchParams(previous);
-      if (next === "captions") out.set("view", "captions");
-      else out.delete("view");
+      if (next === "signer") out.delete("view");
+      else out.set("view", next);
       return out;
     });
 
@@ -131,7 +132,7 @@ export function SpeechToSignPage() {
   };
 
   const viewSwitch = (
-    <Segmented<"signer" | "captions">
+    <Segmented<"signer" | "captions" | "interpreter">
       label="Speech to sign view"
       size="sm"
       value={view}
@@ -139,9 +140,25 @@ export function SpeechToSignPage() {
       options={[
         { value: "signer", label: <><Hand aria-hidden /> Signer</> },
         { value: "captions", label: <><Captions aria-hidden /> Live captions</> },
+        { value: "interpreter", label: <><Tv aria-hidden /> TV interpreter</> },
       ]}
     />
   );
+
+  if (view === "interpreter") {
+    return (
+      <div className="flex flex-col gap-3 p-2 sm:gap-4 sm:p-3 lg:p-4">
+        <h1 className="sr-only">Live sign interpreter</h1>
+        <div className="flex flex-wrap items-center justify-between gap-2">
+          {viewSwitch}
+          <p className="hidden text-sm text-ink-3 sm:block">A signer in the corner of any video or TV, like a broadcast interpreter.</p>
+        </div>
+        <div className="mx-auto w-full max-w-6xl">
+          <InterpreterView language={language} onLanguage={(value) => setSetting("speechLanguage", value)} />
+        </div>
+      </div>
+    );
+  }
 
   if (view === "captions") {
     return (
