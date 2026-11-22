@@ -113,7 +113,8 @@ export function AppHeader() {
                     }
                   >
                     <Icon className="size-4" aria-hidden />
-                    <span className={labels === "lg" ? "sr-only xl:not-sr-only" : "sr-only 2xl:not-sr-only"}>{label}</span>
+                    {/* The floating bar is at most 72rem wide: icons only there, so nothing overlaps. */}
+                    <span className={floating ? "sr-only" : labels === "lg" ? "sr-only xl:not-sr-only" : "sr-only 2xl:not-sr-only"}>{label}</span>
                   </NavLink>
                 </li>
               ))}
