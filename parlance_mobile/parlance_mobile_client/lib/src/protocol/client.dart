@@ -36,6 +36,18 @@ import 'package:parlance_mobile_client/src/protocol/community/community_thread_d
     as _ix2cfxoy;
 import 'package:parlance_mobile_client/src/protocol/config/app_settings.dart'
     as _ida0onrg;
+import 'package:parlance_mobile_client/src/protocol/contribute/contribution_stats.dart'
+    as _iw64po29;
+import 'package:parlance_mobile_client/src/protocol/contribute/contribution_status.dart'
+    as _in4qnmkq;
+import 'package:parlance_mobile_client/src/protocol/contribute/contribution_summary.dart'
+    as _i18zrkqi;
+import 'package:parlance_mobile_client/src/protocol/contribute/contribution_word.dart'
+    as _i8i2vtw8;
+import 'package:parlance_mobile_client/src/protocol/contribute/review_item.dart'
+    as _i6rpmp3c;
+import 'package:parlance_mobile_client/src/protocol/contribute/review_verdict.dart'
+    as _irvelhmk;
 import 'package:parlance_mobile_client/src/protocol/greetings/greeting.dart'
     as _ia6ix618;
 import 'package:parlance_mobile_client/src/protocol/recognition/sign_frame.dart'
@@ -706,6 +718,122 @@ class EndpointSettings extends _isc.EndpointRef {
       );
 }
 
+/// "Help train Parlance": people who choose to can record signs so the sign
+/// reader can be trained on data the Deaf community gave with consent (the
+/// current model uses a research-only dataset, which blocks commercial use).
+///
+/// - Opt-in only, separate from using the app: nothing here is needed for any
+///   other feature, and nothing is collected before [giveConsent].
+/// - Hand positions only (the 141 numbers the recogniser reads), never video,
+///   never a name. Reviewers never learn who recorded a sign.
+/// - Fluent signers check each sign; two matching checks verify or reject it.
+///   Only verified signs are meant for training.
+/// - [withdraw] deletes the consent and every sign and check the person gave.
+///
+/// Every method needs a signed-in account; each checks what the caller may do.
+/// {@category Endpoint}
+class EndpointContribute extends _isc.EndpointRef {
+  EndpointContribute(_isc.EndpointCaller caller) : super(caller);
+
+  @override
+  String get name => 'contribute';
+
+  _ida.Future<List<_i8i2vtw8.ContributionWord>> vocabulary() =>
+      caller.callServerEndpoint<List<_i8i2vtw8.ContributionWord>>(
+        'contribute',
+        'vocabulary',
+        {},
+      );
+
+  _ida.Future<_iw64po29.ContributionStats> status() =>
+      caller.callServerEndpoint<_iw64po29.ContributionStats>(
+        'contribute',
+        'status',
+        {},
+      );
+
+  /// Agrees to the consent text of [version]. [decidesForSelf]: they are 18 or
+  /// older and decide for themselves, or their lawful guardian agrees too.
+  _ida.Future<_iw64po29.ContributionStats> giveConsent(
+    String version,
+    bool decidesForSelf,
+  ) => caller.callServerEndpoint<_iw64po29.ContributionStats>(
+    'contribute',
+    'giveConsent',
+    {
+      'version': version,
+      'decidesForSelf': decidesForSelf,
+    },
+  );
+
+  /// Takes back consent and deletes every sign and check this person gave.
+  /// Returns how many signs were deleted.
+  _ida.Future<int> withdraw() => caller.callServerEndpoint<int>(
+    'contribute',
+    'withdraw',
+    {},
+  );
+
+  /// Also check other people's signs (for fluent signers).
+  _ida.Future<_iw64po29.ContributionStats> setReviewer(bool on) =>
+      caller.callServerEndpoint<_iw64po29.ContributionStats>(
+        'contribute',
+        'setReviewer',
+        {'on': on},
+      );
+
+  /// Saves one recorded sign: [frames] is [frameCount] x 141 numbers.
+  _ida.Future<_i18zrkqi.ContributionSummary> contribute(
+    String gloss,
+    List<double> frames,
+    int frameCount,
+  ) => caller.callServerEndpoint<_i18zrkqi.ContributionSummary>(
+    'contribute',
+    'contribute',
+    {
+      'gloss': gloss,
+      'frames': frames,
+      'frameCount': frameCount,
+    },
+  );
+
+  /// My signs, newest first.
+  _ida.Future<List<_i18zrkqi.ContributionSummary>> mine() =>
+      caller.callServerEndpoint<List<_i18zrkqi.ContributionSummary>>(
+        'contribute',
+        'mine',
+        {},
+      );
+
+  _ida.Future<void> deleteContribution(int id) =>
+      caller.callServerEndpoint<void>(
+        'contribute',
+        'deleteContribution',
+        {'id': id},
+      );
+
+  /// Signs waiting for checks: not mine, not already checked by me.
+  _ida.Future<List<_i6rpmp3c.ReviewItem>> reviewQueue() =>
+      caller.callServerEndpoint<List<_i6rpmp3c.ReviewItem>>(
+        'contribute',
+        'reviewQueue',
+        {},
+      );
+
+  /// Checks someone else's sign. Two matching checks decide it.
+  _ida.Future<_in4qnmkq.ContributionStatus> review(
+    int id,
+    _irvelhmk.ReviewVerdict verdict,
+  ) => caller.callServerEndpoint<_in4qnmkq.ContributionStatus>(
+    'contribute',
+    'review',
+    {
+      'id': id,
+      'verdict': verdict,
+    },
+  );
+}
+
 /// This is an example endpoint that returns a greeting message through
 /// its [hello] method.
 /// {@category Endpoint}
@@ -901,6 +1029,7 @@ class Client extends _isc.ServerpodClientShared {
     jwtRefresh = EndpointJwtRefresh(this);
     community = EndpointCommunity(this);
     settings = EndpointSettings(this);
+    contribute = EndpointContribute(this);
     greeting = EndpointGreeting(this);
     sign = EndpointSign(this);
     room = EndpointRoom(this);
@@ -917,6 +1046,8 @@ class Client extends _isc.ServerpodClientShared {
 
   late final EndpointSettings settings;
 
+  late final EndpointContribute contribute;
+
   late final EndpointGreeting greeting;
 
   late final EndpointSign sign;
@@ -932,6 +1063,7 @@ class Client extends _isc.ServerpodClientShared {
     'jwtRefresh': jwtRefresh,
     'community': community,
     'settings': settings,
+    'contribute': contribute,
     'greeting': greeting,
     'sign': sign,
     'room': room,

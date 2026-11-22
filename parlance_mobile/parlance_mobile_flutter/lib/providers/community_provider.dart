@@ -5,6 +5,7 @@ import 'package:parlance_mobile_client/parlance_mobile_client.dart';
 
 import '../core/client.dart';
 import '../core/session.dart';
+import 'community_offline.dart';
 
 /// A message the person can act on, for any Community error.
 String communityError(Object error) {
@@ -15,10 +16,18 @@ String communityError(Object error) {
 /// You in the Community: null until you choose a name.
 class CommunityMeController extends AsyncNotifier<CommunityAuthor?> {
   @override
-  Future<CommunityAuthor?> build() async {
-    await ensureSignedIn();
-    return client.community.me();
-  }
+  Future<CommunityAuthor?> build() => savedOrFetch(
+    ref,
+    'me',
+    () async {
+      await ensureSignedIn();
+      return client.community.me();
+    },
+    (me) => me?.toJson(),
+    (json) => json == null
+        ? null
+        : CommunityAuthor.fromJson((json as Map).cast<String, dynamic>()),
+  );
 
   Future<void> join(String handle, String city, List<String> ways) async {
     await ensureSignedIn();
@@ -33,19 +42,46 @@ final communityMeProvider =
     );
 
 final communitySpacesProvider =
-    FutureProvider.autoDispose<List<CommunitySpace>>((ref) async {
-      await ensureSignedIn();
-      return client.community.listSpaces();
-    });
+    FutureProvider.autoDispose<List<CommunitySpace>>(
+      (ref) => savedOrFetch(
+        ref,
+        'spaces',
+        () async {
+          await ensureSignedIn();
+          return client.community.listSpaces();
+        },
+        (list) => [for (final s in list) s.toJson()],
+        (json) => [
+          for (final s in json as List)
+            CommunitySpace.fromJson((s as Map).cast<String, dynamic>()),
+        ],
+      ),
+    );
 
 /// Which threads to list.
 typedef ThreadQuery = ({String? space, String sort, String search});
 
 final communityThreadsProvider = FutureProvider.autoDispose
-    .family<List<CommunityPost>, ThreadQuery>((ref, query) async {
-      await ensureSignedIn();
-      return client.community.threads(query.space, query.sort, query.search, 0);
-    });
+    .family<List<CommunityPost>, ThreadQuery>(
+      (ref, query) => savedOrFetch(
+        ref,
+        'threads.${query.space}.${query.sort}.${query.search}',
+        () async {
+          await ensureSignedIn();
+          return client.community.threads(
+            query.space,
+            query.sort,
+            query.search,
+            0,
+          );
+        },
+        (list) => [for (final p in list) p.toJson()],
+        (json) => [
+          for (final p in json as List)
+            CommunityPost.fromJson((p as Map).cast<String, dynamic>()),
+        ],
+      ),
+    );
 
 /// One thread with its replies, kept up to date while it is open.
 class ThreadController extends AsyncNotifier<CommunityThreadDetail> {
@@ -64,9 +100,22 @@ class ThreadController extends AsyncNotifier<CommunityThreadDetail> {
       _events?.cancel();
       _retry?.cancel();
     });
-    await ensureSignedIn();
-    final detail = await client.community.thread(threadId);
-    _listen();
+    var live = false;
+    final detail = await savedOrFetch(
+      ref,
+      'thread.$threadId',
+      () async {
+        await ensureSignedIn();
+        final detail = await client.community.thread(threadId);
+        live = true;
+        return detail;
+      },
+      (d) => d.toJson(),
+      (json) =>
+          CommunityThreadDetail.fromJson((json as Map).cast<String, dynamic>()),
+    );
+    // Saved copy (offline): follow the thread again once the connection is back.
+    live ? _listen() : _reconnect();
     return detail;
   }
 
@@ -84,7 +133,7 @@ class ThreadController extends AsyncNotifier<CommunityThreadDetail> {
   void _reconnect() {
     _retry?.cancel();
     if (removed) return;
-    _retry = Timer(const Duration(seconds: 3), () async {
+    _retry = Timer(const Duration(seconds: 10), () async {
       try {
         final detail = await client.community.thread(threadId);
         state = AsyncData(detail);

@@ -2,8 +2,10 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:parlance_mobile_client/parlance_mobile_client.dart';
+import 'package:parlance_recognition/parlance_recognition.dart';
 
 import '../../core/client.dart';
+import '../../core/offline.dart';
 import '../../core/session.dart';
 
 /// A word the recogniser is considering, or offers for the signer to tap.
@@ -37,10 +39,13 @@ class RecognizerState {
   final String? error;
 }
 
-/// Streams hand landmarks to the recogniser in the Serverpod server
-/// (`SignEndpoint.read`, a Dart port of the web app's recogniser) and turns
-/// its answers into words: one frame in flight at a time, words back when a
-/// sign is finished, suggestions when it is unsure.
+/// Sends hand landmarks to the sign recogniser and turns its answers into
+/// words: words back when a sign is finished, suggestions when it is unsure.
+///
+/// On Android and iOS the recogniser runs on the phone (the same Dart code as
+/// the server, package parlance_recognition, in a background isolate), so
+/// signing works without internet. The web app, or a build without the offline
+/// model, streams to the Serverpod server (`SignEndpoint.read`) instead.
 class RecognizerClient {
   RecognizerClient({required this.onWord, required this.onState});
 
@@ -60,11 +65,26 @@ class RecognizerClient {
   Timer? _retry;
   RecognizerState _state = const RecognizerState();
 
+  RecognitionWorker? _local;
+  int? _localSession;
+
+  /// Whether signs are read on this phone (works without internet) rather
+  /// than by the server.
+  bool get onDevice => _local != null;
+
   Future<void> connect() async {
     _closed = false;
     _emit(
       RecognizerState(status: RecognizerStatus.connecting, error: _state.error),
     );
+    final local = await Offline.recognizer();
+    if (_closed) return;
+    if (local != null) {
+      _local = local;
+      final id = _localSession = RecognitionWorker.newSessionId();
+      _message(await local.call(id, 'open'));
+      return;
+    }
     try {
       await ensureSignedIn();
       if (_closed) return;
@@ -86,6 +106,10 @@ class RecognizerClient {
 
   void close() {
     _closed = true;
+    final local = _local;
+    final id = _localSession;
+    if (local != null && id != null) unawaited(local.call(id, 'close'));
+    _localSession = null;
     _retry?.cancel();
     _sub?.cancel();
     _frames?.close();
@@ -103,14 +127,30 @@ class RecognizerClient {
 
   void send(List<double> vector) {
     final frames = _frames;
-    if (frames == null || _state.status != RecognizerStatus.ready) return;
+    final local = _local;
+    final session = _localSession;
+    if ((frames == null && session == null) ||
+        _state.status != RecognizerStatus.ready) {
+      return;
+    }
     final now = _clock.elapsedMicroseconds / 1000.0;
     if (now - _lastSent < minIntervalMs) return;
     if (_pending != null && _nextFrame - _pending! >= maxInFlight) return;
     _lastSent = now;
     final frameId = _nextFrame++;
     _pending ??= frameId;
-    frames.add(
+    if (local != null && session != null) {
+      // On the phone: the isolate answers in order, like the server stream.
+      unawaited(
+        local.call(session, 'feed', [vector, now]).then((result) {
+          if (_localSession == session) {
+            _message({...result, 'frameId': frameId});
+          }
+        }),
+      );
+      return;
+    }
+    frames!.add(
       SignFrame(
         landmarks: vector,
         timestamp: now,
@@ -121,6 +161,12 @@ class RecognizerClient {
 
   /// Taps a suggested word.
   void confirm(String word) {
+    final session = _localSession;
+    if (session != null) {
+      unawaited(
+        _local!.call(session, 'confirm', [word, _revision]).then(_message),
+      );
+    }
     _frames?.add(SignFrame(confirm: word, revision: _revision));
     _emit(RecognizerState(status: _state.status, candidate: _state.candidate));
   }
@@ -128,6 +174,10 @@ class RecognizerClient {
   /// Forgets the sign in progress.
   void reset() {
     _minimumFrame = _nextFrame;
+    final session = _localSession;
+    if (session != null) {
+      unawaited(_local!.call(session, 'reset').then(_message));
+    }
     _frames?.add(SignFrame(reset: true));
     _emit(RecognizerState(status: _state.status));
   }

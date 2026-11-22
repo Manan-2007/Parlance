@@ -37,6 +37,18 @@ import 'package:parlance_mobile_server/src/generated/community/community_thread_
     as _iabip50b;
 import 'package:parlance_mobile_server/src/generated/config/app_settings.dart'
     as _i0yueghb;
+import 'package:parlance_mobile_server/src/generated/contribute/contribution_stats.dart'
+    as _in6mv7xv;
+import 'package:parlance_mobile_server/src/generated/contribute/contribution_status.dart'
+    as _ixyz8pwq;
+import 'package:parlance_mobile_server/src/generated/contribute/contribution_summary.dart'
+    as _iurfaq06;
+import 'package:parlance_mobile_server/src/generated/contribute/contribution_word.dart'
+    as _i3lh744f;
+import 'package:parlance_mobile_server/src/generated/contribute/review_item.dart'
+    as _i4aaa37q;
+import 'package:parlance_mobile_server/src/generated/contribute/review_verdict.dart'
+    as _i8p3pzfw;
 import 'package:parlance_mobile_server/src/generated/greetings/greeting.dart'
     as _ixvu4d8l;
 import 'package:parlance_mobile_server/src/generated/recognition/sign_frame.dart'
@@ -202,6 +214,8 @@ class TestEndpoints {
 
   late final _SettingsEndpoint settings;
 
+  late final _ContributeEndpoint contribute;
+
   late final _GreetingEndpoint greeting;
 
   late final _SignEndpoint sign;
@@ -233,6 +247,10 @@ class _InternalTestEndpoints extends TestEndpoints
       serializationManager,
     );
     settings = _SettingsEndpoint(
+      endpoints,
+      serializationManager,
+    );
+    contribute = _ContributeEndpoint(
       endpoints,
       serializationManager,
     );
@@ -1551,6 +1569,334 @@ class _SettingsEndpoint {
                   _localCallContext.arguments,
                 )
                 as _ida.Future<_i0yueghb.AppSettings>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+}
+
+class _ContributeEndpoint {
+  _ContributeEndpoint(
+    this._endpointDispatch,
+    this._serializationManager,
+  );
+
+  final _is.EndpointDispatch _endpointDispatch;
+
+  final _is.SerializationManager _serializationManager;
+
+  _ida.Future<List<_i3lh744f.ContributionWord>> vocabulary(
+    _ist.TestSessionBuilder sessionBuilder,
+  ) async {
+    return _ist.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _ist.InternalTestSessionBuilder).internalBuild(
+            endpoint: 'contribute',
+            method: 'vocabulary',
+          );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'contribute',
+          methodName: 'vocabulary',
+          parameters: _ist.testObjectToJson({}),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue =
+            await (_localCallContext.method.call(
+                  _localUniqueSession,
+                  _localCallContext.arguments,
+                )
+                as _ida.Future<List<_i3lh744f.ContributionWord>>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+
+  _ida.Future<_in6mv7xv.ContributionStats> status(
+    _ist.TestSessionBuilder sessionBuilder,
+  ) async {
+    return _ist.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _ist.InternalTestSessionBuilder).internalBuild(
+            endpoint: 'contribute',
+            method: 'status',
+          );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'contribute',
+          methodName: 'status',
+          parameters: _ist.testObjectToJson({}),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue =
+            await (_localCallContext.method.call(
+                  _localUniqueSession,
+                  _localCallContext.arguments,
+                )
+                as _ida.Future<_in6mv7xv.ContributionStats>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+
+  _ida.Future<_in6mv7xv.ContributionStats> giveConsent(
+    _ist.TestSessionBuilder sessionBuilder,
+    String version,
+    bool decidesForSelf,
+  ) async {
+    return _ist.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _ist.InternalTestSessionBuilder).internalBuild(
+            endpoint: 'contribute',
+            method: 'giveConsent',
+          );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'contribute',
+          methodName: 'giveConsent',
+          parameters: _ist.testObjectToJson({
+            'version': version,
+            'decidesForSelf': decidesForSelf,
+          }),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue =
+            await (_localCallContext.method.call(
+                  _localUniqueSession,
+                  _localCallContext.arguments,
+                )
+                as _ida.Future<_in6mv7xv.ContributionStats>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+
+  _ida.Future<int> withdraw(_ist.TestSessionBuilder sessionBuilder) async {
+    return _ist.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _ist.InternalTestSessionBuilder).internalBuild(
+            endpoint: 'contribute',
+            method: 'withdraw',
+          );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'contribute',
+          methodName: 'withdraw',
+          parameters: _ist.testObjectToJson({}),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue =
+            await (_localCallContext.method.call(
+                  _localUniqueSession,
+                  _localCallContext.arguments,
+                )
+                as _ida.Future<int>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+
+  _ida.Future<_in6mv7xv.ContributionStats> setReviewer(
+    _ist.TestSessionBuilder sessionBuilder,
+    bool on,
+  ) async {
+    return _ist.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _ist.InternalTestSessionBuilder).internalBuild(
+            endpoint: 'contribute',
+            method: 'setReviewer',
+          );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'contribute',
+          methodName: 'setReviewer',
+          parameters: _ist.testObjectToJson({'on': on}),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue =
+            await (_localCallContext.method.call(
+                  _localUniqueSession,
+                  _localCallContext.arguments,
+                )
+                as _ida.Future<_in6mv7xv.ContributionStats>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+
+  _ida.Future<_iurfaq06.ContributionSummary> contribute(
+    _ist.TestSessionBuilder sessionBuilder,
+    String gloss,
+    List<double> frames,
+    int frameCount,
+  ) async {
+    return _ist.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _ist.InternalTestSessionBuilder).internalBuild(
+            endpoint: 'contribute',
+            method: 'contribute',
+          );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'contribute',
+          methodName: 'contribute',
+          parameters: _ist.testObjectToJson({
+            'gloss': gloss,
+            'frames': frames,
+            'frameCount': frameCount,
+          }),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue =
+            await (_localCallContext.method.call(
+                  _localUniqueSession,
+                  _localCallContext.arguments,
+                )
+                as _ida.Future<_iurfaq06.ContributionSummary>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+
+  _ida.Future<List<_iurfaq06.ContributionSummary>> mine(
+    _ist.TestSessionBuilder sessionBuilder,
+  ) async {
+    return _ist.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _ist.InternalTestSessionBuilder).internalBuild(
+            endpoint: 'contribute',
+            method: 'mine',
+          );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'contribute',
+          methodName: 'mine',
+          parameters: _ist.testObjectToJson({}),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue =
+            await (_localCallContext.method.call(
+                  _localUniqueSession,
+                  _localCallContext.arguments,
+                )
+                as _ida.Future<List<_iurfaq06.ContributionSummary>>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+
+  _ida.Future<void> deleteContribution(
+    _ist.TestSessionBuilder sessionBuilder,
+    int id,
+  ) async {
+    return _ist.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _ist.InternalTestSessionBuilder).internalBuild(
+            endpoint: 'contribute',
+            method: 'deleteContribution',
+          );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'contribute',
+          methodName: 'deleteContribution',
+          parameters: _ist.testObjectToJson({'id': id}),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue =
+            await (_localCallContext.method.call(
+                  _localUniqueSession,
+                  _localCallContext.arguments,
+                )
+                as _ida.Future<void>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+
+  _ida.Future<List<_i4aaa37q.ReviewItem>> reviewQueue(
+    _ist.TestSessionBuilder sessionBuilder,
+  ) async {
+    return _ist.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _ist.InternalTestSessionBuilder).internalBuild(
+            endpoint: 'contribute',
+            method: 'reviewQueue',
+          );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'contribute',
+          methodName: 'reviewQueue',
+          parameters: _ist.testObjectToJson({}),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue =
+            await (_localCallContext.method.call(
+                  _localUniqueSession,
+                  _localCallContext.arguments,
+                )
+                as _ida.Future<List<_i4aaa37q.ReviewItem>>);
+        return _localReturnValue;
+      } finally {
+        await _localUniqueSession.close();
+      }
+    });
+  }
+
+  _ida.Future<_ixyz8pwq.ContributionStatus> review(
+    _ist.TestSessionBuilder sessionBuilder,
+    int id,
+    _i8p3pzfw.ReviewVerdict verdict,
+  ) async {
+    return _ist.callAwaitableFunctionAndHandleExceptions(() async {
+      var _localUniqueSession =
+          (sessionBuilder as _ist.InternalTestSessionBuilder).internalBuild(
+            endpoint: 'contribute',
+            method: 'review',
+          );
+      try {
+        var _localCallContext = await _endpointDispatch.getMethodCallContext(
+          createSessionCallback: (_) => _localUniqueSession,
+          endpointPath: 'contribute',
+          methodName: 'review',
+          parameters: _ist.testObjectToJson({
+            'id': id,
+            'verdict': verdict,
+          }),
+          serializationManager: _serializationManager,
+        );
+        var _localReturnValue =
+            await (_localCallContext.method.call(
+                  _localUniqueSession,
+                  _localCallContext.arguments,
+                )
+                as _ida.Future<_ixyz8pwq.ContributionStatus>);
         return _localReturnValue;
       } finally {
         await _localUniqueSession.close();

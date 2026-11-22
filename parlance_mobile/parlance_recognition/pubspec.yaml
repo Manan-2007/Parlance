@@ -1,0 +1,13 @@
+name: parlance_recognition
+description: >-
+  Parlance's ISL sign recogniser (transformer ensemble + forest suggestions),
+  in pure Dart so the same code runs in the Serverpod server and on the phone.
+publish_to: none
+
+environment:
+  sdk: '^3.12.2'
+
+resolution: workspace
+
+dev_dependencies:
+  lints: '>=3.0.0 <7.0.0'

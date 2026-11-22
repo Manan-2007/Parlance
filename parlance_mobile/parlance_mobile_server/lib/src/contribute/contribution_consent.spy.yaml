@@ -1,0 +1,16 @@
+### Someone's consent to contribute signs for training the sign reader.
+### Deleted, with everything they gave, when they withdraw.
+class: ContributionConsent
+table: contribution_consent
+fields:
+  ### The signed-in account. Never sent to phones.
+  userId: String?, scope=serverOnly
+  ### Which consent text they agreed to (ContributeEndpoint.consentVersion).
+  version: String
+  givenAt: DateTime, default=now
+  ### They also check other people's signs (self-reported fluent signer).
+  reviewer: bool, default=false
+indexes:
+  contribution_consent_user_idx:
+    fields: userId
+    unique: true

@@ -36,6 +36,9 @@ dependencies:
   mobile_scanner: ^7.5.0
   parlance_mobile_client:
     path: ../parlance_mobile_client
+  # The sign recogniser, shared with the server, run on the phone when offline.
+  parlance_recognition:
+    path: ../parlance_recognition
   permission_handler: ^13.0.2
   qr_flutter: ^4.1.0
   serverpod_auth_idp_flutter: 4.1.2
@@ -86,6 +89,13 @@ flutter:
     - assets/models/hand_landmarker.task
     # Learn units and lessons, exported from the website by tool/export_learn.mjs.
     - assets/learn/curriculum.json
+    # Offline copies (tool/prepare_offline.sh, gitignored): the recogniser's
+    # model, and the 3D signer, served to the web view from inside the app.
+    - assets/offline/recognition/
+    - assets/offline/signer/
+    - assets/offline/signer/assets/
+    - assets/offline/signer/signs/
+    - assets/offline/signer/icons/
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a

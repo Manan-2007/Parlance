@@ -1,0 +1,8 @@
+enum: ContributionStatus
+values:
+  ### Waiting for fluent signers to check it.
+  - pending
+  ### Two or more checks agreed it is this sign. Used for training.
+  - verified
+  ### Two or more checks said it is not this sign. Not used.
+  - rejected

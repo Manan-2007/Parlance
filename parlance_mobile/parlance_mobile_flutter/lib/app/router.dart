@@ -4,6 +4,7 @@ import 'package:go_router/go_router.dart';
 import '../features/cards/cards_screens.dart';
 import '../features/community/community_screens.dart';
 import '../features/community/live_screen.dart';
+import '../features/contribute/contribute_screens.dart';
 import '../features/home/home_screen.dart';
 import '../features/learn/learn_screens.dart';
 import '../features/room/conversation_screen.dart';
@@ -133,6 +134,33 @@ final router = GoRouter(
       parentNavigatorKey: _root,
       builder: (context, state) =>
           LiveScreen(code: state.pathParameters['code']!),
+    ),
+    // "Help train Parlance": opt-in, consent first.
+    GoRoute(
+      path: '/contribute',
+      parentNavigatorKey: _root,
+      builder: (context, state) => const ContributeScreen(),
+      routes: [
+        GoRoute(
+          path: 'words',
+          builder: (context, state) => const ContributeWordsScreen(),
+        ),
+        GoRoute(
+          path: 'review',
+          builder: (context, state) => const ReviewScreen(),
+        ),
+        GoRoute(
+          path: 'mine',
+          builder: (context, state) => const MySignsScreen(),
+        ),
+        GoRoute(
+          path: 'record/:gloss',
+          builder: (context, state) => SignScreen(
+            record: state.pathParameters['gloss'],
+            recordLabel: state.uri.queryParameters['label'],
+          ),
+        ),
+      ],
     ),
     GoRoute(
       path: '/talk',

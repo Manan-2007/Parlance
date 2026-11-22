@@ -7,6 +7,7 @@ import 'package:qr_flutter/qr_flutter.dart';
 import '../../app/theme.dart';
 import '../../core/client.dart';
 import '../../core/session.dart';
+import '../../providers/community_offline.dart';
 import '../../providers/community_provider.dart';
 import '../../providers/room_provider.dart';
 import '../../widgets/parts.dart';
@@ -51,6 +52,7 @@ class CommunityScreen extends ConsumerWidget {
                       'Talk in depth with people who live it: Deaf and hard-of-hearing people, their families and learners. Ask, share what worked, and meet in person.',
                       style: text.bodyLarge?.copyWith(color: Brand.ink2),
                     ),
+                    const OfflineBanners(),
                     const SizedBox(height: 16),
                     ActionTile(
                       icon: Icons.podcasts_rounded,
@@ -111,6 +113,54 @@ class CommunityScreen extends ConsumerWidget {
 }
 
 /// Threads, sortable and searchable, optionally in one space.
+/// "You're offline" and "N posts waiting to send", for the Community home.
+class OfflineBanners extends ConsumerWidget {
+  const OfflineBanners({super.key});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final offline = ref.watch(communityOfflineProvider);
+    final outbox = ref.watch(communityOutboxProvider);
+    // When queued posts go out, show them in the lists.
+    ref.listen(communityOutboxProvider.select((o) => o.sent), (_, _) {
+      ref.invalidate(communityThreadsProvider);
+      ref.invalidate(communitySpacesProvider);
+    });
+    final waiting = outbox.pending.length;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        if (offline) ...[
+          const SizedBox(height: 12),
+          const Notice(
+            message:
+                "You're offline. Showing posts saved on this phone. You can still write; it is sent when you're back online.",
+          ),
+        ],
+        if (waiting > 0) ...[
+          const SizedBox(height: 12),
+          Notice(
+            message:
+                '$waiting ${waiting == 1 ? 'post is' : 'posts are'} waiting to send.',
+            action: 'Send now',
+            onAction: () => ref.read(communityOutboxProvider.notifier).flush(),
+          ),
+        ],
+        for (final problem in outbox.problems) ...[
+          const SizedBox(height: 12),
+          Notice(
+            message: problem,
+            danger: true,
+            action: 'OK',
+            onAction: () =>
+                ref.read(communityOutboxProvider.notifier).dismissProblems(),
+          ),
+        ],
+      ],
+    );
+  }
+}
+
 class ThreadList extends ConsumerStatefulWidget {
   const ThreadList({super.key, this.space});
   final String? space;
@@ -350,7 +400,35 @@ class _NewPostScreenState extends ConsumerState<NewPostScreen> {
       ref.invalidate(communitySpacesProvider);
       if (mounted) context.pushReplacement('/community/t/${post.id}');
     } catch (e) {
-      if (mounted) setState(() => _error = communityError(e));
+      if (isOffline(e) && _title.text.trim().length >= 4) {
+        final meetup = _kind == CommunityKind.meetup;
+        await ref
+            .read(communityOutboxProvider.notifier)
+            .add(
+              PendingPost(
+                id: pendingId(),
+                kind: 'post',
+                space: meetup ? 'meetups' : _space,
+                postKind: _kind,
+                title: _title.text.trim(),
+                body: _body.text.trim(),
+                input: _input,
+                place: meetup ? _place.text.trim() : null,
+                city: meetup ? _city.text.trim() : null,
+                startsAt: meetup ? _start.toUtc() : null,
+                endsAt: meetup ? _start.add(_length).toUtc() : null,
+              ),
+            );
+        if (mounted) {
+          toast(
+            context,
+            "You're offline. Saved on this phone; it will be posted when you're back online.",
+          );
+          context.pop();
+        }
+      } else if (mounted) {
+        setState(() => _error = communityError(e));
+      }
     } finally {
       if (mounted) setState(() => _busy = false);
     }
@@ -568,14 +646,43 @@ class _ThreadScreenState extends ConsumerState<ThreadScreen> {
   Future<void> _send() async {
     if (_reply.text.trim().isEmpty) return;
     setState(() => _busy = true);
-    await _run(() async {
-      await _thread.reply(_reply.text, _input, _quote?.id);
+    void clear() {
       _reply.clear();
       setState(() {
         _quote = null;
         _input = CommunityInput.typed;
       });
-    }, 'Reply posted.');
+    }
+
+    try {
+      await _thread.reply(_reply.text, _input, _quote?.id);
+      clear();
+      if (mounted) toast(context, 'Reply posted.');
+    } catch (e) {
+      if (isOffline(e)) {
+        await ref
+            .read(communityOutboxProvider.notifier)
+            .add(
+              PendingPost(
+                id: pendingId(),
+                kind: 'reply',
+                threadId: widget.threadId,
+                quoteId: _quote?.id,
+                body: _reply.text.trim(),
+                input: _input,
+              ),
+            );
+        clear();
+        if (mounted) {
+          toast(
+            context,
+            "You're offline. Your reply will be posted when you're back online.",
+          );
+        }
+      } else if (mounted) {
+        toast(context, communityError(e));
+      }
+    }
     if (mounted) setState(() => _busy = false);
   }
 
@@ -771,6 +878,36 @@ class _ThreadScreenState extends ConsumerState<ThreadScreen> {
                       },
                     ),
                     const SizedBox(height: 10),
+                  ],
+                  for (final waiting
+                      in ref
+                          .watch(communityOutboxProvider)
+                          .pending
+                          .where(
+                            (p) => p.isReply && p.threadId == widget.threadId,
+                          )) ...[
+                    Container(
+                      padding: const EdgeInsets.all(14),
+                      margin: const EdgeInsets.only(bottom: 10),
+                      decoration: BoxDecoration(
+                        color: Brand.paper,
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(color: Brand.lineStrong),
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Pill(
+                            'Waiting to send',
+                            background: Brand.sunSoft,
+                            foreground: Brand.sunDeep,
+                            icon: Icons.schedule_rounded,
+                          ),
+                          const SizedBox(height: 6),
+                          Text(waiting.body, style: text.bodyLarge),
+                        ],
+                      ),
+                    ),
                   ],
                   const SectionTitle('Your reply'),
                   if (me == null)

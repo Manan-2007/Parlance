@@ -1,0 +1,12 @@
+### A fluent signer's check of someone else's contributed sign.
+class: ContributionReview
+table: contribution_review
+fields:
+  contributionId: int
+  reviewerId: String?, scope=serverOnly
+  verdict: ReviewVerdict
+  createdAt: DateTime, default=now
+indexes:
+  contribution_review_unique_idx:
+    fields: contributionId, reviewerId
+    unique: true

@@ -3,6 +3,7 @@ import 'package:parlance_mobile_client/parlance_mobile_client.dart';
 import 'package:serverpod_auth_idp_flutter/serverpod_auth_idp_flutter.dart';
 
 import 'client.dart';
+import 'offline.dart';
 
 /// Makes sure this phone has an account before it starts or joins a room.
 ///
@@ -78,8 +79,19 @@ class ServiceAddresses {
   /// Where to download the Android app.
   final Uri? android;
 
+  /// The server's addresses, with the 3D signer bundled in the app (when it
+  /// has one) used instead of the server's, so signing works offline. Without
+  /// internet only the bundled signer is known.
   static Future<ServiceAddresses> load() async {
-    final settings = await client.settings.get();
+    final bundled = await Offline.signerBase();
+    final bundledSigner = bundled?.resolve('embed/sign');
+    AppSettings? settings;
+    try {
+      settings = await client.settings.get().timeout(const Duration(seconds: 8));
+    } catch (error) {
+      if (bundledSigner == null) rethrow;
+      debugPrint('Parlance is offline; using the signer in the app. ($error)');
+    }
     final server = Uri.parse(client.host);
     Uri? local(String? value) {
       if (value == null) return null;
@@ -95,10 +107,10 @@ class ServiceAddresses {
     }
 
     final addresses = ServiceAddresses(
-      signer: local(settings.signerUrl),
-      app: local(settings.appUrl),
-      android: local(settings.androidUrl),
-      androidBuild: settings.androidBuild,
+      signer: bundledSigner ?? local(settings?.signerUrl),
+      app: local(settings?.appUrl),
+      android: local(settings?.androidUrl),
+      androidBuild: settings?.androidBuild,
     );
     debugPrint(
       'Parlance services: signer=${addresses.signer} app=${addresses.app}',

@@ -1,0 +1,14 @@
+### Where someone stands: consent, and what they gave.
+class: ContributionStats
+fields:
+  consented: bool
+  ### The consent text version they agreed to (null if none).
+  version: String?
+  ### The version the app must show and ask for now.
+  currentVersion: String
+  reviewer: bool
+  contributed: int
+  verified: int
+  pending: int
+  ### Checks they did of other people's signs.
+  reviewed: int

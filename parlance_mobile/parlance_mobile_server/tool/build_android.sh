@@ -7,6 +7,8 @@ set -e
 case "$1" in https://*/) ;; *) echo "Usage: $0 https://<project>.api.serverpod.space/  (the API address, ending with /)"; exit 1;; esac
 here=$(cd "$(dirname "$0")/.." && pwd)
 cd "$here/../parlance_mobile_flutter"
+# Bundle the recogniser and the 3D signer so the app works without internet.
+./tool/prepare_offline.sh
 build=$(date +%Y%m%d%H%M)
 flutter build apk --release --target-platform android-arm,android-arm64 --dart-define=SERVER_URL="$1" --dart-define=APP_BUILD="$build"
 mkdir -p "$here/web/get"

@@ -44,3 +44,10 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
+
+# Offline copies made by tool/prepare_offline.sh (the recogniser's weights and
+# the 3D signer build). The folders stay, so the asset list in pubspec.yaml
+# always resolves.
+/assets/offline/**
+!/assets/offline/**/
+!/assets/offline/**/.gitkeep

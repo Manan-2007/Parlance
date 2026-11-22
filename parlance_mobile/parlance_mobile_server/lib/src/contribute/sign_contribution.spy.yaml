@@ -1,0 +1,19 @@
+### One recorded sign: hand positions only (never video), and the word.
+class: SignContribution
+table: sign_contribution
+fields:
+  userId: String?, scope=serverOnly
+  ### The recogniser's word key (glossKey), e.g. "thankyou".
+  gloss: String
+  ### frameCount x 141 numbers, the same layout the recogniser reads.
+  frames: List<double>
+  frameCount: int
+  createdAt: DateTime, default=now
+  status: ContributionStatus
+  correctVotes: int, default=0
+  wrongVotes: int, default=0
+indexes:
+  sign_contribution_user_idx:
+    fields: userId
+  sign_contribution_status_idx:
+    fields: status

@@ -188,6 +188,14 @@ class HomeScreen extends ConsumerWidget {
                   ),
                   const SizedBox(height: 12),
                   ActionTile(
+                    icon: Icons.volunteer_activism_outlined,
+                    title: 'Help train Parlance',
+                    body:
+                        'Optional: record signs (hand positions only, never video) to make the sign reader better.',
+                    onTap: () => context.push('/contribute'),
+                  ),
+                  const SizedBox(height: 12),
+                  ActionTile(
                     icon: Icons.badge_outlined,
                     title: 'About me',
                     body:

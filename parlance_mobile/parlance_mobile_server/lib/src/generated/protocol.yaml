@@ -40,6 +40,17 @@ community:
   - listenLive:
 settings:
   - get:
+contribute:
+  - vocabulary:
+  - status:
+  - giveConsent:
+  - withdraw:
+  - setReviewer:
+  - contribute:
+  - mine:
+  - deleteContribution:
+  - reviewQueue:
+  - review:
 greeting:
   - hello:
 sign:

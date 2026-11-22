@@ -5,6 +5,7 @@ environment:
   sdk: '^3.12.2'
 
 workspace:
+  - parlance_recognition
   - parlance_mobile_client
   - parlance_mobile_server
   - parlance_mobile_flutter

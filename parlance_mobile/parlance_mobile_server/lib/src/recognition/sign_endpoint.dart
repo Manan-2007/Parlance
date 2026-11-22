@@ -1,7 +1,7 @@
 import 'package:serverpod/serverpod.dart';
 
 import '../generated/protocol.dart';
-import 'recognition_worker.dart';
+import 'recognizer.dart';
 
 /// Reads signs from a phone's hand landmarks, live.
 ///
@@ -15,7 +15,7 @@ class SignEndpoint extends Endpoint {
   bool get requireLogin => true;
 
   Stream<SignResult> read(Session session, Stream<SignFrame> frames) async* {
-    final worker = await RecognitionWorker.shared;
+    final worker = await sharedRecognitionWorker();
     final id = RecognitionWorker.newSessionId();
     try {
       yield _result(await worker.call(id, 'open'));

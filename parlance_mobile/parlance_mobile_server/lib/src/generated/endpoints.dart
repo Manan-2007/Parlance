@@ -16,6 +16,8 @@ import 'package:parlance_mobile_server/src/generated/community/community_kind.da
     as _iz8cwg6u;
 import 'package:parlance_mobile_server/src/generated/community/community_target.dart'
     as _i7w1c01y;
+import 'package:parlance_mobile_server/src/generated/contribute/review_verdict.dart'
+    as _i8p3pzfw;
 import 'package:parlance_mobile_server/src/generated/recognition/sign_frame.dart'
     as _i1wpk667;
 import 'package:parlance_mobile_server/src/generated/rooms/member_role.dart'
@@ -32,6 +34,7 @@ import '../auth/email_idp_endpoint.dart' as _iuc1hd5t;
 import '../auth/jwt_refresh_endpoint.dart' as _inwq3ztq;
 import '../community/community_endpoint.dart' as _ishdpybd;
 import '../config/settings_endpoint.dart' as _ijyziccz;
+import '../contribute/contribute_endpoint.dart' as _ilnokq2e;
 import '../greetings/greeting_endpoint.dart' as _il624ik7;
 import '../recognition/sign_endpoint.dart' as _imbbl2vy;
 import '../rooms/room_endpoint.dart' as _idkvzxf4;
@@ -77,6 +80,12 @@ class Endpoints extends _is.EndpointDispatch {
         ..initialize(
           server,
           'settings',
+          null,
+        ),
+      'contribute': _ilnokq2e.ContributeEndpoint()
+        ..initialize(
+          server,
+          'contribute',
           null,
         ),
       'greeting': _il624ik7.GreetingEndpoint()
@@ -1011,6 +1020,191 @@ class Endpoints extends _is.EndpointDispatch {
                 Map<String, dynamic> params,
               ) async => (endpoints['settings'] as _ijyziccz.SettingsEndpoint)
                   .get(session),
+        ),
+      },
+    );
+    connectors['contribute'] = _is.EndpointConnector(
+      name: 'contribute',
+      endpoint: endpoints['contribute']!,
+      methodConnectors: {
+        'vocabulary': _is.MethodConnector(
+          name: 'vocabulary',
+          params: {},
+          call:
+              (
+                _is.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['contribute'] as _ilnokq2e.ContributeEndpoint)
+                      .vocabulary(session),
+        ),
+        'status': _is.MethodConnector(
+          name: 'status',
+          params: {},
+          call:
+              (
+                _is.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['contribute'] as _ilnokq2e.ContributeEndpoint)
+                      .status(session),
+        ),
+        'giveConsent': _is.MethodConnector(
+          name: 'giveConsent',
+          params: {
+            'version': _is.ParameterDescription(
+              name: 'version',
+              type: _is.getType<String>(),
+              nullable: false,
+            ),
+            'decidesForSelf': _is.ParameterDescription(
+              name: 'decidesForSelf',
+              type: _is.getType<bool>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _is.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['contribute'] as _ilnokq2e.ContributeEndpoint)
+                      .giveConsent(
+                        session,
+                        params['version'],
+                        params['decidesForSelf'],
+                      ),
+        ),
+        'withdraw': _is.MethodConnector(
+          name: 'withdraw',
+          params: {},
+          call:
+              (
+                _is.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['contribute'] as _ilnokq2e.ContributeEndpoint)
+                      .withdraw(session),
+        ),
+        'setReviewer': _is.MethodConnector(
+          name: 'setReviewer',
+          params: {
+            'on': _is.ParameterDescription(
+              name: 'on',
+              type: _is.getType<bool>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _is.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['contribute'] as _ilnokq2e.ContributeEndpoint)
+                      .setReviewer(
+                        session,
+                        params['on'],
+                      ),
+        ),
+        'contribute': _is.MethodConnector(
+          name: 'contribute',
+          params: {
+            'gloss': _is.ParameterDescription(
+              name: 'gloss',
+              type: _is.getType<String>(),
+              nullable: false,
+            ),
+            'frames': _is.ParameterDescription(
+              name: 'frames',
+              type: _is.getType<List<double>>(),
+              nullable: false,
+            ),
+            'frameCount': _is.ParameterDescription(
+              name: 'frameCount',
+              type: _is.getType<int>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _is.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['contribute'] as _ilnokq2e.ContributeEndpoint)
+                      .contribute(
+                        session,
+                        params['gloss'],
+                        params['frames'],
+                        params['frameCount'],
+                      ),
+        ),
+        'mine': _is.MethodConnector(
+          name: 'mine',
+          params: {},
+          call:
+              (
+                _is.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['contribute'] as _ilnokq2e.ContributeEndpoint)
+                      .mine(session),
+        ),
+        'deleteContribution': _is.MethodConnector(
+          name: 'deleteContribution',
+          params: {
+            'id': _is.ParameterDescription(
+              name: 'id',
+              type: _is.getType<int>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _is.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['contribute'] as _ilnokq2e.ContributeEndpoint)
+                      .deleteContribution(
+                        session,
+                        params['id'],
+                      ),
+        ),
+        'reviewQueue': _is.MethodConnector(
+          name: 'reviewQueue',
+          params: {},
+          call:
+              (
+                _is.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['contribute'] as _ilnokq2e.ContributeEndpoint)
+                      .reviewQueue(session),
+        ),
+        'review': _is.MethodConnector(
+          name: 'review',
+          params: {
+            'id': _is.ParameterDescription(
+              name: 'id',
+              type: _is.getType<int>(),
+              nullable: false,
+            ),
+            'verdict': _is.ParameterDescription(
+              name: 'verdict',
+              type: _is.getType<_i8p3pzfw.ReviewVerdict>(),
+              nullable: false,
+            ),
+          },
+          call:
+              (
+                _is.Session session,
+                Map<String, dynamic> params,
+              ) async =>
+                  (endpoints['contribute'] as _ilnokq2e.ContributeEndpoint)
+                      .review(
+                        session,
+                        params['id'],
+                        params['verdict'],
+                      ),
         ),
       },
     );

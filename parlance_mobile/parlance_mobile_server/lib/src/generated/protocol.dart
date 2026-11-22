@@ -15,6 +15,12 @@ import 'package:parlance_mobile_server/src/generated/community/community_post.da
     as _ik5n8esx;
 import 'package:parlance_mobile_server/src/generated/community/community_space.dart'
     as _ivh75wso;
+import 'package:parlance_mobile_server/src/generated/contribute/contribution_summary.dart'
+    as _iurfaq06;
+import 'package:parlance_mobile_server/src/generated/contribute/contribution_word.dart'
+    as _i3lh744f;
+import 'package:parlance_mobile_server/src/generated/contribute/review_item.dart'
+    as _i4aaa37q;
 import 'package:serverpod/protocol.dart' as _isp;
 import 'package:serverpod/serverpod.dart' as _is;
 import 'package:serverpod_auth_core_server/serverpod_auth_core_server.dart'
@@ -42,6 +48,16 @@ import 'community/community_target.dart' as _ik04a096;
 import 'community/community_thread.dart' as _iq9mmxki;
 import 'community/community_thread_detail.dart' as _intovxsm;
 import 'config/app_settings.dart' as _i0thufz6;
+import 'contribute/contribution_consent.dart' as _iy4ji0yu;
+import 'contribute/contribution_exception.dart' as _iok7hr79;
+import 'contribute/contribution_review.dart' as _itrup0tu;
+import 'contribute/contribution_stats.dart' as _ihp33yuj;
+import 'contribute/contribution_status.dart' as _iintrx5t;
+import 'contribute/contribution_summary.dart' as _iojlpwtz;
+import 'contribute/contribution_word.dart' as _igewqzt6;
+import 'contribute/review_item.dart' as _ihwoh2je;
+import 'contribute/review_verdict.dart' as _i1g5r5t1;
+import 'contribute/sign_contribution.dart' as _i4c5c36l;
 import 'greetings/greeting.dart' as _izw8z7ou;
 import 'recognition/sign_frame.dart' as _igp1gr56;
 import 'recognition/sign_result.dart' as _i7e9t1p9;
@@ -76,6 +92,16 @@ export 'community/community_target.dart';
 export 'community/community_thread.dart';
 export 'community/community_thread_detail.dart';
 export 'config/app_settings.dart';
+export 'contribute/contribution_consent.dart';
+export 'contribute/contribution_exception.dart';
+export 'contribute/contribution_review.dart';
+export 'contribute/contribution_stats.dart';
+export 'contribute/contribution_status.dart';
+export 'contribute/contribution_summary.dart';
+export 'contribute/contribution_word.dart';
+export 'contribute/review_item.dart';
+export 'contribute/review_verdict.dart';
+export 'contribute/sign_contribution.dart';
 export 'greetings/greeting.dart';
 export 'recognition/sign_frame.dart';
 export 'recognition/sign_result.dart';
@@ -124,6 +150,16 @@ class Protocol extends _is.DatabaseSerializationManager
           _is.getType<_iq9mmxki.CommunityThread>,
           _is.getType<_intovxsm.CommunityThreadDetail>,
           _is.getType<_i0thufz6.AppSettings>,
+          _is.getType<_iy4ji0yu.ContributionConsent>,
+          _is.getType<_iok7hr79.ContributionException>,
+          _is.getType<_itrup0tu.ContributionReview>,
+          _is.getType<_ihp33yuj.ContributionStats>,
+          _is.getType<_iintrx5t.ContributionStatus>,
+          _is.getType<_iojlpwtz.ContributionSummary>,
+          _is.getType<_igewqzt6.ContributionWord>,
+          _is.getType<_ihwoh2je.ReviewItem>,
+          _is.getType<_i1g5r5t1.ReviewVerdict>,
+          _is.getType<_i4c5c36l.SignContribution>,
           _is.getType<_izw8z7ou.Greeting>,
           _is.getType<_igp1gr56.SignFrame>,
           _is.getType<_i7e9t1p9.SignResult>,
@@ -158,6 +194,16 @@ class Protocol extends _is.DatabaseSerializationManager
           _is.getType<_iq9mmxki.CommunityThread?>,
           _is.getType<_intovxsm.CommunityThreadDetail?>,
           _is.getType<_i0thufz6.AppSettings?>,
+          _is.getType<_iy4ji0yu.ContributionConsent?>,
+          _is.getType<_iok7hr79.ContributionException?>,
+          _is.getType<_itrup0tu.ContributionReview?>,
+          _is.getType<_ihp33yuj.ContributionStats?>,
+          _is.getType<_iintrx5t.ContributionStatus?>,
+          _is.getType<_iojlpwtz.ContributionSummary?>,
+          _is.getType<_igewqzt6.ContributionWord?>,
+          _is.getType<_ihwoh2je.ReviewItem?>,
+          _is.getType<_i1g5r5t1.ReviewVerdict?>,
+          _is.getType<_i4c5c36l.SignContribution?>,
           _is.getType<_izw8z7ou.Greeting?>,
           _is.getType<_igp1gr56.SignFrame?>,
           _is.getType<_i7e9t1p9.SignResult?>,
@@ -184,6 +230,10 @@ class Protocol extends _is.DatabaseSerializationManager
           _is.getType<List<String>>,
           _is.getType<List<_ivh75wso.CommunitySpace>>,
           _is.getType<List<_ik5n8esx.CommunityPost>>,
+          _is.getType<List<_i3lh744f.ContributionWord>>,
+          _is.getType<List<double>>,
+          _is.getType<List<_iurfaq06.ContributionSummary>>,
+          _is.getType<List<_i4aaa37q.ReviewItem>>,
         ],
         modules: const [
           _iais.Protocol.new,
@@ -212,6 +262,16 @@ class Protocol extends _is.DatabaseSerializationManager
           'CommunityThread',
           'CommunityThreadDetail',
           'AppSettings',
+          'ContributionConsent',
+          'ContributionException',
+          'ContributionReview',
+          'ContributionStats',
+          'ContributionStatus',
+          'ContributionSummary',
+          'ContributionWord',
+          'ReviewItem',
+          'ReviewVerdict',
+          'SignContribution',
           'Greeting',
           'SignFrame',
           'SignResult',
@@ -739,6 +799,125 @@ class Protocol extends _is.DatabaseSerializationManager
       managed: true,
     ),
     _isp.TableDefinition(
+      name: 'contribution_consent',
+      dartName: 'ContributionConsent',
+      schema: 'public',
+      module: 'parlance_mobile',
+      columns: [
+        _isp.ColumnDefinition(
+          name: 'id',
+          columnType: _isp.ColumnType.bigint,
+          isNullable: false,
+          dartType: 'int?',
+          columnDefault: 'serial',
+        ),
+        _isp.ColumnDefinition(
+          name: 'userId',
+          columnType: _isp.ColumnType.text,
+          isNullable: true,
+          dartType: 'String?',
+        ),
+        _isp.ColumnDefinition(
+          name: 'version',
+          columnType: _isp.ColumnType.text,
+          isNullable: false,
+          dartType: 'String',
+        ),
+        _isp.ColumnDefinition(
+          name: 'givenAt',
+          columnType: _isp.ColumnType.timestampWithoutTimeZone,
+          isNullable: false,
+          dartType: 'DateTime',
+          columnDefault: 'now',
+        ),
+        _isp.ColumnDefinition(
+          name: 'reviewer',
+          columnType: _isp.ColumnType.boolean,
+          isNullable: false,
+          dartType: 'bool',
+          columnDefault: 'false',
+        ),
+      ],
+      foreignKeys: [],
+      indexes: [
+        _isp.IndexDefinition(
+          indexName: 'contribution_consent_user_idx',
+          tableSpace: null,
+          elements: [
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
+              definition: 'userId',
+            ),
+          ],
+          type: 'btree',
+          isUnique: true,
+          isPrimary: false,
+        ),
+      ],
+      managed: true,
+    ),
+    _isp.TableDefinition(
+      name: 'contribution_review',
+      dartName: 'ContributionReview',
+      schema: 'public',
+      module: 'parlance_mobile',
+      columns: [
+        _isp.ColumnDefinition(
+          name: 'id',
+          columnType: _isp.ColumnType.bigint,
+          isNullable: false,
+          dartType: 'int?',
+          columnDefault: 'serial',
+        ),
+        _isp.ColumnDefinition(
+          name: 'contributionId',
+          columnType: _isp.ColumnType.bigint,
+          isNullable: false,
+          dartType: 'int',
+        ),
+        _isp.ColumnDefinition(
+          name: 'reviewerId',
+          columnType: _isp.ColumnType.text,
+          isNullable: true,
+          dartType: 'String?',
+        ),
+        _isp.ColumnDefinition(
+          name: 'verdict',
+          columnType: _isp.ColumnType.text,
+          isNullable: false,
+          dartType: 'protocol:ReviewVerdict',
+        ),
+        _isp.ColumnDefinition(
+          name: 'createdAt',
+          columnType: _isp.ColumnType.timestampWithoutTimeZone,
+          isNullable: false,
+          dartType: 'DateTime',
+          columnDefault: 'now',
+        ),
+      ],
+      foreignKeys: [],
+      indexes: [
+        _isp.IndexDefinition(
+          indexName: 'contribution_review_unique_idx',
+          tableSpace: null,
+          elements: [
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
+              definition: 'contributionId',
+            ),
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
+              definition: 'reviewerId',
+            ),
+          ],
+          type: 'btree',
+          isUnique: true,
+          isPrimary: false,
+        ),
+      ],
+      managed: true,
+    ),
+    _isp.TableDefinition(
       name: 'room',
       dartName: 'Room',
       schema: 'public',
@@ -864,6 +1043,102 @@ class Protocol extends _is.DatabaseSerializationManager
           ],
           type: 'btree',
           isUnique: true,
+          isPrimary: false,
+        ),
+      ],
+      managed: true,
+    ),
+    _isp.TableDefinition(
+      name: 'sign_contribution',
+      dartName: 'SignContribution',
+      schema: 'public',
+      module: 'parlance_mobile',
+      columns: [
+        _isp.ColumnDefinition(
+          name: 'id',
+          columnType: _isp.ColumnType.bigint,
+          isNullable: false,
+          dartType: 'int?',
+          columnDefault: 'serial',
+        ),
+        _isp.ColumnDefinition(
+          name: 'userId',
+          columnType: _isp.ColumnType.text,
+          isNullable: true,
+          dartType: 'String?',
+        ),
+        _isp.ColumnDefinition(
+          name: 'gloss',
+          columnType: _isp.ColumnType.text,
+          isNullable: false,
+          dartType: 'String',
+        ),
+        _isp.ColumnDefinition(
+          name: 'frames',
+          columnType: _isp.ColumnType.json,
+          isNullable: false,
+          dartType: 'List<double>',
+        ),
+        _isp.ColumnDefinition(
+          name: 'frameCount',
+          columnType: _isp.ColumnType.bigint,
+          isNullable: false,
+          dartType: 'int',
+        ),
+        _isp.ColumnDefinition(
+          name: 'createdAt',
+          columnType: _isp.ColumnType.timestampWithoutTimeZone,
+          isNullable: false,
+          dartType: 'DateTime',
+          columnDefault: 'now',
+        ),
+        _isp.ColumnDefinition(
+          name: 'status',
+          columnType: _isp.ColumnType.text,
+          isNullable: false,
+          dartType: 'protocol:ContributionStatus',
+        ),
+        _isp.ColumnDefinition(
+          name: 'correctVotes',
+          columnType: _isp.ColumnType.bigint,
+          isNullable: false,
+          dartType: 'int',
+          columnDefault: '0',
+        ),
+        _isp.ColumnDefinition(
+          name: 'wrongVotes',
+          columnType: _isp.ColumnType.bigint,
+          isNullable: false,
+          dartType: 'int',
+          columnDefault: '0',
+        ),
+      ],
+      foreignKeys: [],
+      indexes: [
+        _isp.IndexDefinition(
+          indexName: 'sign_contribution_user_idx',
+          tableSpace: null,
+          elements: [
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
+              definition: 'userId',
+            ),
+          ],
+          type: 'btree',
+          isUnique: false,
+          isPrimary: false,
+        ),
+        _isp.IndexDefinition(
+          indexName: 'sign_contribution_status_idx',
+          tableSpace: null,
+          elements: [
+            _isp.IndexElementDefinition(
+              type: _isp.IndexElementDefinitionType.column,
+              definition: 'status',
+            ),
+          ],
+          type: 'btree',
+          isUnique: false,
           isPrimary: false,
         ),
       ],
@@ -1033,6 +1308,36 @@ class Protocol extends _is.DatabaseSerializationManager
     if (t == _i0thufz6.AppSettings) {
       return _i0thufz6.AppSettings.fromJson(data) as T;
     }
+    if (t == _iy4ji0yu.ContributionConsent) {
+      return _iy4ji0yu.ContributionConsent.fromJson(data) as T;
+    }
+    if (t == _iok7hr79.ContributionException) {
+      return _iok7hr79.ContributionException.fromJson(data) as T;
+    }
+    if (t == _itrup0tu.ContributionReview) {
+      return _itrup0tu.ContributionReview.fromJson(data) as T;
+    }
+    if (t == _ihp33yuj.ContributionStats) {
+      return _ihp33yuj.ContributionStats.fromJson(data) as T;
+    }
+    if (t == _iintrx5t.ContributionStatus) {
+      return _iintrx5t.ContributionStatus.fromJson(data) as T;
+    }
+    if (t == _iojlpwtz.ContributionSummary) {
+      return _iojlpwtz.ContributionSummary.fromJson(data) as T;
+    }
+    if (t == _igewqzt6.ContributionWord) {
+      return _igewqzt6.ContributionWord.fromJson(data) as T;
+    }
+    if (t == _ihwoh2je.ReviewItem) {
+      return _ihwoh2je.ReviewItem.fromJson(data) as T;
+    }
+    if (t == _i1g5r5t1.ReviewVerdict) {
+      return _i1g5r5t1.ReviewVerdict.fromJson(data) as T;
+    }
+    if (t == _i4c5c36l.SignContribution) {
+      return _i4c5c36l.SignContribution.fromJson(data) as T;
+    }
     if (t == _izw8z7ou.Greeting) {
       return _izw8z7ou.Greeting.fromJson(data) as T;
     }
@@ -1161,6 +1466,51 @@ class Protocol extends _is.DatabaseSerializationManager
     if (t == _is.getType<_i0thufz6.AppSettings?>()) {
       return (data != null ? _i0thufz6.AppSettings.fromJson(data) : null) as T;
     }
+    if (t == _is.getType<_iy4ji0yu.ContributionConsent?>()) {
+      return (data != null
+              ? _iy4ji0yu.ContributionConsent.fromJson(data)
+              : null)
+          as T;
+    }
+    if (t == _is.getType<_iok7hr79.ContributionException?>()) {
+      return (data != null
+              ? _iok7hr79.ContributionException.fromJson(data)
+              : null)
+          as T;
+    }
+    if (t == _is.getType<_itrup0tu.ContributionReview?>()) {
+      return (data != null ? _itrup0tu.ContributionReview.fromJson(data) : null)
+          as T;
+    }
+    if (t == _is.getType<_ihp33yuj.ContributionStats?>()) {
+      return (data != null ? _ihp33yuj.ContributionStats.fromJson(data) : null)
+          as T;
+    }
+    if (t == _is.getType<_iintrx5t.ContributionStatus?>()) {
+      return (data != null ? _iintrx5t.ContributionStatus.fromJson(data) : null)
+          as T;
+    }
+    if (t == _is.getType<_iojlpwtz.ContributionSummary?>()) {
+      return (data != null
+              ? _iojlpwtz.ContributionSummary.fromJson(data)
+              : null)
+          as T;
+    }
+    if (t == _is.getType<_igewqzt6.ContributionWord?>()) {
+      return (data != null ? _igewqzt6.ContributionWord.fromJson(data) : null)
+          as T;
+    }
+    if (t == _is.getType<_ihwoh2je.ReviewItem?>()) {
+      return (data != null ? _ihwoh2je.ReviewItem.fromJson(data) : null) as T;
+    }
+    if (t == _is.getType<_i1g5r5t1.ReviewVerdict?>()) {
+      return (data != null ? _i1g5r5t1.ReviewVerdict.fromJson(data) : null)
+          as T;
+    }
+    if (t == _is.getType<_i4c5c36l.SignContribution?>()) {
+      return (data != null ? _i4c5c36l.SignContribution.fromJson(data) : null)
+          as T;
+    }
     if (t == _is.getType<_izw8z7ou.Greeting?>()) {
       return (data != null ? _izw8z7ou.Greeting.fromJson(data) : null) as T;
     }
@@ -1275,6 +1625,27 @@ class Protocol extends _is.DatabaseSerializationManager
               .toList()
           as T;
     }
+    if (t == List<_i3lh744f.ContributionWord>) {
+      return (data as List)
+              .map((e) => deserialize<_i3lh744f.ContributionWord>(e))
+              .toList()
+          as T;
+    }
+    if (t == List<double>) {
+      return (data as List).map((e) => deserialize<double>(e)).toList() as T;
+    }
+    if (t == List<_iurfaq06.ContributionSummary>) {
+      return (data as List)
+              .map((e) => deserialize<_iurfaq06.ContributionSummary>(e))
+              .toList()
+          as T;
+    }
+    if (t == List<_i4aaa37q.ReviewItem>) {
+      return (data as List)
+              .map((e) => deserialize<_i4aaa37q.ReviewItem>(e))
+              .toList()
+          as T;
+    }
     final modules = deserializationMetadata.modulesForDeserialization(
       t,
       className: rawDataClassName,
@@ -1311,6 +1682,16 @@ class Protocol extends _is.DatabaseSerializationManager
       _iq9mmxki.CommunityThread => 'CommunityThread',
       _intovxsm.CommunityThreadDetail => 'CommunityThreadDetail',
       _i0thufz6.AppSettings => 'AppSettings',
+      _iy4ji0yu.ContributionConsent => 'ContributionConsent',
+      _iok7hr79.ContributionException => 'ContributionException',
+      _itrup0tu.ContributionReview => 'ContributionReview',
+      _ihp33yuj.ContributionStats => 'ContributionStats',
+      _iintrx5t.ContributionStatus => 'ContributionStatus',
+      _iojlpwtz.ContributionSummary => 'ContributionSummary',
+      _igewqzt6.ContributionWord => 'ContributionWord',
+      _ihwoh2je.ReviewItem => 'ReviewItem',
+      _i1g5r5t1.ReviewVerdict => 'ReviewVerdict',
+      _i4c5c36l.SignContribution => 'SignContribution',
       _izw8z7ou.Greeting => 'Greeting',
       _igp1gr56.SignFrame => 'SignFrame',
       _i7e9t1p9.SignResult => 'SignResult',
@@ -1383,6 +1764,26 @@ class Protocol extends _is.DatabaseSerializationManager
         return 'CommunityThreadDetail';
       case _i0thufz6.AppSettings():
         return 'AppSettings';
+      case _iy4ji0yu.ContributionConsent():
+        return 'ContributionConsent';
+      case _iok7hr79.ContributionException():
+        return 'ContributionException';
+      case _itrup0tu.ContributionReview():
+        return 'ContributionReview';
+      case _ihp33yuj.ContributionStats():
+        return 'ContributionStats';
+      case _iintrx5t.ContributionStatus():
+        return 'ContributionStatus';
+      case _iojlpwtz.ContributionSummary():
+        return 'ContributionSummary';
+      case _igewqzt6.ContributionWord():
+        return 'ContributionWord';
+      case _ihwoh2je.ReviewItem():
+        return 'ReviewItem';
+      case _i1g5r5t1.ReviewVerdict():
+        return 'ReviewVerdict';
+      case _i4c5c36l.SignContribution():
+        return 'SignContribution';
       case _izw8z7ou.Greeting():
         return 'Greeting';
       case _igp1gr56.SignFrame():
@@ -1498,6 +1899,36 @@ class Protocol extends _is.DatabaseSerializationManager
     if (dataClassName == 'AppSettings') {
       return deserialize<_i0thufz6.AppSettings>(data['data']);
     }
+    if (dataClassName == 'ContributionConsent') {
+      return deserialize<_iy4ji0yu.ContributionConsent>(data['data']);
+    }
+    if (dataClassName == 'ContributionException') {
+      return deserialize<_iok7hr79.ContributionException>(data['data']);
+    }
+    if (dataClassName == 'ContributionReview') {
+      return deserialize<_itrup0tu.ContributionReview>(data['data']);
+    }
+    if (dataClassName == 'ContributionStats') {
+      return deserialize<_ihp33yuj.ContributionStats>(data['data']);
+    }
+    if (dataClassName == 'ContributionStatus') {
+      return deserialize<_iintrx5t.ContributionStatus>(data['data']);
+    }
+    if (dataClassName == 'ContributionSummary') {
+      return deserialize<_iojlpwtz.ContributionSummary>(data['data']);
+    }
+    if (dataClassName == 'ContributionWord') {
+      return deserialize<_igewqzt6.ContributionWord>(data['data']);
+    }
+    if (dataClassName == 'ReviewItem') {
+      return deserialize<_ihwoh2je.ReviewItem>(data['data']);
+    }
+    if (dataClassName == 'ReviewVerdict') {
+      return deserialize<_i1g5r5t1.ReviewVerdict>(data['data']);
+    }
+    if (dataClassName == 'SignContribution') {
+      return deserialize<_i4c5c36l.SignContribution>(data['data']);
+    }
     if (dataClassName == 'Greeting') {
       return deserialize<_izw8z7ou.Greeting>(data['data']);
     }
@@ -1594,6 +2025,12 @@ class Protocol extends _is.DatabaseSerializationManager
         return _id1r7uxk.CommunityReply.t;
       case _iq9mmxki.CommunityThread:
         return _iq9mmxki.CommunityThread.t;
+      case _iy4ji0yu.ContributionConsent:
+        return _iy4ji0yu.ContributionConsent.t;
+      case _itrup0tu.ContributionReview:
+        return _itrup0tu.ContributionReview.t;
+      case _i4c5c36l.SignContribution:
+        return _i4c5c36l.SignContribution.t;
       case _ix383f3m.Room:
         return _ix383f3m.Room.t;
       case _izcbgdsw.RoomMember:

@@ -32,11 +32,23 @@ bool get _isPhone =>
 /// conversation, the learner signs the target word, and the screen closes
 /// with `true` once the recogniser reads it.
 class SignScreen extends ConsumerStatefulWidget {
-  const SignScreen({super.key, this.target, this.targetEnglish});
+  const SignScreen({
+    super.key,
+    this.target,
+    this.targetEnglish,
+    this.record,
+    this.recordLabel,
+  });
 
   /// A gloss to practise, e.g. "thankyou".
   final String? target;
   final String? targetEnglish;
+
+  /// "Help train Parlance": record one sign of this word. The screen closes
+  /// with its hand positions (frames x 141 numbers, flattened), or null.
+  /// Nothing is sent from here; the caller asks before sending.
+  final String? record;
+  final String? recordLabel;
 
   @override
   ConsumerState<SignScreen> createState() => _SignScreenState();
@@ -59,6 +71,72 @@ class _SignScreenState extends ConsumerState<SignScreen> {
   final _sent = <String>[];
   final _cameraKey = GlobalKey();
   bool get _practice => widget.target != null;
+  bool get _recording => widget.record != null;
+
+  // Record mode: countdown, then the frames of one sign.
+  _RecordStep _step = _RecordStep.ready;
+  int _countdown = 0;
+  final _recorded = <List<double>>[];
+  final _recordClock = Stopwatch();
+  double _lastRecorded = -1e9;
+  double? _handsSeenAt;
+  double? _handsGoneAt;
+  Timer? _recordTimer;
+
+  void _startRecording() {
+    _recordTimer?.cancel();
+    setState(() {
+      _recorded.clear();
+      _step = _RecordStep.countdown;
+      _countdown = 3;
+    });
+    _recordTimer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (!mounted) return timer.cancel();
+      if (_countdown > 1) {
+        setState(() => _countdown--);
+        return;
+      }
+      timer.cancel();
+      HapticFeedback.mediumImpact();
+      _handsSeenAt = null;
+      _handsGoneAt = null;
+      _lastRecorded = -1e9;
+      _recordClock
+        ..reset()
+        ..start();
+      setState(() => _step = _RecordStep.recording);
+      // At most 5 seconds: one sign.
+      _recordTimer = Timer(const Duration(seconds: 5), _stopRecording);
+    });
+  }
+
+  void _stopRecording() {
+    _recordTimer?.cancel();
+    _recordClock.stop();
+    if (!mounted || _step != _RecordStep.recording) return;
+    HapticFeedback.lightImpact();
+    setState(() => _step = _RecordStep.done);
+  }
+
+  /// Keeps about 12 frames a second (like the reader), and stops once the
+  /// hands have been seen and then lowered for 0.7 s.
+  void _recordFrame(List<double> vector, int hands) {
+    if (_step != _RecordStep.recording) return;
+    final now = _recordClock.elapsedMicroseconds / 1000.0;
+    if (hands > 0) {
+      _handsSeenAt ??= now;
+      _handsGoneAt = null;
+    } else if (_handsSeenAt != null) {
+      _handsGoneAt ??= now;
+      if (now - _handsGoneAt! > 700 && _recorded.length >= 8) {
+        _stopRecording();
+        return;
+      }
+    }
+    if (now - _lastRecorded < 75 || _recorded.length >= 150) return;
+    _lastRecorded = now;
+    _recorded.add(vector);
+  }
 
   /// Practice: what the recogniser made of the last finished sign.
   String? _readAs;
@@ -118,7 +196,7 @@ class _SignScreenState extends ConsumerState<SignScreen> {
   }
 
   void _connect() {
-    if (_recognizer != null) return;
+    if (_recognizer != null || _recording) return;
     _recognizer = RecognizerClient(
       onWord: (word, confidence) {
         if (_practice) {
@@ -161,8 +239,9 @@ class _SignScreenState extends ConsumerState<SignScreen> {
   @override
   void dispose() {
     _turnTimer?.cancel();
+    _recordTimer?.cancel();
     _recognizer?.close();
-    if (!_practice) ref.read(roomProvider.notifier).clearLive();
+    if (!_practice && !_recording) ref.read(roomProvider.notifier).clearLive();
     unawaited(WakelockPlus.disable());
     if (_isPhone) {
       SystemChrome.setPreferredOrientations(DeviceOrientation.values);
@@ -174,7 +253,14 @@ class _SignScreenState extends ConsumerState<SignScreen> {
   void _onFrame(HandFrame frame, bool upright) {
     final blocks = _assigner.assign(frame.detections);
     final hands = blocks.where((b) => b != null).length;
-    if (upright) _recognizer?.send(assembleFrame(blocks));
+    if (upright) {
+      final vector = assembleFrame(blocks);
+      if (_recording) {
+        _recordFrame(vector, hands);
+      } else {
+        _recognizer?.send(vector);
+      }
+    }
     if (hands != _hands ||
         frame.detections.isNotEmpty ||
         _frame?.detections.isNotEmpty == true) {
@@ -190,7 +276,7 @@ class _SignScreenState extends ConsumerState<SignScreen> {
     final room = ref.watch(roomProvider);
     final size = MediaQuery.sizeOf(context);
     final portrait = size.height > size.width;
-    if (_recognizer == null) {
+    if (_recognizer == null && !_recording) {
       // Connecting reports its status straight away, which must not happen
       // while this frame is being built.
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -233,11 +319,16 @@ class _SignScreenState extends ConsumerState<SignScreen> {
             onError: (message) => setState(() => _cameraError = message),
           ),
           if (_frame != null) CustomPaint(painter: _HandsPainter(_frame!)),
-          Positioned(
-            left: 12,
-            top: 12,
-            child: _StatusPill(state: _state, hands: _hands),
-          ),
+          if (!_recording)
+            Positioned(
+              left: 12,
+              top: 12,
+              child: _StatusPill(
+                onDevice: _recognizer?.onDevice ?? false,
+                state: _state,
+                hands: _hands,
+              ),
+            ),
           if (portrait)
             const _Message(
               icon: Icons.screen_rotation_rounded,
@@ -248,7 +339,20 @@ class _SignScreenState extends ConsumerState<SignScreen> {
       );
     }
 
-    final panel = _practice
+    final panel = _recording
+        ? _RecordPanel(
+            label: widget.recordLabel ?? widget.record!,
+            step: _step,
+            countdown: _countdown,
+            frames: _recorded.length,
+            hands: _hands,
+            canStart: !portrait,
+            onStart: _startRecording,
+            onStop: _stopRecording,
+            onUse: () => context.pop(<double>[for (final f in _recorded) ...f]),
+            onCancel: () => context.pop(),
+          )
+        : _practice
         ? _PracticePanel(
             english: widget.targetEnglish ?? widget.target!,
             readAs: _readAs,
@@ -279,6 +383,123 @@ class _SignScreenState extends ConsumerState<SignScreen> {
             Expanded(flex: portrait ? 42 : 38, child: panel),
           ],
         ),
+      ),
+    );
+  }
+}
+
+enum _RecordStep { ready, countdown, recording, done }
+
+/// "Help train Parlance": record one sign, then use it or try again.
+class _RecordPanel extends StatelessWidget {
+  const _RecordPanel({
+    required this.label,
+    required this.step,
+    required this.countdown,
+    required this.frames,
+    required this.hands,
+    required this.canStart,
+    required this.onStart,
+    required this.onStop,
+    required this.onUse,
+    required this.onCancel,
+  });
+
+  final String label;
+  final _RecordStep step;
+  final int countdown;
+  final int frames;
+  final int hands;
+  final bool canStart;
+  final VoidCallback onStart;
+  final VoidCallback onStop;
+  final VoidCallback onUse;
+  final VoidCallback onCancel;
+
+  @override
+  Widget build(BuildContext context) {
+    final text = Theme.of(context).textTheme;
+    final tooShort = step == _RecordStep.done && frames < 8;
+    return Container(
+      color: Brand.paper,
+      padding: const EdgeInsets.fromLTRB(16, 12, 16, 12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            children: [
+              Text(
+                'Record the sign',
+                style: text.labelLarge?.copyWith(color: Brand.ink3),
+              ),
+              const Spacer(),
+              TextButton(onPressed: onCancel, child: const Text('Cancel')),
+            ],
+          ),
+          Text(
+            label,
+            style: text.headlineMedium?.copyWith(fontSize: 32, height: 1.05),
+          ),
+          const Spacer(),
+          Semantics(
+            liveRegion: true,
+            child: Text(
+              switch (step) {
+                _RecordStep.ready =>
+                  canStart
+                      ? 'Start, wait for 3-2-1, sign the word once, then lower your hands.'
+                      : 'Turn your phone sideways first.',
+                _RecordStep.countdown => 'Get ready… $countdown',
+                _RecordStep.recording =>
+                  hands == 0
+                      ? 'Sign now'
+                      : 'Recording… lower your hands when done',
+                _RecordStep.done =>
+                  tooShort
+                      ? 'That was too short. Try again, signing the whole word.'
+                      : 'Recorded. Only hand positions are kept, never video.',
+              },
+              style: text.titleMedium?.copyWith(
+                color: step == _RecordStep.recording
+                    ? Brand.danger
+                    : Brand.ink2,
+                fontSize: step == _RecordStep.countdown ? 26 : null,
+              ),
+            ),
+          ),
+          const SizedBox(height: 10),
+          switch (step) {
+            _RecordStep.ready => FilledButton.icon(
+              onPressed: canStart ? onStart : null,
+              icon: const Icon(Icons.fiber_manual_record_rounded),
+              label: const Text('Start'),
+            ),
+            _RecordStep.countdown => const LinearProgressIndicator(),
+            _RecordStep.recording => FilledButton.icon(
+              style: FilledButton.styleFrom(backgroundColor: Brand.danger),
+              onPressed: onStop,
+              icon: const Icon(Icons.stop_rounded),
+              label: const Text('Stop'),
+            ),
+            _RecordStep.done => Row(
+              children: [
+                Expanded(
+                  child: OutlinedButton(
+                    onPressed: onStart,
+                    child: const Text('Again'),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: FilledButton(
+                    onPressed: tooShort ? null : onUse,
+                    child: const Text('Use this'),
+                  ),
+                ),
+              ],
+            ),
+          },
+        ],
       ),
     );
   }
@@ -471,20 +692,30 @@ class _Panel extends StatelessWidget {
 }
 
 class _StatusPill extends StatelessWidget {
-  const _StatusPill({required this.state, required this.hands});
+  const _StatusPill({
+    required this.state,
+    required this.hands,
+    this.onDevice = false,
+  });
   final RecognizerState state;
   final int hands;
+
+  /// Signs are read on this phone, so no internet is needed.
+  final bool onDevice;
 
   @override
   Widget build(BuildContext context) {
     final (label, color) = switch (state.status) {
-      RecognizerStatus.connecting => ('Connecting…', Brand.ink3),
+      RecognizerStatus.connecting => (
+        onDevice ? 'Starting…' : 'Connecting…',
+        Brand.ink3,
+      ),
       RecognizerStatus.offline => ('Sign reader offline', Brand.danger),
       RecognizerStatus.ready =>
         hands == 0
             ? ('Show your hands', Brand.ink3)
             : (
-                'Reading ${hands == 2 ? 'both hands' : 'one hand'}',
+                'Reading ${hands == 2 ? 'both hands' : 'one hand'}${onDevice ? ' · on this phone' : ''}',
                 Brand.hands,
               ),
     };

@@ -6,7 +6,6 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:parlance_mobile_server/src/recognition/recognizer.dart';
-import 'package:parlance_mobile_server/src/recognition/session.dart';
 
 String summary(Map<String, Object?> r) {
   final parts = <String>[];
@@ -35,7 +34,7 @@ void main(List<String> args) {
     for (final a in args)
       if (!a.startsWith('--')) a,
   ];
-  final model = SignRecognizer.load();
+  final model = loadSignRecognizer();
   var frames = 0, differ = 0, words = 0, wordMismatch = 0;
   for (final path in paths) {
     final session = RecognitionSession(model, liveGuesses: !finalOnly);

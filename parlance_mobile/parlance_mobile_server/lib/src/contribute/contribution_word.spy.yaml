@@ -1,0 +1,5 @@
+### A word the sign reader knows, that people can record.
+class: ContributionWord
+fields:
+  key: String
+  label: String

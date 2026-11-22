@@ -1,0 +1,8 @@
+### One of my contributed signs, as I see it.
+class: ContributionSummary
+fields:
+  id: int
+  gloss: String
+  frameCount: int
+  createdAt: DateTime
+  status: ContributionStatus

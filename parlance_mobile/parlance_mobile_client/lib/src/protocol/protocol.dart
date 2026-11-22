@@ -15,6 +15,12 @@ import 'package:parlance_mobile_client/src/protocol/community/community_post.dar
     as _i8e19teb;
 import 'package:parlance_mobile_client/src/protocol/community/community_space.dart'
     as _i4zztl7n;
+import 'package:parlance_mobile_client/src/protocol/contribute/contribution_summary.dart'
+    as _i18zrkqi;
+import 'package:parlance_mobile_client/src/protocol/contribute/contribution_word.dart'
+    as _i8i2vtw8;
+import 'package:parlance_mobile_client/src/protocol/contribute/review_item.dart'
+    as _i6rpmp3c;
 import 'package:serverpod_auth_core_client/serverpod_auth_core_client.dart'
     as _iacc;
 import 'package:serverpod_auth_idp_client/serverpod_auth_idp_client.dart'
@@ -41,6 +47,16 @@ import 'community/community_target.dart' as _ik04a096;
 import 'community/community_thread.dart' as _iq9mmxki;
 import 'community/community_thread_detail.dart' as _intovxsm;
 import 'config/app_settings.dart' as _i0thufz6;
+import 'contribute/contribution_consent.dart' as _iy4ji0yu;
+import 'contribute/contribution_exception.dart' as _iok7hr79;
+import 'contribute/contribution_review.dart' as _itrup0tu;
+import 'contribute/contribution_stats.dart' as _ihp33yuj;
+import 'contribute/contribution_status.dart' as _iintrx5t;
+import 'contribute/contribution_summary.dart' as _iojlpwtz;
+import 'contribute/contribution_word.dart' as _igewqzt6;
+import 'contribute/review_item.dart' as _ihwoh2je;
+import 'contribute/review_verdict.dart' as _i1g5r5t1;
+import 'contribute/sign_contribution.dart' as _i4c5c36l;
 import 'greetings/greeting.dart' as _izw8z7ou;
 import 'recognition/sign_frame.dart' as _igp1gr56;
 import 'recognition/sign_result.dart' as _i7e9t1p9;
@@ -75,6 +91,16 @@ export 'community/community_target.dart';
 export 'community/community_thread.dart';
 export 'community/community_thread_detail.dart';
 export 'config/app_settings.dart';
+export 'contribute/contribution_consent.dart';
+export 'contribute/contribution_exception.dart';
+export 'contribute/contribution_review.dart';
+export 'contribute/contribution_stats.dart';
+export 'contribute/contribution_status.dart';
+export 'contribute/contribution_summary.dart';
+export 'contribute/contribution_word.dart';
+export 'contribute/review_item.dart';
+export 'contribute/review_verdict.dart';
+export 'contribute/sign_contribution.dart';
 export 'greetings/greeting.dart';
 export 'recognition/sign_frame.dart';
 export 'recognition/sign_result.dart';
@@ -124,6 +150,16 @@ class Protocol extends _isc.SerializationManager
           _isc.getType<_iq9mmxki.CommunityThread>,
           _isc.getType<_intovxsm.CommunityThreadDetail>,
           _isc.getType<_i0thufz6.AppSettings>,
+          _isc.getType<_iy4ji0yu.ContributionConsent>,
+          _isc.getType<_iok7hr79.ContributionException>,
+          _isc.getType<_itrup0tu.ContributionReview>,
+          _isc.getType<_ihp33yuj.ContributionStats>,
+          _isc.getType<_iintrx5t.ContributionStatus>,
+          _isc.getType<_iojlpwtz.ContributionSummary>,
+          _isc.getType<_igewqzt6.ContributionWord>,
+          _isc.getType<_ihwoh2je.ReviewItem>,
+          _isc.getType<_i1g5r5t1.ReviewVerdict>,
+          _isc.getType<_i4c5c36l.SignContribution>,
           _isc.getType<_izw8z7ou.Greeting>,
           _isc.getType<_igp1gr56.SignFrame>,
           _isc.getType<_i7e9t1p9.SignResult>,
@@ -158,6 +194,16 @@ class Protocol extends _isc.SerializationManager
           _isc.getType<_iq9mmxki.CommunityThread?>,
           _isc.getType<_intovxsm.CommunityThreadDetail?>,
           _isc.getType<_i0thufz6.AppSettings?>,
+          _isc.getType<_iy4ji0yu.ContributionConsent?>,
+          _isc.getType<_iok7hr79.ContributionException?>,
+          _isc.getType<_itrup0tu.ContributionReview?>,
+          _isc.getType<_ihp33yuj.ContributionStats?>,
+          _isc.getType<_iintrx5t.ContributionStatus?>,
+          _isc.getType<_iojlpwtz.ContributionSummary?>,
+          _isc.getType<_igewqzt6.ContributionWord?>,
+          _isc.getType<_ihwoh2je.ReviewItem?>,
+          _isc.getType<_i1g5r5t1.ReviewVerdict?>,
+          _isc.getType<_i4c5c36l.SignContribution?>,
           _isc.getType<_izw8z7ou.Greeting?>,
           _isc.getType<_igp1gr56.SignFrame?>,
           _isc.getType<_i7e9t1p9.SignResult?>,
@@ -184,6 +230,10 @@ class Protocol extends _isc.SerializationManager
           _isc.getType<List<String>>,
           _isc.getType<List<_i4zztl7n.CommunitySpace>>,
           _isc.getType<List<_i8e19teb.CommunityPost>>,
+          _isc.getType<List<_i8i2vtw8.ContributionWord>>,
+          _isc.getType<List<double>>,
+          _isc.getType<List<_i18zrkqi.ContributionSummary>>,
+          _isc.getType<List<_i6rpmp3c.ReviewItem>>,
         ],
         modules: const [
           _iaic.Protocol.new,
@@ -211,6 +261,16 @@ class Protocol extends _isc.SerializationManager
           'CommunityThread',
           'CommunityThreadDetail',
           'AppSettings',
+          'ContributionConsent',
+          'ContributionException',
+          'ContributionReview',
+          'ContributionStats',
+          'ContributionStatus',
+          'ContributionSummary',
+          'ContributionWord',
+          'ReviewItem',
+          'ReviewVerdict',
+          'SignContribution',
           'Greeting',
           'SignFrame',
           'SignResult',
@@ -313,6 +373,36 @@ class Protocol extends _isc.SerializationManager
     }
     if (t == _i0thufz6.AppSettings) {
       return _i0thufz6.AppSettings.fromJson(data) as T;
+    }
+    if (t == _iy4ji0yu.ContributionConsent) {
+      return _iy4ji0yu.ContributionConsent.fromJson(data) as T;
+    }
+    if (t == _iok7hr79.ContributionException) {
+      return _iok7hr79.ContributionException.fromJson(data) as T;
+    }
+    if (t == _itrup0tu.ContributionReview) {
+      return _itrup0tu.ContributionReview.fromJson(data) as T;
+    }
+    if (t == _ihp33yuj.ContributionStats) {
+      return _ihp33yuj.ContributionStats.fromJson(data) as T;
+    }
+    if (t == _iintrx5t.ContributionStatus) {
+      return _iintrx5t.ContributionStatus.fromJson(data) as T;
+    }
+    if (t == _iojlpwtz.ContributionSummary) {
+      return _iojlpwtz.ContributionSummary.fromJson(data) as T;
+    }
+    if (t == _igewqzt6.ContributionWord) {
+      return _igewqzt6.ContributionWord.fromJson(data) as T;
+    }
+    if (t == _ihwoh2je.ReviewItem) {
+      return _ihwoh2je.ReviewItem.fromJson(data) as T;
+    }
+    if (t == _i1g5r5t1.ReviewVerdict) {
+      return _i1g5r5t1.ReviewVerdict.fromJson(data) as T;
+    }
+    if (t == _i4c5c36l.SignContribution) {
+      return _i4c5c36l.SignContribution.fromJson(data) as T;
     }
     if (t == _izw8z7ou.Greeting) {
       return _izw8z7ou.Greeting.fromJson(data) as T;
@@ -442,6 +532,51 @@ class Protocol extends _isc.SerializationManager
     if (t == _isc.getType<_i0thufz6.AppSettings?>()) {
       return (data != null ? _i0thufz6.AppSettings.fromJson(data) : null) as T;
     }
+    if (t == _isc.getType<_iy4ji0yu.ContributionConsent?>()) {
+      return (data != null
+              ? _iy4ji0yu.ContributionConsent.fromJson(data)
+              : null)
+          as T;
+    }
+    if (t == _isc.getType<_iok7hr79.ContributionException?>()) {
+      return (data != null
+              ? _iok7hr79.ContributionException.fromJson(data)
+              : null)
+          as T;
+    }
+    if (t == _isc.getType<_itrup0tu.ContributionReview?>()) {
+      return (data != null ? _itrup0tu.ContributionReview.fromJson(data) : null)
+          as T;
+    }
+    if (t == _isc.getType<_ihp33yuj.ContributionStats?>()) {
+      return (data != null ? _ihp33yuj.ContributionStats.fromJson(data) : null)
+          as T;
+    }
+    if (t == _isc.getType<_iintrx5t.ContributionStatus?>()) {
+      return (data != null ? _iintrx5t.ContributionStatus.fromJson(data) : null)
+          as T;
+    }
+    if (t == _isc.getType<_iojlpwtz.ContributionSummary?>()) {
+      return (data != null
+              ? _iojlpwtz.ContributionSummary.fromJson(data)
+              : null)
+          as T;
+    }
+    if (t == _isc.getType<_igewqzt6.ContributionWord?>()) {
+      return (data != null ? _igewqzt6.ContributionWord.fromJson(data) : null)
+          as T;
+    }
+    if (t == _isc.getType<_ihwoh2je.ReviewItem?>()) {
+      return (data != null ? _ihwoh2je.ReviewItem.fromJson(data) : null) as T;
+    }
+    if (t == _isc.getType<_i1g5r5t1.ReviewVerdict?>()) {
+      return (data != null ? _i1g5r5t1.ReviewVerdict.fromJson(data) : null)
+          as T;
+    }
+    if (t == _isc.getType<_i4c5c36l.SignContribution?>()) {
+      return (data != null ? _i4c5c36l.SignContribution.fromJson(data) : null)
+          as T;
+    }
     if (t == _isc.getType<_izw8z7ou.Greeting?>()) {
       return (data != null ? _izw8z7ou.Greeting.fromJson(data) : null) as T;
     }
@@ -556,6 +691,27 @@ class Protocol extends _isc.SerializationManager
               .toList()
           as T;
     }
+    if (t == List<_i8i2vtw8.ContributionWord>) {
+      return (data as List)
+              .map((e) => deserialize<_i8i2vtw8.ContributionWord>(e))
+              .toList()
+          as T;
+    }
+    if (t == List<double>) {
+      return (data as List).map((e) => deserialize<double>(e)).toList() as T;
+    }
+    if (t == List<_i18zrkqi.ContributionSummary>) {
+      return (data as List)
+              .map((e) => deserialize<_i18zrkqi.ContributionSummary>(e))
+              .toList()
+          as T;
+    }
+    if (t == List<_i6rpmp3c.ReviewItem>) {
+      return (data as List)
+              .map((e) => deserialize<_i6rpmp3c.ReviewItem>(e))
+              .toList()
+          as T;
+    }
     final modules = deserializationMetadata.modulesForDeserialization(
       t,
       className: rawDataClassName,
@@ -592,6 +748,16 @@ class Protocol extends _isc.SerializationManager
       _iq9mmxki.CommunityThread => 'CommunityThread',
       _intovxsm.CommunityThreadDetail => 'CommunityThreadDetail',
       _i0thufz6.AppSettings => 'AppSettings',
+      _iy4ji0yu.ContributionConsent => 'ContributionConsent',
+      _iok7hr79.ContributionException => 'ContributionException',
+      _itrup0tu.ContributionReview => 'ContributionReview',
+      _ihp33yuj.ContributionStats => 'ContributionStats',
+      _iintrx5t.ContributionStatus => 'ContributionStatus',
+      _iojlpwtz.ContributionSummary => 'ContributionSummary',
+      _igewqzt6.ContributionWord => 'ContributionWord',
+      _ihwoh2je.ReviewItem => 'ReviewItem',
+      _i1g5r5t1.ReviewVerdict => 'ReviewVerdict',
+      _i4c5c36l.SignContribution => 'SignContribution',
       _izw8z7ou.Greeting => 'Greeting',
       _igp1gr56.SignFrame => 'SignFrame',
       _i7e9t1p9.SignResult => 'SignResult',
@@ -664,6 +830,26 @@ class Protocol extends _isc.SerializationManager
         return 'CommunityThreadDetail';
       case _i0thufz6.AppSettings():
         return 'AppSettings';
+      case _iy4ji0yu.ContributionConsent():
+        return 'ContributionConsent';
+      case _iok7hr79.ContributionException():
+        return 'ContributionException';
+      case _itrup0tu.ContributionReview():
+        return 'ContributionReview';
+      case _ihp33yuj.ContributionStats():
+        return 'ContributionStats';
+      case _iintrx5t.ContributionStatus():
+        return 'ContributionStatus';
+      case _iojlpwtz.ContributionSummary():
+        return 'ContributionSummary';
+      case _igewqzt6.ContributionWord():
+        return 'ContributionWord';
+      case _ihwoh2je.ReviewItem():
+        return 'ReviewItem';
+      case _i1g5r5t1.ReviewVerdict():
+        return 'ReviewVerdict';
+      case _i4c5c36l.SignContribution():
+        return 'SignContribution';
       case _izw8z7ou.Greeting():
         return 'Greeting';
       case _igp1gr56.SignFrame():
@@ -774,6 +960,36 @@ class Protocol extends _isc.SerializationManager
     }
     if (dataClassName == 'AppSettings') {
       return deserialize<_i0thufz6.AppSettings>(data['data']);
+    }
+    if (dataClassName == 'ContributionConsent') {
+      return deserialize<_iy4ji0yu.ContributionConsent>(data['data']);
+    }
+    if (dataClassName == 'ContributionException') {
+      return deserialize<_iok7hr79.ContributionException>(data['data']);
+    }
+    if (dataClassName == 'ContributionReview') {
+      return deserialize<_itrup0tu.ContributionReview>(data['data']);
+    }
+    if (dataClassName == 'ContributionStats') {
+      return deserialize<_ihp33yuj.ContributionStats>(data['data']);
+    }
+    if (dataClassName == 'ContributionStatus') {
+      return deserialize<_iintrx5t.ContributionStatus>(data['data']);
+    }
+    if (dataClassName == 'ContributionSummary') {
+      return deserialize<_iojlpwtz.ContributionSummary>(data['data']);
+    }
+    if (dataClassName == 'ContributionWord') {
+      return deserialize<_igewqzt6.ContributionWord>(data['data']);
+    }
+    if (dataClassName == 'ReviewItem') {
+      return deserialize<_ihwoh2je.ReviewItem>(data['data']);
+    }
+    if (dataClassName == 'ReviewVerdict') {
+      return deserialize<_i1g5r5t1.ReviewVerdict>(data['data']);
+    }
+    if (dataClassName == 'SignContribution') {
+      return deserialize<_i4c5c36l.SignContribution>(data['data']);
     }
     if (dataClassName == 'Greeting') {
       return deserialize<_izw8z7ou.Greeting>(data['data']);

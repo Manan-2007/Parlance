@@ -4,7 +4,6 @@ import 'dart:math' as math;
 import 'dart:typed_data';
 
 import 'package:parlance_mobile_server/src/recognition/recognizer.dart';
-import 'package:parlance_mobile_server/src/recognition/transformer.dart';
 import 'package:test/test.dart';
 
 void main() {
@@ -69,7 +68,7 @@ void main() {
   });
 
   test('the recogniser loads with forest suggestions', () {
-    final recognizer = SignRecognizer.load();
+    final recognizer = loadSignRecognizer();
     expect(recognizer.labels.first, noneLabel);
     expect(recognizer.forestOnly, isNotEmpty);
   });
