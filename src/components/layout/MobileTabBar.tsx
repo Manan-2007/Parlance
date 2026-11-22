@@ -38,7 +38,9 @@ export function MobileTabBar({ items, label, activeAnchor }: MobileTabBarProps) 
           const content = (active: boolean) => (
             <span
               className={cn(
-                "relative flex h-16 flex-col items-center justify-center gap-1 text-[0.6875rem] leading-4 transition-colors",
+                "relative flex h-16 flex-col items-center justify-center gap-1 leading-4 transition-colors",
+                // Six tabs on a 360px phone: slightly smaller words so none is cut off.
+                items.length > 5 ? "text-[0.625rem]" : "text-[0.6875rem]",
                 active ? "font-bold text-navy" : "font-medium text-ink-3",
               )}
             >
@@ -57,8 +59,12 @@ export function MobileTabBar({ items, label, activeAnchor }: MobileTabBarProps) 
               >
                 <Icon className="size-5" aria-hidden />
               </span>
-              <span className="max-w-full truncate px-0.5 tracking-[-0.02em]" aria-hidden={item.ariaLabel ? true : undefined}>
-                {item.label}
+              <span
+                className={cn("max-w-full px-0.5 tracking-[-0.02em]", items.length > 5 ? "line-clamp-2 text-center leading-[0.7rem]" : "truncate")}
+                aria-hidden={item.ariaLabel ? true : undefined}
+              >
+                {/* With six tabs a long label may break after its arrow instead of being cut off. */}
+                {items.length > 5 ? item.label.replace("→", "→\u200B") : item.label}
               </span>
               {item.ariaLabel && <span className="sr-only">{item.ariaLabel}</span>}
             </span>

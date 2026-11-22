@@ -8,3 +8,4 @@ public/mediapipe/audio-wasm/
 __pycache__/
 .pytest_cache/
 .research-cache/
+backend/data/

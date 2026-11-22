@@ -26,6 +26,7 @@ self.addEventListener("fetch", (event) => {
   if (request.method !== "GET") return;
   const url = new URL(request.url);
   if (url.origin !== self.location.origin) return;
+  // Live services, never cached (this includes /api/community).
   if (url.pathname.startsWith("/api/") || url.pathname.startsWith("/recognition")) return;
 
   // Pages: the network first (fresh deploys), the cached app shell offline.

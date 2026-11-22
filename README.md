@@ -7,7 +7,16 @@ Parlance pairs the interface from [Manan-2007/testing1](https://github.com/Manan
 
 ## Run locally
 
-Requires Node.js 22.18 or newer.
+Requires Node.js 22.18 or newer and Python 3.11 or newer.
+
+**One command:** `./start.sh` (macOS, Linux) or `start.bat` (Windows). The first
+run installs the website packages and a Python environment in `.venv`; every run
+starts the website and the local Python service, then opens
+http://localhost:4173 in your browser. `./start.sh community` opens the
+Community directly. Press Ctrl+C to stop. (The phone app is separate: it uses the
+APK and Serverpod Cloud.)
+
+By hand:
 
 ```sh
 npm ci

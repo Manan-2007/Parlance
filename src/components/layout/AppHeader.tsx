@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import { motion } from "motion/react";
-import { AudioLines, CircleHelp, GraduationCap, Hand, History, House, Settings, Siren, WalletCards } from "lucide-react";
+import { AudioLines, CircleHelp, GraduationCap, Hand, History, House, MessagesSquare, Settings, Siren, WalletCards } from "lucide-react";
 import { ListeningPill } from "@/features/sound-alerts/SoundAlertLayer";
 import { cn } from "@/lib/cn";
 import { AccessibilityMenu } from "./AccessibilityMenu";
@@ -14,11 +14,12 @@ const MODES = [
   { to: "/app/sign-to-text", from: "Sign", target: "Text", icon: Hand, pill: "bg-forest-400", on: "text-white" },
 ];
 
-/* Where things are. The main places show words from lg; History, Settings and Help are icons (with tooltips) until 2xl. */
+/* Where things are. The main places show words from xl (below that the direction switcher needs the room); History, Settings and Help are icons (with tooltips) until 2xl. */
 const TOOLS = [
   { to: "/app", label: "Home", icon: House, end: true, labels: "lg" },
   { to: "/app/cards", label: "Cards", icon: WalletCards, labels: "lg" },
   { to: "/app/learn", label: "Learn", icon: GraduationCap, labels: "lg" },
+  { to: "/app/community", label: "Community", icon: MessagesSquare, labels: "lg" },
   { to: "/app/history", label: "History", icon: History, labels: "2xl" },
   { to: "/app/settings", label: "Settings", icon: Settings, labels: "2xl" },
   { to: "/app/help", label: "Help", icon: CircleHelp, labels: "2xl" },
@@ -112,7 +113,7 @@ export function AppHeader() {
                     }
                   >
                     <Icon className="size-4" aria-hidden />
-                    <span className={labels === "lg" ? "sr-only lg:not-sr-only" : "sr-only 2xl:not-sr-only"}>{label}</span>
+                    <span className={labels === "lg" ? "sr-only xl:not-sr-only" : "sr-only 2xl:not-sr-only"}>{label}</span>
                   </NavLink>
                 </li>
               ))}

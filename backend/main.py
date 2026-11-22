@@ -11,6 +11,7 @@ import time
 from fastapi import FastAPI, WebSocket, WebSocketDisconnect
 from starlette.concurrency import run_in_threadpool
 
+from .community import CommunityError, error_response as community_error_response, router as community_router
 from .model import TemporalForest
 from .recognition import RecognitionSession
 from .hybrid import HybridRecognizer
@@ -71,6 +72,14 @@ async def lifespan(app):
 
 
 app = FastAPI(title="Parlance recognition", lifespan=lifespan)
+
+# Community (discussion spaces and live meetup rooms); see community.py.
+app.include_router(community_router)
+
+
+@app.exception_handler(CommunityError)
+async def community_error(_request, error: CommunityError):
+    return community_error_response(error)
 
 
 @app.get("/health")

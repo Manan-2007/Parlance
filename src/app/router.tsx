@@ -140,6 +140,30 @@ export const router = createBrowserRouter([
             }),
           },
           {
+            path: "community",
+            lazy: async () => ({ Component: (await import("@/features/community/CommunityPage")).CommunityPage }),
+          },
+          {
+            path: "community/new",
+            lazy: async () => ({ Component: (await import("@/features/community/NewPostPage")).NewPostPage }),
+          },
+          {
+            path: "community/s/:spaceId",
+            lazy: async () => ({ Component: (await import("@/features/community/SpacePage")).SpacePage }),
+          },
+          {
+            path: "community/t/:threadId",
+            lazy: async () => ({ Component: (await import("@/features/community/ThreadPage")).ThreadPage }),
+          },
+          {
+            path: "community/live",
+            lazy: async () => ({ Component: (await import("@/features/community/LivePage")).LivePage }),
+          },
+          {
+            path: "community/live/:code",
+            lazy: async () => ({ Component: (await import("@/features/community/LivePage")).LivePage }),
+          },
+          {
             path: "history",
             lazy: async () => ({ Component: (await import("@/features/history/HistoryPage")).HistoryPage }),
           },

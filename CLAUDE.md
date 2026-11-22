@@ -5,6 +5,7 @@ A platform to learn and translate Indian Sign Language (ISL).
 - **Speech → Sign** (text or voice → ISL gloss → three.js avatar "Ch22") works offline.
 - **Sign → Text** (webcam → MediaPipe landmarks in a worker → WebSocket recogniser → English) uses the bundled `backend/` FastAPI service on port 8000.
 - **Parlance mobile** (`parlance_mobile/`, Flutter + Serverpod, for the HackBriven × Serverpod hackathon): two phones in one conversation, the recogniser ported to Dart in the Serverpod server, everything on Serverpod Cloud. See `parlance_mobile/README.md` and `parlance_mobile/AGENTS.md`.
+- **Community** (`/app/community`): spaces and threads for in-depth discussion, questions with answers, "See in sign" on every post, and meetups with a live room joined by a six-digit code ("Here, together"). Stored in SQLite by `backend/community.py` (same local FastAPI service). See `docs/codebase-context/COMMUNITY.md`.
 - **Home** (`/app`) lists everything by situation. **Cards** (emergency, counters, visit card, SOS), **live captions** (Speech → Sign `?view=captions`) and **sound alerts** (on-device YAMNet) work offline once the app is installed. See `docs/codebase-context/EVERYDAY.md`.
 
 Docs: `docs/codebase-context/`. Start with `DEVELOPMENT_HANDOFF.md`; Learn is in `LEARN.md`.
@@ -13,21 +14,24 @@ Docs: `docs/codebase-context/`. Start with `DEVELOPMENT_HANDOFF.md`; Learn is in
 Vite 8, React 19, TypeScript 6 (strict), Tailwind 4 (`@theme` tokens in `src/styles/index.css`), zustand 5, react-router 7 (lazy routes), three 0.185, `@mediapipe/tasks-vision`, Web Speech API. Optional Gemini translation via Vite middleware in `server/`. Node ≥ 22.18.
 
 ## Commands
+- `./start.sh` / `start.bat`: installs what is missing, starts the website + Python service, opens http://localhost:4173 (`./start.sh community` opens Community)
 - `npm ci` · `npm run dev` (http://localhost:4173; `predev` copies MediaPipe wasm into `public/mediapipe/wasm`)
+- `python3 -m unittest discover -s backend/tests` (backend tests, from `.venv`)
 - `npm test` (node:test; `test/*.test.js`, which import `.ts` files directly)
 - `npm run build` = `tsc -b && vite build`
 - `node scripts/sync-islrtc-signs.mjs "<vox path>"` re-imports ISLRTC sign recordings; `node scripts/calibrate-practice.mjs "<vox path>"` re-checks practice scoring
 - No linter configured.
 
 ## Layout
-- `src/features/` pages (landing, home, cards, sound-alerts, learn, speech-to-sign, sign-to-text, history, settings, help); `src/components/` UI kit/layout/avatar viewport
+- `src/features/` pages (landing, home, cards, sound-alerts, learn, community, speech-to-sign, sign-to-text, history, settings, help); `src/components/` UI kit/layout/avatar viewport
 - `src/learn/` pure Learn logic (curriculum, lesson plans, spaced review, practice comparison, recordings, decks, pair rounds, fingerspelling); relative imports carry `.ts` so node tests can load them
 - `src/features/teach/` record, deck editor, share; `src/stores/teach.ts` recordings and decks in IndexedDB. Sign keys are ISLRTC glosses or `rec:<id>`; resolve them through `src/features/learn/signData.ts`
 - `src/translation/` (JS) offline English/Hindi → gloss + Gemini bridge; `islVocabulary.js` `SUPPORTED_TOKENS` is the avatar vocabulary
 - `src/avatar/` (JS) player, scheduler, motion compiler, procedural sign tables in `animations/`
 - `src/engine/` MediaPipe worker, tracking/smoothing, 141-float frame contract, `isl/grammar.ts` (gloss → English)
 - `src/services/` hooks for camera, recognition WS, speech, sign library; `src/stores/` settings + history
-- `backend/` bundled recognition; `training/` experimental dataset pipelines (not automatically deployed). `server/` `/api/config`, `/api/translate-isl`, `/api/speech` (only exists under `vite` / `vite preview`)
+- `src/community/` pure Community types/helpers; `src/services/community/` API client + live events; `src/stores/community.ts` your community name and token
+- `backend/` bundled recognition and Community (`community.py`, data in `backend/data/`, gitignored); `training/` experimental dataset pipelines (not automatically deployed). `server/` `/api/config`, `/api/translate-isl`, `/api/speech` (only exists under `vite` / `vite preview`)
 
 ## Constraints
 - Do not change the 141-float vector layout, smoothing order, aspect scaling, or `public/models/*.task` — they must match the bundled model's training. The raw recognition vector must not be aspect-scaled or smoothed. Learn explicitly opts into pose tracking and adapts separate world/pose outputs.

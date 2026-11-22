@@ -5,7 +5,7 @@
 import type { ComponentType, ReactNode } from "react";
 import { Link } from "react-router-dom";
 import {
-  ArrowRight, AudioLines, BellRing, Captions, ClipboardList, GraduationCap, Hand, History, LifeBuoy, Settings, Siren, WalletCards,
+  ArrowRight, AudioLines, BellRing, Captions, ClipboardList, GraduationCap, Hand, History, LifeBuoy, MessagesSquare, Radio, Settings, Siren, WalletCards,
 } from "lucide-react";
 import { Pal } from "@/components/brand/Pal";
 import { InstallAppButton } from "@/app/pwa";
@@ -169,6 +169,35 @@ export function HomePage() {
           </Link>
         </Section>
       </div>
+
+      <Section id="community-title" title="Community" description="Long conversations with people who live it, and meetups in person.">
+        <ul className="grid gap-3 sm:grid-cols-2">
+          <li>
+            <Link to="/app/community" className="group flex h-full items-center gap-4 rounded-[1.75rem] bg-cobalt-400 p-5 text-white transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-md">
+              <span className="inline-flex size-12 shrink-0 items-center justify-center rounded-full bg-white/15">
+                <MessagesSquare className="size-[1.375rem]" aria-hidden />
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block text-[1.25rem] leading-7 font-extrabold tracking-[-0.03em]">Ask the community</span>
+                <span className="block text-[0.9375rem] leading-6 text-white/85">Work, exams, documents, health, family. Every post can be seen in sign.</span>
+              </span>
+              <ArrowRight className="size-5 shrink-0 transition-transform group-hover:translate-x-1" aria-hidden />
+            </Link>
+          </li>
+          <li>
+            <Link to="/app/community/live" className="group flex h-full items-center gap-4 rounded-[1.75rem] bg-tangerine-400 p-5 text-navy transition-[transform,box-shadow] hover:-translate-y-0.5 hover:shadow-md">
+              <span className="inline-flex size-12 shrink-0 items-center justify-center rounded-full bg-navy/10">
+                <Radio className="size-[1.375rem]" aria-hidden />
+              </span>
+              <span className="min-w-0 flex-1">
+                <span className="block text-[1.25rem] leading-7 font-extrabold tracking-[-0.03em]">At a meetup? Join live</span>
+                <span className="block text-[0.9375rem] leading-6 text-navy/75">Type the host's code. Everyone there shares one screen of big messages.</span>
+              </span>
+              <ArrowRight className="size-5 shrink-0 transition-transform group-hover:translate-x-1" aria-hidden />
+            </Link>
+          </li>
+        </ul>
+      </Section>
 
       <Section id="learn-title" title="Keep learning">
         <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.3fr)]">

@@ -14,6 +14,11 @@ const recognitionProxy = {
     ws: true,
     rewrite: (path: string) => path.replace(/^\/recognition/, ""),
   },
+  // Community (backend/community.py) lives in the same local Python service.
+  "/api/community": {
+    target: `http://127.0.0.1:${process.env.PARLANCE_API_PORT || 8000}`,
+    rewrite: (path: string) => path.replace(/^\/api\/community/, "/community"),
+  },
 };
 
 export default defineConfig({
