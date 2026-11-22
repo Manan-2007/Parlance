@@ -1,0 +1,12 @@
+### Where and when a meetup is, who is going, and its live room.
+class: CommunityMeetup
+fields:
+  place: String
+  city: String
+  startsAt: DateTime
+  endsAt: DateTime
+  going: int
+  imGoing: bool
+  live: bool
+  ### The live room's code. Only the host receives it, to show at the venue.
+  code: String?

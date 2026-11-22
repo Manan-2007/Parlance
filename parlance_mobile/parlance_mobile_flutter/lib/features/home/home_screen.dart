@@ -160,6 +160,32 @@ class HomeScreen extends ConsumerWidget {
                     bordered: false,
                     onTap: () => context.go('/cards'),
                   ),
+                  const SectionTitle(
+                    'Community',
+                    description:
+                        'Long conversations with people who live it, and meetups in person.',
+                  ),
+                  ActionTile(
+                    icon: Icons.forum_rounded,
+                    title: 'Ask the community',
+                    body:
+                        'Work, exams, documents, health, family. Every post can be seen in sign.',
+                    background: Brand.navy,
+                    foreground: Colors.white,
+                    iconBackground: Colors.white.withValues(alpha: 0.16),
+                    bordered: false,
+                    onTap: () => context.go('/community'),
+                  ),
+                  const SizedBox(height: 12),
+                  ActionTile(
+                    icon: Icons.podcasts_rounded,
+                    title: 'At a meetup? Join live',
+                    body:
+                        "Type the host's code. Everyone there shares one screen of big messages.",
+                    background: Brand.voiceSoft,
+                    bordered: false,
+                    onTap: () => context.push('/community/live'),
+                  ),
                   const SizedBox(height: 12),
                   ActionTile(
                     icon: Icons.badge_outlined,

@@ -15,6 +15,29 @@ emailIdp:
   - hasAccount:
 jwtRefresh:
   - refreshAccessToken:
+community:
+  - me:
+  - join:
+  - updateMe:
+  - listSpaces:
+  - threads:
+  - thread:
+  - createThread:
+  - editThread:
+  - deleteThread:
+  - reply:
+  - editReply:
+  - deleteReply:
+  - setHelpful:
+  - report:
+  - setAnswer:
+  - setGoing:
+  - startLive:
+  - endLive:
+  - live:
+  - sayLive:
+  - listenThread:
+  - listenLive:
 settings:
   - get:
 greeting:

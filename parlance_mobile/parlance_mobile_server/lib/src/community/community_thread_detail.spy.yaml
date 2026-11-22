@@ -1,0 +1,5 @@
+### A thread with its replies, oldest first.
+class: CommunityThreadDetail
+fields:
+  post: CommunityPost
+  replies: List<CommunityReplyView>

@@ -1,0 +1,11 @@
+### Something that changed in a thread or a live room, sent to everyone following it.
+class: CommunityEvent
+fields:
+  kind: CommunityEventKind
+  reply: CommunityReplyView?
+  post: CommunityPost?
+  message: CommunityLiveMessageView?
+  ### The reply or post the change is about.
+  targetId: int?
+  ### Helpful count, or people following now (presence).
+  count: int?

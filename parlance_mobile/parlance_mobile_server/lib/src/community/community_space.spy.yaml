@@ -1,0 +1,8 @@
+### A topic area that holds threads.
+class: CommunitySpace
+fields:
+  id: String
+  title: String
+  description: String
+  threads: int
+  lastActivityAt: DateTime?

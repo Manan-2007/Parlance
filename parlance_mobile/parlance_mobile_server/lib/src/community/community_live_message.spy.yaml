@@ -1,0 +1,12 @@
+### A message in a meetup's live room. Deleted when the meetup ends.
+class: CommunityLiveMessage
+table: community_live_message
+fields:
+  threadId: int
+  authorId: int
+  text: String
+  input: CommunityInput
+  createdAt: DateTime, default=now
+indexes:
+  community_live_thread_idx:
+    fields: threadId

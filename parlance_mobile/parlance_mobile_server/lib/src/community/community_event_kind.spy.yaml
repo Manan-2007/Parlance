@@ -1,0 +1,15 @@
+enum: CommunityEventKind
+values:
+  ### `reply` is set.
+  - reply
+  - replyUpdated
+  ### `targetId` is the removed reply.
+  - replyRemoved
+  ### `post` is set (the public view: no host code, no personal flags).
+  - postUpdated
+  - postRemoved
+  ### `targetId` and `count`; `post` is set when it is the thread itself.
+  - helpful
+  ### `message` is set.
+  - liveMessage
+  - liveEnded

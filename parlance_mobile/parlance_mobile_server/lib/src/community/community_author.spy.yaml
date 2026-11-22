@@ -1,0 +1,8 @@
+### Who wrote something, as everyone sees it.
+class: CommunityAuthor
+fields:
+  id: int
+  handle: String
+  city: String
+  ways: List<String>
+  sample: bool

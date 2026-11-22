@@ -24,6 +24,15 @@ person talk in Indian Sign Language (ISL).
 - **Cards tab:** ready-made messages in English + Hindi (emergency, hospital,
   pharmacy, police, bank, railway, auto, shop), shown full screen; the other
   person taps a reply. Works with no second phone.
+- **Community tab ("Here, together", Track 1):** spaces and threads for
+  in-depth discussion between Deaf and hard-of-hearing people, families and
+  learners (not a fast group chat); questions with a chosen answer, "helpful"
+  marks, reports, "See in sign" and "Read aloud" on every post. Meetups have a
+  live room: the host shows a QR code and six-digit code at the venue,
+  everyone there shares one wall of big messages, and the messages are deleted
+  when the meetup ends. All in Serverpod (`CommunityEndpoint`). The website
+  has the same feature with its own local store (`backend/community.py`); the
+  two do not share posts.
 
 ### Hard rules from the hackathon guide (do not break)
 
@@ -40,7 +49,7 @@ person talk in Indian Sign Language (ISL).
 
 ## 2. Repository and where things live
 
-Git repo: **https://github.com/tzxh45dhff-art/parlance** (branch `main`; the
+Git repo: **https://github.com/Manan-2007/Parlance** (branch `main`; the
 team pushes finished work straight to `main`). The repo root is the Parlance
 **website** (React/Vite, see the root `CLAUDE.md`). This app lives in
 `parlance_mobile/` and *uses parts of the website*:
@@ -88,7 +97,10 @@ to build the signer and the website tests).
 - `main.dart` → `initializeClient()` (`core/client.dart`, generated Serverpod
   client) → quiet anonymous sign-in → `MaterialApp.router`.
 - `app/router.dart`: go_router. `StatefulShellRoute` with a bottom
-  `NavigationBar` = 4 tabs: `/` Home, `/translate`, `/learn`, `/cards`.
+  `NavigationBar` = 5 tabs: `/` Home, `/translate`, `/learn`, `/cards`,
+  `/community` (`/community/s/:space`, `/community/t/:id`, `/community/new`).
+  Live meetup rooms are full screen: `/community/live` (type a code) and
+  `/community/live/:code` (its QR code encodes `https://<app>/#/community/live/123456`).
   Full-screen routes on the root navigator: `/talk`, `/join`, `/join/:code`,
   `/room`, `/room/sign`, `/practice/:gloss`, `/about`, lesson and card-show
   pages. The web build uses hash URLs: a room QR code encodes
@@ -120,6 +132,10 @@ to build the signer and the website tests).
     **iframe** (web) showing the website's embed pages served by Serverpod at
     `/signer/…`. `SignerView` is the inline widget.
   - `sign_camera/` the camera + sign reading (see §4.3).
+  - `community/` Community screens (`community_screens.dart`,
+    `live_screen.dart`, `community_parts.dart`); state in
+    `providers/community_provider.dart` (thread and live room follow the
+    server's streams and reconnect by themselves).
 
 ### 4.2 Serverpod server (`parlance_mobile_server/lib/`)
 
@@ -136,6 +152,15 @@ to build the signer and the website tests).
   their messages; account ids are `scope=serverOnly` (never sent to phones).
   Live events use `session.messages.postMessage/createStream` on channel
   `room-<id>` (single server instance; Redis would be needed to scale out).
+- `src/community/`: `CommunityEndpoint` + models (tables `community_member`,
+  `community_thread`, `community_reply`, `community_mark` (helpful / report /
+  going), `community_live_message`). `requireLogin = true`; posting needs a
+  community name (`join`); only authors edit/delete, only the asker marks the
+  answer, only the host opens/ends the live room and only the host receives its
+  code; posts hide after 3 reports; 6 posts/min. Live events on channels
+  `community-thread-<id>` and `community-live-<code>`. `community_seed.dart`
+  adds sample posts (members flagged `sample`, shown as "Sample") to an empty
+  database on first use.
 - `src/config/`: `AppSettings` + `SettingsEndpoint` (no login) returning
   `signerUrl`, `appUrl`, `androidUrl`, `androidBuild` from passwords.
 - `src/recognition/`: **the sign recogniser, ported from the website's Python
@@ -292,13 +317,21 @@ All commands from `parlance_mobile/` unless noted.
 serverpod start                     # or: cd parlance_mobile_server && serverpod runner start
 
 # Tests
-(cd parlance_mobile_server && dart analyze --fatal-infos && dart test)   # 14 tests
-(cd parlance_mobile_flutter && flutter analyze && flutter test)          # 5 tests
-(cd .. && npm test)                                                      # website, 51 tests
+(cd parlance_mobile_server && dart analyze --fatal-infos && dart test)   # 25 tests
+(cd parlance_mobile_flutter && flutter analyze && flutter test)          # 8 tests
+(cd .. && npm test)                                                      # website, 58 tests
 
 # Android emulator against the local server
 (cd parlance_mobile_flutter && flutter run --dart-define=SERVER_URL=http://10.0.2.2:8080/)
 ```
+
+The integration tests need a `test:` section in `config/passwords.yaml`
+(database, serviceSecret, jwtRefreshTokenHashPepper, jwtHmacSha512PrivateKey,
+emailSecretHashPepper; any random values) and fail with "Another process is
+using the local database" while a `serverpod start` for this project is
+running; stop it, or run the tests in a copy of the workspace.
+`dart bin/main.dart` cannot load the Argon2 native library (anonymous sign-in
+fails); `serverpod start` or `dart build cli` work.
 
 Local `config/passwords.yaml` (gitignored; the template creates it) needs, under
 `development:`: `signerUrl: 'http://localhost:8082/signer/embed/sign'` and
@@ -413,7 +446,7 @@ be (re)built before a deploy or the live site loses them:
 
 ## 8. Git workflow
 
-- Repo: https://github.com/tzxh45dhff-art/parlance — work on `main` (or a
+- Repo: https://github.com/Manan-2007/Parlance — work on `main` (or a
   branch, then merge); push after tests pass. Commit messages: what changed and
   why, in plain words.
 - Never commit: `config/passwords.yaml`, `web/app`, `web/signer`, `web/get`,

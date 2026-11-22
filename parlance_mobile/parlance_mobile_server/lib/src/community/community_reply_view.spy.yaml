@@ -1,0 +1,14 @@
+### A reply as one person sees it.
+class: CommunityReplyView
+fields:
+  id: int
+  threadId: int
+  body: String
+  input: CommunityInput
+  quoteId: int?
+  author: CommunityAuthor
+  createdAt: DateTime
+  editedAt: DateTime?
+  helpful: int
+  myHelpful: bool
+  mine: bool

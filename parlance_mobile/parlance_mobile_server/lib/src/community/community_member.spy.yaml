@@ -1,0 +1,23 @@
+### Someone who joined the Community with a name of their choice.
+class: CommunityMember
+table: community_member
+fields:
+  ### The signed-in account. Never sent to phones.
+  userId: String?, scope=serverOnly
+  ### The name people see. Not a real name unless they want it to be.
+  handle: String
+  ### The name in lower case, so "Asha" and "asha" cannot both exist.
+  handleKey: String?, scope=serverOnly
+  city: String
+  ### How they describe themselves: deaf, hard-of-hearing, deafblind, family, learning, interpreter, teacher.
+  ways: List<String>
+  ### Written by Parlance as an example, not by a real person.
+  sample: bool, default=false
+  joinedAt: DateTime, default=now
+indexes:
+  community_member_user_idx:
+    fields: userId
+    unique: true
+  community_member_handle_idx:
+    fields: handleKey
+    unique: true

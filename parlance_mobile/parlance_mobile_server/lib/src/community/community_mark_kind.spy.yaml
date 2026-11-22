@@ -1,0 +1,5 @@
+enum: CommunityMarkKind
+values:
+  - helpful
+  - report
+  - going

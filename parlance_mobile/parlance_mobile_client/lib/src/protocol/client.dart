@@ -12,6 +12,28 @@
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'dart:async' as _ida;
 import 'package:http/http.dart' as _i85jenna;
+import 'package:parlance_mobile_client/src/protocol/community/community_author.dart'
+    as _iwcxaguc;
+import 'package:parlance_mobile_client/src/protocol/community/community_event.dart'
+    as _ir0ag590;
+import 'package:parlance_mobile_client/src/protocol/community/community_input.dart'
+    as _i0uwrkyu;
+import 'package:parlance_mobile_client/src/protocol/community/community_kind.dart'
+    as _ig7i6uby;
+import 'package:parlance_mobile_client/src/protocol/community/community_live_message_view.dart'
+    as _i07c5ol7;
+import 'package:parlance_mobile_client/src/protocol/community/community_live_room.dart'
+    as _i82wj25m;
+import 'package:parlance_mobile_client/src/protocol/community/community_post.dart'
+    as _i8e19teb;
+import 'package:parlance_mobile_client/src/protocol/community/community_reply_view.dart'
+    as _iku3rf73;
+import 'package:parlance_mobile_client/src/protocol/community/community_space.dart'
+    as _i4zztl7n;
+import 'package:parlance_mobile_client/src/protocol/community/community_target.dart'
+    as _ilhdyced;
+import 'package:parlance_mobile_client/src/protocol/community/community_thread_detail.dart'
+    as _ix2cfxoy;
 import 'package:parlance_mobile_client/src/protocol/config/app_settings.dart'
     as _ida0onrg;
 import 'package:parlance_mobile_client/src/protocol/greetings/greeting.dart'
@@ -385,6 +407,285 @@ class EndpointJwtRefresh extends _iacc.EndpointRefreshJwtTokens {
       );
 }
 
+/// Community: long-form discussion between Deaf and hard-of-hearing people,
+/// their families and learners, plus live meetup rooms for people in the same
+/// place ("Here, together"). The same rules as the website's version
+/// (backend/community.py at the repo root).
+///
+/// Every method needs a signed-in account (the app signs in anonymously).
+/// Posting needs a community name first ([join]). Only the author edits or
+/// deletes a post or reply, only the asker marks the answer, only the meetup's
+/// host opens or ends its live room. A live room's code is only given to the
+/// host, to show at the venue, and its messages are deleted when the meetup
+/// ends. Account ids never leave the server.
+/// {@category Endpoint}
+class EndpointCommunity extends _isc.EndpointRef {
+  EndpointCommunity(_isc.EndpointCaller caller) : super(caller);
+
+  @override
+  String get name => 'community';
+
+  /// You in the Community, or null if you have not chosen a name yet.
+  _ida.Future<_iwcxaguc.CommunityAuthor?> me() =>
+      caller.callServerEndpoint<_iwcxaguc.CommunityAuthor?>(
+        'community',
+        'me',
+        {},
+      );
+
+  /// Joins with a name people will see (not necessarily a real name).
+  _ida.Future<_iwcxaguc.CommunityAuthor> join(
+    String handle,
+    String city,
+    List<String> ways,
+  ) => caller.callServerEndpoint<_iwcxaguc.CommunityAuthor>(
+    'community',
+    'join',
+    {
+      'handle': handle,
+      'city': city,
+      'ways': ways,
+    },
+  );
+
+  _ida.Future<_iwcxaguc.CommunityAuthor> updateMe(
+    String city,
+    List<String> ways,
+  ) => caller.callServerEndpoint<_iwcxaguc.CommunityAuthor>(
+    'community',
+    'updateMe',
+    {
+      'city': city,
+      'ways': ways,
+    },
+  );
+
+  _ida.Future<List<_i4zztl7n.CommunitySpace>> listSpaces() =>
+      caller.callServerEndpoint<List<_i4zztl7n.CommunitySpace>>(
+        'community',
+        'listSpaces',
+        {},
+      );
+
+  /// Threads, newest activity first ([sort]: active, new, unanswered, meetups).
+  _ida.Future<List<_i8e19teb.CommunityPost>> threads(
+    String? space,
+    String sort,
+    String query,
+    int offset,
+  ) => caller.callServerEndpoint<List<_i8e19teb.CommunityPost>>(
+    'community',
+    'threads',
+    {
+      'space': space,
+      'sort': sort,
+      'query': query,
+      'offset': offset,
+    },
+  );
+
+  _ida.Future<_ix2cfxoy.CommunityThreadDetail> thread(int threadId) =>
+      caller.callServerEndpoint<_ix2cfxoy.CommunityThreadDetail>(
+        'community',
+        'thread',
+        {'threadId': threadId},
+      );
+
+  _ida.Future<_i8e19teb.CommunityPost> createThread(
+    String space,
+    _ig7i6uby.CommunityKind kind,
+    String title,
+    String body,
+    _i0uwrkyu.CommunityInput input,
+    String? place,
+    String? city,
+    DateTime? startsAt,
+    DateTime? endsAt,
+  ) => caller.callServerEndpoint<_i8e19teb.CommunityPost>(
+    'community',
+    'createThread',
+    {
+      'space': space,
+      'kind': kind,
+      'title': title,
+      'body': body,
+      'input': input,
+      'place': place,
+      'city': city,
+      'startsAt': startsAt,
+      'endsAt': endsAt,
+    },
+  );
+
+  _ida.Future<_i8e19teb.CommunityPost> editThread(
+    int threadId,
+    String title,
+    String body,
+  ) => caller.callServerEndpoint<_i8e19teb.CommunityPost>(
+    'community',
+    'editThread',
+    {
+      'threadId': threadId,
+      'title': title,
+      'body': body,
+    },
+  );
+
+  _ida.Future<void> deleteThread(int threadId) =>
+      caller.callServerEndpoint<void>(
+        'community',
+        'deleteThread',
+        {'threadId': threadId},
+      );
+
+  _ida.Future<_iku3rf73.CommunityReplyView> reply(
+    int threadId,
+    String body,
+    _i0uwrkyu.CommunityInput input,
+    int? quoteId,
+  ) => caller.callServerEndpoint<_iku3rf73.CommunityReplyView>(
+    'community',
+    'reply',
+    {
+      'threadId': threadId,
+      'body': body,
+      'input': input,
+      'quoteId': quoteId,
+    },
+  );
+
+  _ida.Future<_iku3rf73.CommunityReplyView> editReply(
+    int replyId,
+    String body,
+  ) => caller.callServerEndpoint<_iku3rf73.CommunityReplyView>(
+    'community',
+    'editReply',
+    {
+      'replyId': replyId,
+      'body': body,
+    },
+  );
+
+  _ida.Future<void> deleteReply(int replyId) => caller.callServerEndpoint<void>(
+    'community',
+    'deleteReply',
+    {'replyId': replyId},
+  );
+
+  /// Marks a post or reply as helpful (or not). Returns the new count.
+  _ida.Future<int> setHelpful(
+    _ilhdyced.CommunityTarget target,
+    int id,
+    bool on,
+  ) => caller.callServerEndpoint<int>(
+    'community',
+    'setHelpful',
+    {
+      'target': target,
+      'id': id,
+      'on': on,
+    },
+  );
+
+  /// Reports a post or reply. Returns whether it is now hidden for everyone.
+  _ida.Future<bool> report(
+    _ilhdyced.CommunityTarget target,
+    int id,
+    String reason,
+  ) => caller.callServerEndpoint<bool>(
+    'community',
+    'report',
+    {
+      'target': target,
+      'id': id,
+      'reason': reason,
+    },
+  );
+
+  _ida.Future<_i8e19teb.CommunityPost> setAnswer(
+    int threadId,
+    int? replyId,
+  ) => caller.callServerEndpoint<_i8e19teb.CommunityPost>(
+    'community',
+    'setAnswer',
+    {
+      'threadId': threadId,
+      'replyId': replyId,
+    },
+  );
+
+  _ida.Future<_i8e19teb.CommunityPost> setGoing(
+    int threadId,
+    bool on,
+  ) => caller.callServerEndpoint<_i8e19teb.CommunityPost>(
+    'community',
+    'setGoing',
+    {
+      'threadId': threadId,
+      'on': on,
+    },
+  );
+
+  _ida.Future<_i8e19teb.CommunityPost> startLive(int threadId) =>
+      caller.callServerEndpoint<_i8e19teb.CommunityPost>(
+        'community',
+        'startLive',
+        {'threadId': threadId},
+      );
+
+  _ida.Future<void> endLive(int threadId) => caller.callServerEndpoint<void>(
+    'community',
+    'endLive',
+    {'threadId': threadId},
+  );
+
+  /// The live room with this code (anyone who has the code may read it).
+  _ida.Future<_i82wj25m.CommunityLiveRoom> live(String code) =>
+      caller.callServerEndpoint<_i82wj25m.CommunityLiveRoom>(
+        'community',
+        'live',
+        {'code': code},
+      );
+
+  _ida.Future<_i07c5ol7.CommunityLiveMessageView> sayLive(
+    String code,
+    String text,
+    _i0uwrkyu.CommunityInput input,
+  ) => caller.callServerEndpoint<_i07c5ol7.CommunityLiveMessageView>(
+    'community',
+    'sayLive',
+    {
+      'code': code,
+      'text': text,
+      'input': input,
+    },
+  );
+
+  /// Replies, edits and helpful counts in a thread, as they happen.
+  _ida.Stream<_ir0ag590.CommunityEvent> listenThread(int threadId) =>
+      caller.callStreamingServerEndpoint<
+        _ida.Stream<_ir0ag590.CommunityEvent>,
+        _ir0ag590.CommunityEvent
+      >(
+        'community',
+        'listenThread',
+        {'threadId': threadId},
+        {},
+      );
+
+  /// Messages in a live room, as they happen, until it ends.
+  _ida.Stream<_ir0ag590.CommunityEvent> listenLive(String code) =>
+      caller.callStreamingServerEndpoint<
+        _ida.Stream<_ir0ag590.CommunityEvent>,
+        _ir0ag590.CommunityEvent
+      >(
+        'community',
+        'listenLive',
+        {'code': code},
+        {},
+      );
+}
+
 /// Tells the app where the 3D signer, the web app and the Android download are.
 ///
 /// Values come from `config/passwords.yaml` or, on Serverpod Cloud, from
@@ -598,6 +899,7 @@ class Client extends _isc.ServerpodClientShared {
     anonymousIdp = EndpointAnonymousIdp(this);
     emailIdp = EndpointEmailIdp(this);
     jwtRefresh = EndpointJwtRefresh(this);
+    community = EndpointCommunity(this);
     settings = EndpointSettings(this);
     greeting = EndpointGreeting(this);
     sign = EndpointSign(this);
@@ -610,6 +912,8 @@ class Client extends _isc.ServerpodClientShared {
   late final EndpointEmailIdp emailIdp;
 
   late final EndpointJwtRefresh jwtRefresh;
+
+  late final EndpointCommunity community;
 
   late final EndpointSettings settings;
 
@@ -626,6 +930,7 @@ class Client extends _isc.ServerpodClientShared {
     'anonymousIdp': anonymousIdp,
     'emailIdp': emailIdp,
     'jwtRefresh': jwtRefresh,
+    'community': community,
     'settings': settings,
     'greeting': greeting,
     'sign': sign,

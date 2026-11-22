@@ -1,0 +1,898 @@
+{
+  "__className__": "serverpod.DatabaseDefinition",
+  "schemaVersion": 2,
+  "moduleName": "parlance_mobile",
+  "tables": [
+    {
+      "__className__": "serverpod.TableDefinition",
+      "name": "community_live_message",
+      "dartName": "CommunityLiveMessage",
+      "module": "parlance_mobile",
+      "schema": "public",
+      "columns": [
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "id",
+          "fieldName": "id",
+          "columnType": 6,
+          "isNullable": false,
+          "columnDefault": "serial",
+          "dartType": "int?"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "threadId",
+          "fieldName": "threadId",
+          "columnType": 6,
+          "isNullable": false,
+          "dartType": "int"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "authorId",
+          "fieldName": "authorId",
+          "columnType": 6,
+          "isNullable": false,
+          "dartType": "int"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "text",
+          "fieldName": "text",
+          "columnType": 0,
+          "isNullable": false,
+          "dartType": "String"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "input",
+          "fieldName": "input",
+          "columnType": 0,
+          "isNullable": false,
+          "dartType": "protocol:CommunityInput"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "createdAt",
+          "fieldName": "createdAt",
+          "columnType": 4,
+          "isNullable": false,
+          "columnDefault": "now",
+          "dartType": "DateTime"
+        }
+      ],
+      "foreignKeys": [],
+      "indexes": [
+        {
+          "__className__": "serverpod.IndexDefinition",
+          "indexName": "community_live_thread_idx",
+          "elements": [
+            {
+              "__className__": "serverpod.IndexElementDefinition",
+              "type": 0,
+              "definition": "threadId"
+            }
+          ],
+          "type": "btree",
+          "isUnique": false,
+          "isPrimary": false
+        }
+      ],
+      "managed": true
+    },
+    {
+      "__className__": "serverpod.TableDefinition",
+      "name": "community_mark",
+      "dartName": "CommunityMark",
+      "module": "parlance_mobile",
+      "schema": "public",
+      "columns": [
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "id",
+          "fieldName": "id",
+          "columnType": 6,
+          "isNullable": false,
+          "columnDefault": "serial",
+          "dartType": "int?"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "memberId",
+          "fieldName": "memberId",
+          "columnType": 6,
+          "isNullable": false,
+          "dartType": "int"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "kind",
+          "fieldName": "kind",
+          "columnType": 0,
+          "isNullable": false,
+          "dartType": "protocol:CommunityMarkKind"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "target",
+          "fieldName": "target",
+          "columnType": 0,
+          "isNullable": false,
+          "dartType": "protocol:CommunityTarget"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "targetId",
+          "fieldName": "targetId",
+          "columnType": 6,
+          "isNullable": false,
+          "dartType": "int"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "reason",
+          "fieldName": "reason",
+          "columnType": 0,
+          "isNullable": true,
+          "dartType": "String?"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "createdAt",
+          "fieldName": "createdAt",
+          "columnType": 4,
+          "isNullable": false,
+          "columnDefault": "now",
+          "dartType": "DateTime"
+        }
+      ],
+      "foreignKeys": [],
+      "indexes": [
+        {
+          "__className__": "serverpod.IndexDefinition",
+          "indexName": "community_mark_unique_idx",
+          "elements": [
+            {
+              "__className__": "serverpod.IndexElementDefinition",
+              "type": 0,
+              "definition": "memberId"
+            },
+            {
+              "__className__": "serverpod.IndexElementDefinition",
+              "type": 0,
+              "definition": "kind"
+            },
+            {
+              "__className__": "serverpod.IndexElementDefinition",
+              "type": 0,
+              "definition": "target"
+            },
+            {
+              "__className__": "serverpod.IndexElementDefinition",
+              "type": 0,
+              "definition": "targetId"
+            }
+          ],
+          "type": "btree",
+          "isUnique": true,
+          "isPrimary": false
+        },
+        {
+          "__className__": "serverpod.IndexDefinition",
+          "indexName": "community_mark_target_idx",
+          "elements": [
+            {
+              "__className__": "serverpod.IndexElementDefinition",
+              "type": 0,
+              "definition": "kind"
+            },
+            {
+              "__className__": "serverpod.IndexElementDefinition",
+              "type": 0,
+              "definition": "target"
+            },
+            {
+              "__className__": "serverpod.IndexElementDefinition",
+              "type": 0,
+              "definition": "targetId"
+            }
+          ],
+          "type": "btree",
+          "isUnique": false,
+          "isPrimary": false
+        }
+      ],
+      "managed": true
+    },
+    {
+      "__className__": "serverpod.TableDefinition",
+      "name": "community_member",
+      "dartName": "CommunityMember",
+      "module": "parlance_mobile",
+      "schema": "public",
+      "columns": [
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "id",
+          "fieldName": "id",
+          "columnType": 6,
+          "isNullable": false,
+          "columnDefault": "serial",
+          "dartType": "int?"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "userId",
+          "fieldName": "userId",
+          "columnType": 0,
+          "isNullable": true,
+          "dartType": "String?"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "handle",
+          "fieldName": "handle",
+          "columnType": 0,
+          "isNullable": false,
+          "dartType": "String"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "handleKey",
+          "fieldName": "handleKey",
+          "columnType": 0,
+          "isNullable": true,
+          "dartType": "String?"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "city",
+          "fieldName": "city",
+          "columnType": 0,
+          "isNullable": false,
+          "dartType": "String"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "ways",
+          "fieldName": "ways",
+          "columnType": 8,
+          "isNullable": false,
+          "dartType": "List<String>"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "sample",
+          "fieldName": "sample",
+          "columnType": 1,
+          "isNullable": false,
+          "columnDefault": "false",
+          "dartType": "bool"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "joinedAt",
+          "fieldName": "joinedAt",
+          "columnType": 4,
+          "isNullable": false,
+          "columnDefault": "now",
+          "dartType": "DateTime"
+        }
+      ],
+      "foreignKeys": [],
+      "indexes": [
+        {
+          "__className__": "serverpod.IndexDefinition",
+          "indexName": "community_member_user_idx",
+          "elements": [
+            {
+              "__className__": "serverpod.IndexElementDefinition",
+              "type": 0,
+              "definition": "userId"
+            }
+          ],
+          "type": "btree",
+          "isUnique": true,
+          "isPrimary": false
+        },
+        {
+          "__className__": "serverpod.IndexDefinition",
+          "indexName": "community_member_handle_idx",
+          "elements": [
+            {
+              "__className__": "serverpod.IndexElementDefinition",
+              "type": 0,
+              "definition": "handleKey"
+            }
+          ],
+          "type": "btree",
+          "isUnique": true,
+          "isPrimary": false
+        }
+      ],
+      "managed": true
+    },
+    {
+      "__className__": "serverpod.TableDefinition",
+      "name": "community_reply",
+      "dartName": "CommunityReply",
+      "module": "parlance_mobile",
+      "schema": "public",
+      "columns": [
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "id",
+          "fieldName": "id",
+          "columnType": 6,
+          "isNullable": false,
+          "columnDefault": "serial",
+          "dartType": "int?"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "threadId",
+          "fieldName": "threadId",
+          "columnType": 6,
+          "isNullable": false,
+          "dartType": "int"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "authorId",
+          "fieldName": "authorId",
+          "columnType": 6,
+          "isNullable": false,
+          "dartType": "int"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "body",
+          "fieldName": "body",
+          "columnType": 0,
+          "isNullable": false,
+          "dartType": "String"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "input",
+          "fieldName": "input",
+          "columnType": 0,
+          "isNullable": false,
+          "dartType": "protocol:CommunityInput"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "quoteId",
+          "fieldName": "quoteId",
+          "columnType": 6,
+          "isNullable": true,
+          "dartType": "int?"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "createdAt",
+          "fieldName": "createdAt",
+          "columnType": 4,
+          "isNullable": false,
+          "columnDefault": "now",
+          "dartType": "DateTime"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "editedAt",
+          "fieldName": "editedAt",
+          "columnType": 4,
+          "isNullable": true,
+          "dartType": "DateTime?"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "hidden",
+          "fieldName": "hidden",
+          "columnType": 1,
+          "isNullable": false,
+          "columnDefault": "false",
+          "dartType": "bool"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "deleted",
+          "fieldName": "deleted",
+          "columnType": 1,
+          "isNullable": false,
+          "columnDefault": "false",
+          "dartType": "bool"
+        }
+      ],
+      "foreignKeys": [],
+      "indexes": [
+        {
+          "__className__": "serverpod.IndexDefinition",
+          "indexName": "community_reply_thread_idx",
+          "elements": [
+            {
+              "__className__": "serverpod.IndexElementDefinition",
+              "type": 0,
+              "definition": "threadId"
+            },
+            {
+              "__className__": "serverpod.IndexElementDefinition",
+              "type": 0,
+              "definition": "createdAt"
+            }
+          ],
+          "type": "btree",
+          "isUnique": false,
+          "isPrimary": false
+        }
+      ],
+      "managed": true
+    },
+    {
+      "__className__": "serverpod.TableDefinition",
+      "name": "community_thread",
+      "dartName": "CommunityThread",
+      "module": "parlance_mobile",
+      "schema": "public",
+      "columns": [
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "id",
+          "fieldName": "id",
+          "columnType": 6,
+          "isNullable": false,
+          "columnDefault": "serial",
+          "dartType": "int?"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "space",
+          "fieldName": "space",
+          "columnType": 0,
+          "isNullable": false,
+          "dartType": "String"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "kind",
+          "fieldName": "kind",
+          "columnType": 0,
+          "isNullable": false,
+          "dartType": "protocol:CommunityKind"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "title",
+          "fieldName": "title",
+          "columnType": 0,
+          "isNullable": false,
+          "dartType": "String"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "body",
+          "fieldName": "body",
+          "columnType": 0,
+          "isNullable": false,
+          "dartType": "String"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "input",
+          "fieldName": "input",
+          "columnType": 0,
+          "isNullable": false,
+          "dartType": "protocol:CommunityInput"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "authorId",
+          "fieldName": "authorId",
+          "columnType": 6,
+          "isNullable": false,
+          "dartType": "int"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "createdAt",
+          "fieldName": "createdAt",
+          "columnType": 4,
+          "isNullable": false,
+          "columnDefault": "now",
+          "dartType": "DateTime"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "editedAt",
+          "fieldName": "editedAt",
+          "columnType": 4,
+          "isNullable": true,
+          "dartType": "DateTime?"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "lastActivityAt",
+          "fieldName": "lastActivityAt",
+          "columnType": 4,
+          "isNullable": false,
+          "columnDefault": "now",
+          "dartType": "DateTime"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "answerId",
+          "fieldName": "answerId",
+          "columnType": 6,
+          "isNullable": true,
+          "dartType": "int?"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "hidden",
+          "fieldName": "hidden",
+          "columnType": 1,
+          "isNullable": false,
+          "columnDefault": "false",
+          "dartType": "bool"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "deleted",
+          "fieldName": "deleted",
+          "columnType": 1,
+          "isNullable": false,
+          "columnDefault": "false",
+          "dartType": "bool"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "place",
+          "fieldName": "place",
+          "columnType": 0,
+          "isNullable": true,
+          "dartType": "String?"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "city",
+          "fieldName": "city",
+          "columnType": 0,
+          "isNullable": true,
+          "dartType": "String?"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "startsAt",
+          "fieldName": "startsAt",
+          "columnType": 4,
+          "isNullable": true,
+          "dartType": "DateTime?"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "endsAt",
+          "fieldName": "endsAt",
+          "columnType": 4,
+          "isNullable": true,
+          "dartType": "DateTime?"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "liveCode",
+          "fieldName": "liveCode",
+          "columnType": 0,
+          "isNullable": true,
+          "dartType": "String?"
+        }
+      ],
+      "foreignKeys": [],
+      "indexes": [
+        {
+          "__className__": "serverpod.IndexDefinition",
+          "indexName": "community_thread_space_idx",
+          "elements": [
+            {
+              "__className__": "serverpod.IndexElementDefinition",
+              "type": 0,
+              "definition": "space"
+            },
+            {
+              "__className__": "serverpod.IndexElementDefinition",
+              "type": 0,
+              "definition": "lastActivityAt"
+            }
+          ],
+          "type": "btree",
+          "isUnique": false,
+          "isPrimary": false
+        },
+        {
+          "__className__": "serverpod.IndexDefinition",
+          "indexName": "community_thread_live_idx",
+          "elements": [
+            {
+              "__className__": "serverpod.IndexElementDefinition",
+              "type": 0,
+              "definition": "liveCode"
+            }
+          ],
+          "type": "btree",
+          "isUnique": false,
+          "isPrimary": false
+        }
+      ],
+      "managed": true
+    },
+    {
+      "__className__": "serverpod.TableDefinition",
+      "name": "room",
+      "dartName": "Room",
+      "module": "parlance_mobile",
+      "schema": "public",
+      "columns": [
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "id",
+          "fieldName": "id",
+          "columnType": 6,
+          "isNullable": false,
+          "columnDefault": "serial",
+          "dartType": "int?"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "code",
+          "fieldName": "code",
+          "columnType": 0,
+          "isNullable": false,
+          "dartType": "String"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "hostId",
+          "fieldName": "hostId",
+          "columnType": 0,
+          "isNullable": true,
+          "dartType": "String?"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "createdAt",
+          "fieldName": "createdAt",
+          "columnType": 4,
+          "isNullable": false,
+          "columnDefault": "now",
+          "dartType": "DateTime"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "expiresAt",
+          "fieldName": "expiresAt",
+          "columnType": 4,
+          "isNullable": false,
+          "dartType": "DateTime"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "closed",
+          "fieldName": "closed",
+          "columnType": 1,
+          "isNullable": false,
+          "columnDefault": "false",
+          "dartType": "bool"
+        }
+      ],
+      "foreignKeys": [],
+      "indexes": [
+        {
+          "__className__": "serverpod.IndexDefinition",
+          "indexName": "room__code__unique_idx",
+          "elements": [
+            {
+              "__className__": "serverpod.IndexElementDefinition",
+              "type": 0,
+              "definition": "code"
+            }
+          ],
+          "type": "btree",
+          "isUnique": true,
+          "isPrimary": false
+        }
+      ],
+      "managed": true
+    },
+    {
+      "__className__": "serverpod.TableDefinition",
+      "name": "room_member",
+      "dartName": "RoomMember",
+      "module": "parlance_mobile",
+      "schema": "public",
+      "columns": [
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "id",
+          "fieldName": "id",
+          "columnType": 6,
+          "isNullable": false,
+          "columnDefault": "serial",
+          "dartType": "int?"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "roomId",
+          "fieldName": "roomId",
+          "columnType": 6,
+          "isNullable": false,
+          "dartType": "int"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "userId",
+          "fieldName": "userId",
+          "columnType": 0,
+          "isNullable": true,
+          "dartType": "String?"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "role",
+          "fieldName": "role",
+          "columnType": 0,
+          "isNullable": false,
+          "dartType": "protocol:MemberRole"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "name",
+          "fieldName": "name",
+          "columnType": 0,
+          "isNullable": false,
+          "dartType": "String"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "joinedAt",
+          "fieldName": "joinedAt",
+          "columnType": 4,
+          "isNullable": false,
+          "columnDefault": "now",
+          "dartType": "DateTime"
+        }
+      ],
+      "foreignKeys": [],
+      "indexes": [
+        {
+          "__className__": "serverpod.IndexDefinition",
+          "indexName": "room_member_unique",
+          "elements": [
+            {
+              "__className__": "serverpod.IndexElementDefinition",
+              "type": 0,
+              "definition": "roomId"
+            },
+            {
+              "__className__": "serverpod.IndexElementDefinition",
+              "type": 0,
+              "definition": "userId"
+            }
+          ],
+          "type": "btree",
+          "isUnique": true,
+          "isPrimary": false
+        }
+      ],
+      "managed": true
+    },
+    {
+      "__className__": "serverpod.TableDefinition",
+      "name": "utterance",
+      "dartName": "Utterance",
+      "module": "parlance_mobile",
+      "schema": "public",
+      "columns": [
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "id",
+          "fieldName": "id",
+          "columnType": 6,
+          "isNullable": false,
+          "columnDefault": "serial",
+          "dartType": "int?"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "roomId",
+          "fieldName": "roomId",
+          "columnType": 6,
+          "isNullable": false,
+          "dartType": "int"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "memberId",
+          "fieldName": "memberId",
+          "columnType": 6,
+          "isNullable": false,
+          "dartType": "int"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "role",
+          "fieldName": "role",
+          "columnType": 0,
+          "isNullable": false,
+          "dartType": "protocol:MemberRole"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "kind",
+          "fieldName": "kind",
+          "columnType": 0,
+          "isNullable": false,
+          "dartType": "protocol:UtteranceKind"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "text",
+          "fieldName": "text",
+          "columnType": 0,
+          "isNullable": false,
+          "dartType": "String"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "hindi",
+          "fieldName": "hindi",
+          "columnType": 0,
+          "isNullable": true,
+          "dartType": "String?"
+        },
+        {
+          "__className__": "serverpod.ColumnDefinition",
+          "name": "createdAt",
+          "fieldName": "createdAt",
+          "columnType": 4,
+          "isNullable": false,
+          "columnDefault": "now",
+          "dartType": "DateTime"
+        }
+      ],
+      "foreignKeys": [],
+      "indexes": [
+        {
+          "__className__": "serverpod.IndexDefinition",
+          "indexName": "utterance_room_idx",
+          "elements": [
+            {
+              "__className__": "serverpod.IndexElementDefinition",
+              "type": 0,
+              "definition": "roomId"
+            }
+          ],
+          "type": "btree",
+          "isUnique": false,
+          "isPrimary": false
+        }
+      ],
+      "managed": true
+    }
+  ],
+  "installedModules": [
+    {
+      "__className__": "serverpod.DatabaseMigrationVersion",
+      "module": "serverpod",
+      "version": "20260824182259319"
+    },
+    {
+      "__className__": "serverpod.DatabaseMigrationVersion",
+      "module": "serverpod_auth_idp",
+      "version": "20261015164015382"
+    },
+    {
+      "__className__": "serverpod.DatabaseMigrationVersion",
+      "module": "serverpod_auth_core",
+      "version": "20260924105232991"
+    }
+  ],
+  "migrationApiVersion": 1
+}

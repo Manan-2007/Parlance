@@ -1,0 +1,8 @@
+### What kind of post starts a thread.
+enum: CommunityKind
+values:
+  - discussion
+  ### The asker can mark one reply as the answer.
+  - question
+  ### Has a place and a time, and a live room on the day.
+  - meetup

@@ -1,0 +1,17 @@
+### A reply in a thread.
+class: CommunityReply
+table: community_reply
+fields:
+  threadId: int
+  authorId: int
+  body: String
+  input: CommunityInput
+  ### The reply this one answers, if any.
+  quoteId: int?
+  createdAt: DateTime, default=now
+  editedAt: DateTime?
+  hidden: bool, default=false
+  deleted: bool, default=false
+indexes:
+  community_reply_thread_idx:
+    fields: threadId, createdAt

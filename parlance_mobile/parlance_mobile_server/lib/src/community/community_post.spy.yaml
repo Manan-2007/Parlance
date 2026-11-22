@@ -1,0 +1,20 @@
+### A thread as one person sees it.
+class: CommunityPost
+fields:
+  id: int
+  space: String
+  kind: CommunityKind
+  title: String
+  body: String
+  input: CommunityInput
+  author: CommunityAuthor
+  createdAt: DateTime
+  editedAt: DateTime?
+  lastActivityAt: DateTime
+  replyCount: int
+  helpful: int
+  myHelpful: bool
+  answerId: int?
+  hidden: bool
+  mine: bool
+  meetup: CommunityMeetup?

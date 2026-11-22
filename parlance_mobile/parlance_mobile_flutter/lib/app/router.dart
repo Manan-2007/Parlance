@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../features/cards/cards_screens.dart';
+import '../features/community/community_screens.dart';
+import '../features/community/live_screen.dart';
 import '../features/home/home_screen.dart';
 import '../features/learn/learn_screens.dart';
 import '../features/room/conversation_screen.dart';
@@ -12,7 +14,7 @@ import 'theme.dart';
 
 final _root = GlobalKey<NavigatorState>();
 
-/// Home, Translate, Learn and Cards are tabs with a bottom bar; a
+/// Home, Translate, Learn, Cards and Community are tabs with a bottom bar; a
 /// conversation, the sign camera and a card on show take the whole screen.
 /// Paths are shared with the web build: a room's QR code opens `/#/join/123456`.
 final router = GoRouter(
@@ -89,7 +91,48 @@ final router = GoRouter(
             ),
           ],
         ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              path: '/community',
+              builder: (context, state) => const CommunityScreen(),
+              routes: [
+                GoRoute(
+                  path: 's/:space',
+                  builder: (context, state) =>
+                      SpaceScreen(spaceId: state.pathParameters['space']!),
+                ),
+                GoRoute(
+                  path: 't/:id',
+                  builder: (context, state) => ThreadScreen(
+                    threadId: int.tryParse(state.pathParameters['id']!) ?? 0,
+                  ),
+                ),
+                GoRoute(
+                  path: 'new',
+                  parentNavigatorKey: _root,
+                  builder: (context, state) => NewPostScreen(
+                    space: state.uri.queryParameters['space'],
+                    kind: state.uri.queryParameters['kind'],
+                  ),
+                ),
+              ],
+            ),
+          ],
+        ),
       ],
+    ),
+    // A meetup's live room ("Here, together"), full screen. Its QR code opens /#/community/live/123456.
+    GoRoute(
+      path: '/community/live',
+      parentNavigatorKey: _root,
+      builder: (context, state) => const LiveJoinScreen(),
+    ),
+    GoRoute(
+      path: '/community/live/:code',
+      parentNavigatorKey: _root,
+      builder: (context, state) =>
+          LiveScreen(code: state.pathParameters['code']!),
     ),
     GoRoute(
       path: '/talk',
@@ -167,6 +210,11 @@ class _Tabs extends StatelessWidget {
             icon: Icon(Icons.style_outlined),
             selectedIcon: Icon(Icons.style_rounded),
             label: 'Cards',
+          ),
+          NavigationDestination(
+            icon: Icon(Icons.forum_outlined),
+            selectedIcon: Icon(Icons.forum_rounded),
+            label: 'Community',
           ),
         ],
       ),

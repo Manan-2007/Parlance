@@ -1,0 +1,30 @@
+### A post that starts a conversation: a discussion, a question or a meetup.
+class: CommunityThread
+table: community_thread
+fields:
+  space: String
+  kind: CommunityKind
+  title: String
+  body: String
+  input: CommunityInput
+  authorId: int
+  createdAt: DateTime, default=now
+  editedAt: DateTime?
+  lastActivityAt: DateTime, default=now
+  ### The reply the asker chose as the answer (questions only).
+  answerId: int?
+  ### Hidden after several people reported it.
+  hidden: bool, default=false
+  deleted: bool, default=false
+  ### Meetups only.
+  place: String?
+  city: String?
+  startsAt: DateTime?
+  endsAt: DateTime?
+  ### The live room's six-digit code, only shown to the host.
+  liveCode: String?, scope=serverOnly
+indexes:
+  community_thread_space_idx:
+    fields: space, lastActivityAt
+  community_thread_live_idx:
+    fields: liveCode

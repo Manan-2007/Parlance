@@ -1,0 +1,17 @@
+### One person's "helpful", report, or "I'm going" on a post or reply.
+class: CommunityMark
+table: community_mark
+fields:
+  memberId: int
+  kind: CommunityMarkKind
+  target: CommunityTarget
+  targetId: int
+  ### Why it was reported (reports only).
+  reason: String?
+  createdAt: DateTime, default=now
+indexes:
+  community_mark_unique_idx:
+    fields: memberId, kind, target, targetId
+    unique: true
+  community_mark_target_idx:
+    fields: kind, target, targetId

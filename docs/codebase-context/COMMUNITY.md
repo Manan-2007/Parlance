@@ -2,8 +2,11 @@
 
 Long-form discussion for Deaf and hard-of-hearing people, their families and
 learners (`/app/community`), plus live meetup rooms for people in the same
-place ("Here, together"). It is the website's version of the hackathon's
-Track 1 idea; the phone app (Flutter + Serverpod) is unchanged.
+place ("Here, together"), the hackathon's Track 1 idea. The phone app has the
+same feature in Serverpod (`parlance_mobile/parlance_mobile_server/lib/src/community/`,
+screens in `parlance_mobile_flutter/lib/features/community/`, see
+`parlance_mobile/AGENTS.md`). The website and the phone app keep separate
+posts: the website's live in a local SQLite file, the app's in Serverpod Cloud.
 
 ## Why it is not a group chat
 

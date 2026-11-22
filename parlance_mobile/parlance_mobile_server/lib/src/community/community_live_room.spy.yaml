@@ -1,0 +1,14 @@
+### A meetup's live room ("Here, together").
+class: CommunityLiveRoom
+fields:
+  code: String
+  threadId: int
+  title: String
+  place: String
+  city: String
+  startsAt: DateTime
+  endsAt: DateTime
+  host: CommunityAuthor
+  isHost: bool
+  ### Oldest first.
+  messages: List<CommunityLiveMessageView>

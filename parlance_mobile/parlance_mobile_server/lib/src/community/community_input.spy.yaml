@@ -1,0 +1,6 @@
+### How a post was written.
+enum: CommunityInput
+values:
+  - typed
+  - spoken
+  - signed

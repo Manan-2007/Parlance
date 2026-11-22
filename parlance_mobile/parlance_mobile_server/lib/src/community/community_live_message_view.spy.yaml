@@ -1,0 +1,7 @@
+class: CommunityLiveMessageView
+fields:
+  id: int
+  text: String
+  input: CommunityInput
+  author: CommunityAuthor
+  createdAt: DateTime

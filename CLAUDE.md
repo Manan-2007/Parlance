@@ -5,7 +5,7 @@ A platform to learn and translate Indian Sign Language (ISL).
 - **Speech → Sign** (text or voice → ISL gloss → three.js avatar "Ch22") works offline.
 - **Sign → Text** (webcam → MediaPipe landmarks in a worker → WebSocket recogniser → English) uses the bundled `backend/` FastAPI service on port 8000.
 - **Parlance mobile** (`parlance_mobile/`, Flutter + Serverpod, for the HackBriven × Serverpod hackathon): two phones in one conversation, the recogniser ported to Dart in the Serverpod server, everything on Serverpod Cloud. See `parlance_mobile/README.md` and `parlance_mobile/AGENTS.md`.
-- **Community** (`/app/community`): spaces and threads for in-depth discussion, questions with answers, "See in sign" on every post, and meetups with a live room joined by a six-digit code ("Here, together"). Stored in SQLite by `backend/community.py` (same local FastAPI service). See `docs/codebase-context/COMMUNITY.md`.
+- **Community** (`/app/community`): spaces and threads for in-depth discussion, questions with answers, "See in sign" on every post, and meetups with a live room joined by a six-digit code ("Here, together"). Stored in SQLite by `backend/community.py` (same local FastAPI service). See `docs/codebase-context/COMMUNITY.md`. The phone app has its own Community in Serverpod (`parlance_mobile/parlance_mobile_server/lib/src/community/`); the two do not share posts.
 - **Home** (`/app`) lists everything by situation. **Cards** (emergency, counters, visit card, SOS), **live captions** (Speech → Sign `?view=captions`) and **sound alerts** (on-device YAMNet) work offline once the app is installed. See `docs/codebase-context/EVERYDAY.md`.
 
 Docs: `docs/codebase-context/`. Start with `DEVELOPMENT_HANDOFF.md`; Learn is in `LEARN.md`.
